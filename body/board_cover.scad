@@ -2,7 +2,8 @@
 
 - [x] sitting pins
 - [ ] reset button cut
-- [ ] usb-c cut
+- [x] usb-c cut
+- [x] power button cut
 - [x] board space
 - [x] bottom plate that fits into horizontal cut
 
@@ -18,7 +19,7 @@ cover_height = 13;
 cover_height_min = 5;
 
 wall_thickness = 1;
-sittin_pin_radius = 1.2;
+sittin_pin_radius = 1.1;
 
 module outer_shape() {
   linear_extrude(height=cover_height_min) {
@@ -56,20 +57,47 @@ module inner_shape() {
   }
 }
 
+module cuts() {
+
+  translate([-5, -50, 0]) {
+    rotate([0, 90, 0]) {
+      hull() {
+        cylinder(h=10, r=2.5, center=false);
+        translate([0, 5, 0])
+          cylinder(h=10, r=2.5, center=false);
+      }
+    }
+  }
+
+  translate([15, -5, 9]) {
+    rotate([0, 90, 90]) {
+      hull() {
+        cylinder(h=10, r=1.5, center=false);
+        translate([0, 8, 0])
+          cylinder(h=10, r=1.5, center=false);
+      }
+    }
+  }
+
+  translate([cover_width - 11, -cover_length_2 + 3.5, wall_thickness])
+    cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
+}
+
 difference() {
   outer_shape();
   inner_shape();
+  cuts();
 }
 
-translate([3, -cover_length_1 + 5, -wall_thickness])
+translate([3.5, -cover_length_1 + 5, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 
-translate([cover_width - 3, -cover_length_2 + 3, -wall_thickness])
+translate([cover_width - 4.5, -cover_length_2 + 3, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 
 translate([cover_width - 3, +2, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 
 translate([18, 0, 2]) {
-  cube([5, 5, 3]);
+  cube([5, 3.5, 3]);
 }
