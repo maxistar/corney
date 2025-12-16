@@ -11,15 +11,15 @@
 
 $fn = 50;
 
-cover_width = 23;
-cover_length_1 = 60;
-cover_length_2 = 50;
+cover_width = 20.3;
+cover_length_1 = 60.71;
+cover_length_2 = 49.5;
 
 cover_height = 13;
 cover_height_min = 5;
 
-wall_thickness = 1;
-sittin_pin_radius = 1.1;
+wall_thickness = 0.8;
+sittin_pin_radius = 2.5 / 2;
 
 module outer_shape() {
   linear_extrude(height=cover_height_min) {
@@ -59,7 +59,7 @@ module inner_shape() {
 
 module cuts() {
 
-  translate([-5, -50, 0]) {
+  translate([-5, -52, 0]) {
     rotate([0, 90, 0]) {
       hull() {
         cylinder(h=10, r=2.5, center=false);
@@ -69,17 +69,17 @@ module cuts() {
     }
   }
 
-  translate([15, -5, 9]) {
+  translate([14, -5, 9.5]) {
     rotate([0, 90, 90]) {
       hull() {
-        cylinder(h=10, r=1.5, center=false);
+        cylinder(h=10, r=1.8, center=false);
         translate([0, 8, 0])
-          cylinder(h=10, r=1.5, center=false);
+          cylinder(h=10, r=1.8, center=false);
       }
     }
   }
 
-  translate([cover_width - 11, -cover_length_2 + 3.5, wall_thickness])
+  translate([cover_width - 10.1, -cover_length_2 + 2.5, wall_thickness])
     cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 }
 
@@ -88,16 +88,17 @@ difference() {
   inner_shape();
   cuts();
 }
-
-translate([3.5, -cover_length_1 + 5, -wall_thickness])
+/*
+translate([3.6, -cover_length_1 + 5.7, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 
 translate([cover_width - 4.5, -cover_length_2 + 3, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 
-translate([cover_width - 3, +2, -wall_thickness])
+translate([cover_width - 2.5, +2, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 
-translate([18, 0, 2]) {
+translate([15, 0, 2]) {
   cube([5, 3.5, 3]);
 }
+*/
