@@ -11,12 +11,12 @@
 
 $fn = 50;
 
-cover_width = 20.3;
+cover_width = 20.5;
 cover_length_1 = 60.71;
 cover_length_2 = 49.5;
 
-cover_height = 13;
-cover_height_min = 5;
+cover_height = 12;
+cover_height_min = 4;
 
 wall_thickness = 0.8;
 sittin_pin_radius = 2.5 / 2;
@@ -59,27 +59,29 @@ module inner_shape() {
 
 module cuts() {
 
-  translate([-5, -52, 0]) {
+  // Power button cut
+  translate([-5, -50.5, 0]) {
     rotate([0, 90, 0]) {
       hull() {
-        cylinder(h=10, r=2.5, center=false);
-        translate([0, 5, 0])
-          cylinder(h=10, r=2.5, center=false);
+        cylinder(h=9, r=2.0, center=false);
+        translate([0, 4, 0])
+          cylinder(h=9, r=2.0, center=false);
       }
     }
   }
 
-  translate([14, -5, 9.5]) {
+  // USB-C cut
+  translate([14, -6, 8.6]) {
     rotate([0, 90, 90]) {
       hull() {
         cylinder(h=10, r=1.8, center=false);
-        translate([0, 8, 0])
-          cylinder(h=10, r=1.8, center=false);
+        translate([0, 7, 0])
+          cylinder(h=9, r=1.8, center=false);
       }
     }
   }
 
-  translate([cover_width - 10.1, -cover_length_2 + 2.5, wall_thickness])
+  translate([cover_width - 9.8, -cover_length_2 + 2.7, wall_thickness])
     cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
 }
 
@@ -94,11 +96,11 @@ translate([3.6, -cover_length_1 + 5.7, -wall_thickness])
 
 translate([cover_width - 4.5, -cover_length_2 + 3, -wall_thickness])
   cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
-
-translate([cover_width - 2.5, +2, -wall_thickness])
-  cylinder(h=cover_height_min, r=sittin_pin_radius, center=false);
-
-translate([15, 0, 2]) {
-  cube([5, 3.5, 3]);
-}
 */
+translate([cover_width - 2.0, +2, /*-wall_thickness*/ 0])
+  cylinder(h=cover_height_min, r=sittin_pin_radius-0.2, center=false);
+
+translate([16.5, 0, 2]) {
+  cube([4, 3.5, 3]);
+}
+
