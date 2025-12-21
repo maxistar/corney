@@ -1,4 +1,11 @@
 // case
+/**
+features todo: 
+- [ ] magnetic latch
+- [ ] placing keybouad on top of case as tilted support
+- [ ] magnetic fixation of the keyboard
+
+*/
 
 module column3() {
   translate([32, 120, 14])
