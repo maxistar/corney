@@ -1,19 +1,4 @@
 // layers
-#define DEFAULT 0
-#define DEFAULT_ANDROID 1
-#define DEUTSCH 2
-#define DE_MAC  3
-#define RUSSIAN 4
-#define RUSSIAN_MAC 5
-#define RU_ANDROID 6
-#define LOWER 7
-#define MAGIC 8
-#define DE_SHIFT 9
-#define DE_SHIFT_MAC 10
-#define DE_RALT 11
-#define DE_RALT_MAC 12
-#define RU_SHIFT 13
-#define RU_SHIFT_MAC 14
 
 #define LOWER 1
 #define MAGIC 2
