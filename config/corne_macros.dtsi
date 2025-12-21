@@ -19,4 +19,5 @@
           bindings = <&to MAGIC>,
                      <&kp F19>;
         };
+    };
 };
