@@ -9,14 +9,14 @@
         to_lower: to_lower {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&to LOWER>,
+          bindings = <&mo LOWER>,
                      <&kp F18>;
         };
 
         to_magic: to_magic {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&to MAGIC>,
+          bindings = <&mo MAGIC>,
                      <&kp F19>;
         };
     };
