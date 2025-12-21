@@ -4,6 +4,8 @@ features todo:
 - [ ] magnetic latch
 - [ ] placing keybouad on top of case as tilted support
 - [ ] magnetic fixation of the keyboard
+- [ ] additional pads fixation for the keyboard
+- [ ] rubber perimeter for better stability
 
 */
 
@@ -64,6 +66,13 @@ module corne_centered() {
     corne();
 }
 
+module base_centered() {
+  translate([-90, -95, 2])
+    hull() {
+      import("corne-chocoflan-case.stl");
+    }
+}
+
 module outline() {
   hull() {
     corne_centered();
@@ -78,12 +87,12 @@ module shell() {
   difference() {
     minkowski() {
       outline();
-      sphere(r=3);
+      sphere(r=4);
     }
 
     minkowski() {
       outline();
-      sphere(r=0.3);
+      sphere(r=0.5);
     }
   }
 }
@@ -106,11 +115,19 @@ translate([0, 0, -40])
       corne_centered();
 */
 
-translate([0, 0, -40])
-  intersection() {
-    shell();
+difference() {
 
-    rotate([0, 14, 0])
-      translate([0, 0, -50])
-        cube([400, 400, 100], center=true);
-  }
+  translate([0, 0, -40])
+    intersection() {
+      shell();
+
+      rotate([0, 20, 0])
+        translate([0, 0, -50])
+          cube([400, 400, 100], center=true);
+    }
+
+  translate([-15, 0, -60])
+    rotate([0, 180, 0])
+      scale([1, -1, 1])
+        base_centered();
+}
