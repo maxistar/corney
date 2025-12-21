@@ -9,7 +9,7 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
 
-#include "dacty_macros.dtsi"
+#include "corne_macros.dtsi"
 
 / {
         keymap {
