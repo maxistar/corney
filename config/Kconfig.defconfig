@@ -1,3 +1,23 @@
-# Enable mouse key behaviors (needed for &mmv bindings on the raise layer).
+if SHIELD_CORNEY_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Corney"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif # SHIELD_CORNEY_LEFT
+
+if SHIELD_CORNEY_LEFT || SHIELD_CORNEY_RIGHT
+
+config ZMK_SPLIT
+    default y
+
+# Enable mouse support
 config ZMK_MOUSE
-	default y
+    default y
+
+config ZMK_POINTING
+    default y
+
+endif # SHIELD_CORNEY_LEFT || SHIELD_CORNEY_RIGHT
