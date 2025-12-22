@@ -1,0 +1,3 @@
+# Enable mouse key behaviors (needed for &mmv bindings on the raise layer).
+config ZMK_MOUSE
+	default y
