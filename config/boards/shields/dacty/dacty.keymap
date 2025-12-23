@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 The ZMK Contributors
+ * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
  */
@@ -11,313 +11,56 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/mouse.h>
 
+// include "corne_macros.dtsi"
 
-#include "dacty_macros.dtsi"
-
-
-
-
-/* Uncomment this block if using RGB
-&led_strip {
-    chain-length = <6>;
-    // chain-length = <35>; // Uncomment if using both per-key and underglow LEDs
-    // chain-length = <29>; // Uncomment if using only per-key LEDs.
-};
- */
 
 / {
+        keymap {
+                compatible = "zmk,keymap";
 
-    keymap {
-        compatible = "zmk,keymap";
+                default_layer {
+                        display-name = "Default Layer";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+                        bindings = <
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
+   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
+                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
+                        >;
+                };
+                
+                lower_layer {
+                        display-name = "Lower Layer";
+// -----------------------------------------------------------------------------------------
+// | CAPS |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
+// |      |     |     |     |     |     |   | LFT | DWN |  UP | RGT |     |      |
+// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
+//                    | GUI |     | SPC |   | ENT |     | ALT |
+                        bindings = <
+   &kp CAPS   &kp N1        &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
+   &trans     &trans        &trans       &trans       &trans       &trans         &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &bt BT_CLR &bt BT_SEL 0  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &trans   &trans   &trans &trans    &trans &trans
+                                    &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+                        >;
+                };
 
-
-        default_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | ESC   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  `    |
-// | TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |  -    |
-// | CAPS  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |  '    |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-// | ALT   | CTRL| "[" | CTRL | LOWER| SPACE|                   | ENTER| RAISE | CTRL  | "]"  |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-
-
-            bindings = <
-&kp ESC        &kp N1    &kp N2   &kp N3    &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &kp GRAVE
-&kp TAB        &kp Q     &kp W    &kp E     &kp R     &kp T                      &kp Y     &kp U     &kp I     &kp O    &kp P    &kp MINUS
-&cycle_lang_de &kp A     &kp S    &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-&kp LSHFT      &kp Z     &kp X    &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-&kp LALT       &kp LGUI  &kp LBKT &kp SPACE &kp SPACE &to_lower                  &to_magic &kp SPACE &kp SPACE &kp RBKT &kp BSPC &kp RALT
-                                                      &kp LCTRL                  &kp RCTRL    
-            >;
+                raise_layer {
+                        display-name = "Raise Layer";
+// -----------------------------------------------------------------------------------------
+// | CAPS |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
+// | CTRL |  -  |  =  |  [  |  ]  |  \  |   | M←  | M↓  | M↑  | M→  |     |  `   |
+// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+//                    | GUI |     | SPC |   | ENT |     | ALT |
+                        bindings = <
+   &kp CAPS  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp BSPC
+   &kp LCTRL &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans &kp GRAVE
+   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
+                             &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+                        >;
+                };
         };
-
-        default_layer_android {
-// ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  `    |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | -     |
-// |  CAPS |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |    '  |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-// | ALT   | CTRL| "[" | CTRL | LOWER| SPACE|                   | ENTER| RAISE | CTRL  | "]"  |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-
-
-            bindings = <
-&kp GRAVE    &kp N1    &kp N2          &kp N3    &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &kp ESC
-&kp MINUS    &kp Q     &kp W           &kp E     &kp R     &kp T                      &kp Y     &kp U     &kp I     &kp O    &kp P    &kp TAB
-&kp SQT      &kp A     &kp S           &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L    &kp SEMI &cycle_android
-&kp LSHFT    &kp Z     &kp X           &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-&kp LALT     &kp LGUI  &kp LBKT        &kp SQT   &kp SPACE &to_lower                  &to_magic &kp SPACE &kp SPACE &kp RBKT &kp BSPC &kp RALT
-                                                           &kp LCTRL                  &kp RCTRL    
-            >;
-        };
-
-// german_layer
-        deutsch_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | ESC   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | `    |
-// | TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |  -   |
-// | CAPS  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |  '   |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   /   |SHIFT |
-// | ALT   | GUI | "[" | CTRL | LOWER| SPACE|                   | ENTER| RAISE | GUI   | "]"  |  BSPC |RALT  |
-// |       |     |     |      |      | CTRL |                   | CTRL |       |       |      |       |      |
-
-
-            bindings = <
-&kp ESC        &kp N1    &kp N2           &kp N3      &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9    &kp N0        &shift_EQUAL  
-&kp TAB        &kp Q     &kp W            &kp E       &kp R     &kp T                      &kp Z     &kp U     &kp I     &kp O     &kp P         &kp FSLH  
-&cycle_lang_ru &kp A     &kp S            &kp D       &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L     &shift_COMMA  &shift_BSLH
-&mo DE_SHIFT   &kp Y     &kp X            &kp C       &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT   &shift_N7     &mo DE_SHIFT
-&kp LALT       &kp LGUI  &altgr_N8        &shift_BSLH &kp SPACE &to_lower                  &to_magic &kp SPACE &kp SPACE &altgr_N9 &kp BSPC      &mo DE_RALT
-                                                       &kp LCTRL                  &kp RCTRL    
-            >;
-        };
-
-// german_layer for mac
-        deutsch_mac_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | `    |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | -    |
-// |  CAPS |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   | '   |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-// | ALT   | GUI | "[" | SPACE| LOWER| SPACE|                   | ENTER| RAISE | SPACE | "]"  |  BSPC | RALT  |
-// |       |     |     |      |      | CTRL |                   | CTRL |       |       |      |       |       |
-
-
-            bindings = <
-&kp ESC          &kp N1    &kp N2    &kp N3      &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9    &kp N0        &shift_EQUAL 
-&kp TAB          &kp Q     &kp W     &kp E       &kp R     &kp T                      &kp Z     &kp U     &kp I     &kp O     &kp P         &kp FSLH
-&cycle_mac_ru    &kp A     &kp S     &kp D       &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L     &shift_COMMA  &shift_BSLH 
-&mo DE_SHIFT_MAC &kp Y     &kp X     &kp C       &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT   &shift_N7 &mo DE_SHIFT_MAC
-&kp LALT         &kp LCTRL &altgr_N5 &shift_BSLH &kp SPACE &to_lower                  &to_magic &kp SPACE &kp SPACE &altgr_N6 &kp BSPC  &mo DE_RALT_MAC
-                                                           &kp LGUI                   &kp RGUI    
-            >;
-        };
-
-        ru_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |  `    |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |  -    |
-// | CAPS  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |   '   |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-// | ALT   | CTRL| "[" | CTRL | LOWER| SPACE|                   | ENTER| RAISE | CTRL  | "]"  |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-
-
-            bindings = <
-&kp ESC        &kp N1    &kp N2   &kp N3    &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &kp GRAVE 
-&kp TAB        &kp Q     &kp W    &kp E     &kp R     &kp T                      &kp Y     &kp U     &kp I     &kp O    &kp P    &kp MINUS
-&cycle_lang_en &kp A     &kp S    &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L    &kp SEMI &kp SQT 
-&mo RU_SHIFT   &kp Z     &kp X    &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH &mo RU_SHIFT
-&kp LALT       &kp LGUI  &kp LBKT &kp SQT   &kp SPACE &trans                     &trans    &kp SPACE &kp SPACE &kp RBKT &kp BSPC &kp RALT
-                                                    &kp LCTRL                  &kp RCTRL    
-            >;
-        };
-
-        ru_layer_mac {
-// ------------------------------------------------------------------------------------------------------------
-// | ESC   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | `     |
-// | TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   |  -    |
-// | CAPS  |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   |  '    |
-// | SHIFT |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   /   | SHIFT |
-// | ALT   | CTRL| "[" | CTRL | LOWER| SPACE|                   | ENTER| RAISE | CTRL  | "]"  |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-
-
-            bindings = <
-&kp ESC          &kp N1    &kp N2   &kp N3    &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9   &kp N0    &kp GRAVE
-&kp TAB          &kp Q     &kp W    &kp E     &kp R     &kp T                      &kp Y     &kp U     &kp I     &kp O    &kp P     &kp MINUS
-&cycle_mac_de    &kp A     &kp S    &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L    &kp SEMI  &kp SQT
-&mo RU_SHIFT_MAC &kp Z     &kp X    &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT  &shift_N7 &mo RU_SHIFT_MAC
-&kp LALT         &kp LCTRL &kp LBKT &kp SQT   &kp SPACE &trans                     &trans    &kp SPACE &kp SPACE &kp RBKT &kp BSPC  &kp RALT
-                                                        &kp LGUI                   &kp RCTRL    
-            >;
-        };
-            
-        ru_layer_android {
-// ----------------------------------------------------------------------------------------------------------
-// |  ESC  |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | `   |
-// |  TAB  |  й  |  ц  |  у   |  к   |  е   |                   |  н   |  г    |  ш    |  щ   |   з   | х   |
-// |  CAPS |  ф  |  ы  |  в   |  а   |  п   |                   |  р   |  о    |  л    |  д   |   ж   | э   |
-// | SHIFT |  я  |  ч  |  с   |  м   |  и   |                   |  т   |  ь    |  б    |  ю   |   /   |SHIFT|
-// | ALT   | CTRL| "[" | CTRL | LOWER| SPACE|                   | ENTER| RAISE | CTRL  | "]"  |  BSPC | RALT|
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |     |
-
-
-            bindings = <
-&kp ESC           &kp N1    &kp N2   &kp N3    &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &kp GRAVE  
-&kp TAB           &kp Q     &kp W    &kp E     &kp R     &kp T                      &kp Y     &kp U     &kp I     &kp O    &kp P    &kp MINUS 
-&cycle_android_de &kp A     &kp S    &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-&mo RU_SHIFT      &kp Z     &kp X    &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH &mo RU_SHIFT
-&kp LALT          &kp LGUI  &kp LBKT &kp SQT   &kp SPACE &trans                     &trans    &kp SPACE &kp SPACE &kp RBKT &kp BSPC &kp RALT
-                                                    &kp LCTRL                  &kp RCTRL    
-            >;
-        };        
-
-        lower_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | BTCLR | BT1 | BT2 |  BT3 |  BT4 |  BT5 |                   |      |       |       |      |       |       |
-// |       |     |     |      |      |      |                   |      |  vv   |  ^^   |      |       |       |
-// |   `   |  !  |  @  |  #   |  $   |  %   |                   |  <-  |  v    |  ^    |  ->  |  ")"  |   ~   |
-// |       |     |     |      |      |      |                   |      |  lc   |  rc   |      |   }   |  "|"  |
-// |       |     |     |      |studio|      |                   |      |       |       |      |       |       |
-            bindings = <
-&bt BT_CLR &to_linux &to_mac  &to_android      &bt BT_SEL 3  &bt BT_SEL 4                 &trans         &trans         &trans         &trans          &trans    &trans
-&trans     &trans    &trans   &trans           &trans        &trans                       &trans         &msc SCRL_UP   &msc SCRL_DOWN &trans         &trans   &trans
-&kp GRAVE  &kp EXCL  &kp AT   &kp HASH         &kp DOLLAR    &kp PRCNT                    &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP   &mmv MOVE_RIGHT &kp RPAR  &kp TILDE
-&trans     &trans    &trans   &trans           &trans        &trans                       &trans         &mkp LCLK      &mkp RCLK      &kp LBRC        &kp RBRC  &kp PIPE
-&trans     &trans    &trans   &studio_unlock   &trans        &trans                       &trans         &trans         &trans         &trans          &trans    &trans
-                                                             &trans                       &trans
-            >;
-        };
-
-        raise_layer {
-// ------------------------------------------------------------------------------------------------------------
-// |       | F1  | F2   |  F3  | F4   |  F5  |                   |  F6  |   F7  |   F8  |  F9  | F10  |  F11  |
-// |       |     |  1   |  2   |  3   |  +   |                   |  6   |   7   |   8   |  9   |   0  |  F12   |
-// |       |     |  4   |  5   |  6   |  -   |                   |  <-  |   v   |  ^    |  ->  |   +  |       |
-// |       |     |  7   |  8   |  9   |  *   |                   | HOME | PGDN  | PGUP  | END  |      |       |
-//               |  /   |  0   |      |      |                   |      |       |       |      |
-            bindings = <
-&trans    &kp F1    &kp F2          &kp F3          &kp F4          &kp F5                   &kp F6      &kp F7    &kp F8    &kp F9    &kp F10     &kp F11
-&trans    &trans    &kp KP_N1       &kp KP_N2       &kp KP_N3       &kp KP_PLUS              &kp KP_N6   &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_N0   &kp F12
-&trans    &trans    &kp KP_N4       &kp KP_N5       &kp KP_N6       &kp KP_MINUS             &kp LEFT    &kp DOWN  &kp UP    &kp RIGHT &kp KP_PLUS &trans
-&kp LSHFT &trans    &kp KP_N7       &kp KP_N8       &kp KP_N9       &kp KP_MULTIPLY          &kp HOME    &kp PGUP  &kp PGDN  &kp END   &trans      &kp RSHFT
-&trans    &trans    &kp KP_SLASH    &kp KP_N0       &trans          &trans                   &trans      &trans    &trans    &trans    &trans      &trans
-                                                                    &trans                   &trans
-            >;
-        };
-
- 
-        german_shift_layer {
-// -----------------------------------------------------------------------------------------------------------
-// |  ESC  |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   | ~    |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | -    |
-// |  CAPS |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   | '    |
-// |       |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   ?   |      |
-// | ALT   | CTRL| "[" | CTRL | LOWER|      |                   | ENTER| RAISE | CTRL  | "]"  |  BSPC | RALT |
-// |       |     |     | '    |      | GUI  |                   | GUI  |       |       |      |       |      |
-            bindings = <
-&kp ESC        &shift_N1 &shift_N2  &shift_N3 &shift_N4 &shift_N5                  &kp GRAVE &shift_N6 &shift_RBKT          &shift_N8               &shift_N9 &altgr_RBKT
-&shift_TAB     &shift_Q  &shift_W   &shift_E  &shift_R  &shift_T                   &shift_Z  &shift_U  &shift_I             &shift_O                &shift_P  &shift_FSLH
-&cycle_lang_en &shift_A  &shift_S   &shift_D  &shift_F  &shift_G                   &shift_H  &shift_J  &shift_K             &shift_L                &shift_DOT  &shift_N2
-&trans         &shift_Y  &shift_X   &shift_C  &shift_V  &shift_B                   &shift_N  &shift_M  &kp NON_US_BACKSLASH &shift_NON_US_BACKSLASH &shift_MINUS  &trans
-&shift_LALT    &kp LGUI  &altgr_N7  &shift_N2 &trans    &trans                     &trans    &trans    &kp SPACE            &altgr_N0               &kp DEL  &kp RALT
-                                                      &shift_LCTRL               &kp RCTRL    
-            >;
-        };
-
-        german_shift_layer_mac {
-// ----------------------------------------------------------------------------------------------------------
-// |  ESC  |  !  |  @  |  #   |  $   |  %   |                   |  ^   |  &    |  *    |  (   |   )   | ~   |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  O   |   P   | -   |
-// |  CAPS |  A  |  S  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   ;   | '   |
-// |       |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  <    |  >   |   ?   |     |
-// | ALT   | CTRL| "{" | CTRL | LOWER|      |                   | ENTER| RAISE | CTRL  | "}"  |  BSPC |RALT |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |     |
-            bindings = <
-&kp ESC        &shift_N1 &shift_Y        &shift_A     &shift_Q  &shift_N5                  &kp NON_US_BACKSLASH &shift_N6 &shift_RBKT          &shift_N8               &shift_N9    &alt_N
-&shift_TAB     &shift_Q  &shift_W        &shift_E     &shift_R  &shift_T                   &shift_Z             &shift_U  &shift_I             &shift_O                &shift_P     &shift_FSLH
-&cycle_lang_en &shift_A  &shift_S        &shift_D     &shift_F  &shift_G                   &shift_H             &shift_J  &shift_K             &shift_L                &shift_DOT   &shift_N2  
-&trans         &shift_Y  &shift_X        &shift_C     &shift_V  &shift_B                   &shift_N             &shift_M  &kp GRAVE            &shift_GRAVE            &shift_MINUS &trans
-&shift_LALT    &kp LGUI  &altgr_N8       &shift_N2    &trans    &trans                     &trans               &trans    &kp SPACE            &altgr_N9               &kp DEL      &kp RALT
-                                                              &shift_LCTRL               &kp RCTRL    
-            >;
-        };
-
-        german_ralt_layer {
-// ------------------------------------------------------------------------------------------------------------
-// | ESC   |  !  |  @  |  #   |  $   |  %   |                   |  6   |  7    |  8    |  9   |   0   |   ~   |
-// | TAB   |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  Ö   |   P   |   =   |
-// | CAPS  |  Ä  |  ß  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   |   |   '   |
-// |       |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   \   |       |
-// | ALT   | CTRL| "<" | CTRL | LOWER|      |                   | ENTER| RAISE | CTRL  | ">"  |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-            bindings = <
-&kp ESC      &shift_N1  &altgr_q_for_at &kp N3    &kp N4    &kp N5                     &kp N6    &kp N7    &kp N8    &kp N9    &kp N0        &kp GRAVE
-&alt_TAB     &kp Q      &kp W           &kp E     &kp R     &kp T                      &kp Y     &kp LBKT  &kp I     &kp SEMI  &kp P         &shift_N0
-&kp CAPS     &kp SQT    &kp MINUS       &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L     &altgr_NUBACK &kp SQT
-&kp LSHFT    &kp Z      &kp X           &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT   &altgr_MINUS  &kp RSHFT
-&kp LALT     &kp LGUI   &trans          &kp LCTRL &trans    &trans                     &trans    &trans    &kp RGUI  &trans    &kp DEL       &kp RALT
-                                                            &kp LCTRL                  &kp RCTRL      
-            >;
-        };
-
-        german_ralt_layer_mac {
-// ------------------------------------------------------------------------------------------------------------
-// |  ESC  |  !  |  @  |  #   |  $   |  %   |                   |  6   |  7    |  8    |  9   |   0   | ~     |
-// |  TAB  |  Q  |  W  |  E   |  R   |  T   |                   |  Y   |  U    |  I    |  Ö   |   P   |   =   |
-// |  CAPS |  ä  |  ß  |  D   |  F   |  G   |                   |  H   |  J    |  K    |  L   |   |   |   ´   |
-// |       |  Z  |  X  |  C   |  V   |  B   |                   |  N   |  M    |  ,    |  .   |   \   |       |
-// | ALT   | CTRL| "<" | CTRL | LOWER|      |                   | ENTER| RAISE | CTRL  | ">"  |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-            bindings = <
-&kp ESC      &shift_N1  &altgr_l_for_at &kp BSLH  &shift_N4 &shift_N5                  &kp N6    &kp N7    &kp N8    &kp N9       &kp N0          &alt_N
-&alt_TAB     &kp Q      &kp W           &kp E     &kp R     &kp T                      &kp Y     &kp LBKT  &kp I     &kp SEMI     &kp P           &shift_N0
-&kp CAPS     &kp SQT    &kp MINUS       &kp D     &kp F     &kp G                      &kp H     &kp J     &kp K     &kp L        &altgr_N7       &kp EQUAL
-&kp LSHFT    &kp Z      &kp X           &kp C     &kp V     &kp B                      &kp N     &kp M     &kp COMMA &kp DOT      &altgr_shift_N7 &kp RSHFT
-&kp LALT     &kp LGUI   &kp GRAVE       &kp LCTRL &trans    &trans                     &trans    &trans    &kp RGUI  &shift_GRAVE &kp DEL         &kp RALT
-                                                            &kp LCTRL                  &kp RCTRL      
-            >;
-        };
-
-        ru_layer_shift {
-// ------------------------------------------------------------------------------------------------------------
-// | ESC   |  !  |  "  |  №   |  ;   |  %   |                   |  :   |  ?    |  *    |  (   |   )   |   `   |
-// | TAB   |  Й  |  Ц  |  У   |  К   |  Е   |                   |  Н   |  Г    |  Ш    |  Щ   |   З   |   -   |
-// | CAPS  |  Ф  |  Ы  |  В   |  А   |  П   |                   |  Р   |  О    |  Л    |  Д   |   Ж   |  '    |
-// | SHIFT |  Я  |  Ч  |  С   |  М   |  И   |                   |  Т   |  Ь    |  Б    |  Ю   |   ,   | SHIFT |
-// | ALT   | CTRL|  Х  |      | LOWER| SPACE|                   | ENTER| RAISE | CTRL  |  Ъ   |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-
-
-            bindings = <
-&kp ESC        &shift_N1 &shift_N2   &shift_N3 &shift_N4 &shift_N5                  &shift_N6 &shift_N7 &shift_N8    &shift_N9   &shift_N0   &shift_GRAVE
-&shift_TAB     &shift_Q  &shift_W    &shift_E  &shift_R  &shift_T                   &shift_Y  &shift_U  &shift_I     &shift_O    &shift_P    &shift_MINUS  
-&cycle_lang_en &shift_A  &shift_S    &shift_D  &shift_F  &shift_G                   &shift_H  &shift_J  &shift_K     &shift_L    &kp SEMI    &shift_SQT  
-&kp LSHFT      &shift_Z  &shift_X    &shift_C  &shift_V  &shift_B                   &shift_N  &shift_M  &shift_COMMA &shift_DOT  &shift_FSLH &kp RSHFT
-&kp LALT       &kp LGUI  &shift_LBKT &kp SPACE &trans    &trans                     &trans    &trans    &kp SPACE    &shift_RBKT &kp DEL     &kp RALT
-                                                       &kp LCTRL                  &kp RCTRL    
-            >;
-        };
-
-        ru_layer_shift_mac {
-// ------------------------------------------------------------------------------------------------------------
-// | ESC   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   | `     |
-// | TAB   |  Й  |  Ц  |  У   |  К   |  Е   |                   |  Н   |  Г    |  Ш    |  Щ   |   З   | -     |
-// | CAPS  |  Ф  |  Ы  |  В   |  А   |  П   |                   |  Р   |  О    |  Л    |  Д   |   Ж   |  '    |
-// | SHIFT |  Я  |  Ч  |  С   |  М   |  И   |                   |  Т   |  Ь    |  Б    |  Ю   |   ,   | SHIFT |
-// | ALT   | CTRL|  Х  |      | LOWER| SPACE|                   | ENTER| RAISE | CTRL  |  Ъ   |  BSPC | RALT  |
-// |       |     |     |      |      | GUI  |                   | GUI  |       |       |      |       |       |
-
-
-            bindings = <
-&kp ESC        &shift_N1 &shift_N2   &shift_N3 &shift_N4 &shift_N5                  &shift_N6 &shift_N7 &shift_N8    &shift_N9   &shift_N0   &shift_GRAVE  
-&shift_TAB     &shift_Q  &shift_W    &shift_E  &shift_R  &shift_T                   &shift_Y  &shift_U  &shift_I     &shift_O    &shift_P    &shift_MINUS 
-&cycle_lang_en &shift_A  &shift_S    &shift_D  &shift_F  &shift_G                   &shift_H  &shift_J  &shift_K     &shift_L    &kp SEMI    &shift_SQT  
-&kp LSHFT      &shift_Z  &shift_X    &shift_C  &shift_V  &shift_B                   &shift_N  &shift_M  &shift_COMMA &shift_DOT  &shift_N6   &kp RSHFT
-&kp LALT       &kp LGUI  &shift_LBKT &kp SPACE &trans    &trans                     &trans    &trans    &kp SPACE    &shift_RBKT &kp DEL     &kp RALT
-                                                       &kp LCTRL                  &kp RCTRL    
-            >;
-        };
-    };
 };

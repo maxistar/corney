@@ -1,7 +1,7 @@
 if SHIELD_DACTY_LEFT
 
 config ZMK_KEYBOARD_NAME
-    default "Dacty"
+    default "Corney"
 
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
