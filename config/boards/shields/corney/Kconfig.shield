@@ -1,5 +1,5 @@
-config SHIELD_CORNE_LEFT
+config SHIELD_CORNEY_LEFT
     def_bool $(shields_list_contains,corney_left)
 
-config SHIELD_CORNE_RIGHT
+config SHIELD_CORNEY_RIGHT
     def_bool $(shields_list_contains,corney_right)
