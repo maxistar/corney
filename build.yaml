@@ -20,10 +20,10 @@
 ---
 include:
   - board: nice_nano@2.0.0
-    shield: corne_left
+    shield: corney_left
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: nice_nano@2.0.0
-    shield: corne_right
+    shield: corney_right
   - board: nice_nano@2.0.0
     shield: settings_reset
