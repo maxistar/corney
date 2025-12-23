@@ -12,12 +12,11 @@
 
 ## Build firmware (locally)
 
-1. Install Zephyr SDK + west per ZMK docs.
+1. Install Zephyr SDK + west per ZMK docs: https://zmk.dev/docs/development/setup
 2. From the repo root, pull ZMK: `west init -l config && west update`.
 3. Build each half (outputs land in `build/<side>/zephyr/zmk.uf2`):
    - Left: `west build -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corne_left -DZMK_CONFIG=$PWD/config`
    - Right: `west build -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corne_right -DZMK_CONFIG=$PWD/config`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
-
 
 

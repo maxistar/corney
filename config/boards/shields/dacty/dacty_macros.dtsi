@@ -1,0 +1,522 @@
+// layers
+#define DEFAULT 0
+#define DEFAULT_ANDROID 1
+#define DEUTSCH 2
+#define DE_MAC  3
+#define RUSSIAN 4
+#define RUSSIAN_MAC 5
+#define RU_ANDROID 6
+#define LOWER 7
+#define MAGIC 8
+#define DE_SHIFT 9
+#define DE_SHIFT_MAC 10
+#define DE_RALT 11
+#define DE_RALT_MAC 12
+#define RU_SHIFT 13
+#define RU_SHIFT_MAC 14
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        combo_esc {
+            timeout-ms = <50>;
+            key-positions = <1 2>;
+            bindings = <&kp ESC>;
+        };
+        combo_enter {
+            timeout-ms = <50>;
+            key-positions = <31 32>;
+            bindings = <&kp RET>;
+        };
+        combo_left_enter {
+            timeout-ms = <50>;
+            key-positions = <27 28>;
+            bindings = <&kp RET>;
+        };
+        combo_delete {
+            timeout-ms = <50>;
+            key-positions = <43 44>;
+            bindings = <&kp BSPC>;
+        };
+        combo_left_delete {
+            timeout-ms = <50>;
+            key-positions = <39 40>;
+            bindings = <&kp BSPC>;
+        };
+    };
+};
+
+/ {
+    macros {
+
+        to_linux: to_linux {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&bt BT_SEL 0 &to DEUTSCH>;
+        };
+
+        to_lower: to_lower {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&to LOWER>,
+                     <&kp F18>;
+        };
+
+        to_magic: to_magic {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&to MAGIC>,
+                     <&kp F19>;
+        };
+
+        to_mac: to_mac {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&bt BT_SEL 1>,
+                     <&to DE_MAC>;
+        };
+
+        to_android: to_android {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&bt BT_SEL 2>,
+                     <&to DEFAULT_ANDROID>;
+        };
+
+        cycle_lang_de: cycle_lang_de {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to DEUTSCH>,
+                  <&kp CAPS>;
+        };
+
+        cycle_android: cycle_android {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to RU_ANDROID>,
+                  <&sk LCTRL &kp SPACE>;
+        };
+
+        cycle_android_de: cycle_android_de {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to DEFAULT_ANDROID>,
+                  <&sk LCTRL &kp SPACE>;
+        };
+
+        cycle_mac_de: cycle_mac_de {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to DE_MAC>,
+                  <&kp CAPS>;
+        };
+
+        cycle_lang_ru: cycle_lang_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to RUSSIAN>,
+                  <&kp CAPS>;
+        };
+
+        cycle_mac_ru: cycle_mac_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to RUSSIAN_MAC>,
+                  <&kp CAPS>;
+        };
+
+        cycle_lang_en: cycle_lang_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&to DEFAULT>,
+                  <&kp CAPS>;
+        };
+
+        altgr_q_for_at: altgr_q_for_at {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp Q>;
+        };
+        
+        altgr_l_for_at: altgr_l_for_at {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp L>;
+        };
+        altgr_MINUS: altgr_MINUS {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp MINUS>;
+        };
+
+        altgr_N5: altgr_N5 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N5>;
+        };
+
+        altgr_N6: altgr_N6 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N6>;
+        };
+
+
+        altgr_N7: altgr_N7 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N7>;
+        };
+        
+                altgr_shift_N7: altgr_shift_N7 {
+                    compatible = "zmk,behavior-macro";
+                    #binding-cells = <0>;
+                    bindings = <&sk RALT &sk LSHIFT &kp N7>;
+                };
+
+        altgr_N8: altgr_N8 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N8>;
+        };
+
+        altgr_N9: altgr_N9 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N9>;
+        };
+
+        altgr_N0: altgr_N0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N0>;
+        };
+
+        altgr_RBKT: altgr_RBKT
+        {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp RBKT>;
+        };
+
+        altgr_LT: altgr_LT
+        {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp LT>;
+        };
+
+        altgr_NUBACK: altgr_NUBACK {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp NON_US_BACKSLASH>;
+        };
+
+        alt_N: altgr_N
+        {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp N>;
+        };
+                
+        alt_TAB: altgr_TAB
+        {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp TAB>;
+        };
+        
+
+        //======================================
+
+        shift_LALT: shift_LALT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp LALT>;
+        };
+
+        shift_LCTRL: shift_LCTRL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp RCTRL>;
+        };
+
+        shift_NON_US_BACKSLASH: shift_NON_US_BACKSLASH {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp NON_US_BACKSLASH>;
+        };
+
+        shift_LT: shift_LT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp LT>;
+        };
+
+        shift_N1: shift_N1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N1>;
+        };
+
+        shift_N2: shift_N2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N2>;
+        };
+
+        shift_N3: shift_N3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N3>;
+        };
+
+        shift_N4: shift_N4 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N4>;
+        };
+
+        shift_N5: shift_N5 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N5>;
+        };
+
+        shift_N6: shift_N6 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N6>;
+        };
+
+        shift_N7: shift_N7 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N7>;
+        };
+
+        shift_N8: shift_N8 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N8>;
+        };
+
+        shift_N9: shift_N9 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N9>;
+        };
+
+        shift_N0: shift_N0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N0>;
+        };
+
+        shift_RBKT: shift_RBKT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp RBKT>;
+        };
+
+        shift_A: shift_A {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp A>;
+        };
+        shift_B: shift_B {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp B>;
+        };
+        shift_C: shift_C {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp C>;
+        };
+        shift_D: shift_D {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp D>;
+        };
+        shift_E: shift_E {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp E>;
+        };
+        shift_F: shift_F {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp F>;
+        };
+        shift_G: shift_G {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp G>;
+        };
+        shift_H: shift_H {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp H>;
+        };
+        shift_I: shift_I {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp I>;
+        };
+        shift_J: shift_J {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp J>;
+        };
+        shift_K: shift_K {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp K>;
+        };
+        shift_L: shift_L {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp L>;
+        };
+        shift_M: shift_M {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp M>;
+        };
+        shift_N: shift_N {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp N>;
+        };
+        shift_O: shift_O {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp O>;
+        };
+        shift_P: shift_P {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp P>;
+        };
+        shift_Q: shift_Q {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp Q>;
+        };
+        shift_R: shift_R {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp R>;
+        };
+        shift_S: shift_S {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp S>;
+        };
+        shift_T: shift_T {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp T>;
+        };
+        shift_U: shift_U {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp U>;
+        };        
+        shift_V: shift_V {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp V>;
+        };
+        shift_W: shift_W {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp W>;
+        };
+        shift_X: shift_X {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp X>;
+        };
+        shift_Y: shift_Y {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp Y>;
+        };
+        shift_Z: shift_Z {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp Z>;
+        };        
+
+        shift_BSLH: shift_BSLH {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp BSLH>;
+        };
+
+        shift_EQUAL: shift_EQUAL {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp EQUAL>;
+        };
+
+        shift_FSLH: shift_FSLH {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp FSLH>;
+        };
+
+        shift_SQT: shift_SQT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp SQT>;
+        };
+        
+        shift_TAB: shift_TAB {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp TAB>;
+        };
+
+        shift_MINUS: shift_MINUS {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp MINUS>;
+        };
+
+        shift_COMMA: shift_COMMA {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp COMMA>;
+        };
+
+        shift_DOT: shift_DOT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp DOT>;
+        };
+
+        shift_GRAVE: shift_GRAVE {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp GRAVE>;
+        };
+
+        shift_LBKT: shift_LBKT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp LBKT>;
+        };
+        
+    };
+
+};
