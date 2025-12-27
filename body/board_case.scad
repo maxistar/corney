@@ -73,6 +73,14 @@ module base_centered() {
     }
 }
 
+module cut_centered() {
+  rotate([0,-1,0]) 
+  translate([-70, 45, -6])
+    //hull() {
+      import("corne_shape.stl"); 
+    //}
+}
+
 module outline() {
   hull() {
     corne_centered();
@@ -129,5 +137,6 @@ difference() {
   translate([-15, 0, -60])
     rotate([0, 180, 0])
       scale([1, -1, 1])
-        base_centered();
+        cut_centered();
 }
+//import("corne_shape.stl"); 
