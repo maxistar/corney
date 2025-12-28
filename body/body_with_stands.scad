@@ -19,4 +19,55 @@ translate([98.4,-11.4, 8.2])
 
 //cube([250,50,100], center=true);
 
+rotate([0,0.61,0])
+ standCuts();
+
 }
+
+//translate([8.1,-16.1, 8.5]) 
+//rotate([0,0.6,0]) 
+//  cube([150,150,0.5]);
+
+module innerStands1() {
+  //cube([18.5,17.5,2]);
+  translate([17.5,0,0])
+    difference() {
+      cylinder(h = 2, r = 6);
+      cylinder(h = 3, r = 1);
+    }
+}
+
+module innerStands2() {
+  //cube([18.5,17.5,2]);
+  translate([17.5,18.5,0])
+    difference() {
+      cylinder(h = 2, r = 6);
+      cylinder(h = 3, r = 1);
+    }
+}
+
+translate([6.1,-32.6,9.427]) 
+  innerStands1();
+
+
+translate([6.1,-70,9.427]) 
+  innerStands2();
+
+
+module standCut() {
+  cylinder(h = 1, r = 2.5, center=true);
+  difference() {
+      cylinder(h = 1, r = 5, center=true);
+      cylinder(h = 3, r = 3, center=true);
+    }
+}
+
+module standCuts() {
+  zoffset = 9;
+  translate([24,-52,zoffset]) standCut();
+  translate([24,-32.5,zoffset]) standCut();
+
+  translate([123,-82,zoffset]) standCut();
+  translate([130,-22.5,zoffset]) standCut();
+}
+
