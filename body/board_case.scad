@@ -1,7 +1,7 @@
 // case
 /**
 features todo: 
-- [ ] magnetic latch
+- [x] magnetic latch
 - [x] placing keyboad on top of case as tilted support
 - [x] magnetic fixation of the keyboard
 - [x] additional pads fixation for the keyboard
@@ -9,8 +9,8 @@ features todo:
 
 */
 
-cut_angle = [-7, 15, 0];
-magnet_radius = 4 / 2 + 0.2;
+cut_angle = [-7, 14, 0];
+magnet_radius = 4 / 2 + 0.05;
 holder_thickness = 0.8;
 
 module column3() {
@@ -102,7 +102,7 @@ module outline() {
   }
 }
 
-two_cornes();
+//two_cornes();
 
 module shell() {
   difference() {
@@ -155,16 +155,16 @@ module rubber_cuts() {
     rotate([0, 0, -8])
       cube([20, 1.8, 1.8], center=true);
 
-  translate([-53, 48.5, 0])
-    rotate([0, 0, 24])
+  translate([-52.5, 49.5, 0])
+    rotate([0, 0, 22.9])
       cube([20, 1.8, 1.8], center=true);
 
   translate([44, 32.5, 0])
     rotate([0, 0, -22])
       cube([20, 1.8, 1.8], center=true);
 
-  translate([69.5, 6, 0])
-    rotate([0, 0, -80])
+  translate([71, 6, 0])
+    rotate([0, 0, -88])
       cube([20, 1.8, 1.8], center=true);
 
   translate([71, -22, 0])
@@ -187,11 +187,11 @@ module double_angled_cuts() {
 
 module magnets_plane(radius, height, voffset) {
 
-  translate([38, -49.9, voffset])
-    cylinder(h=height * 2, r=radius, $fn=50, center=true);
+  translate([34, -49.9, voffset])
+    cylinder(h=height * 2 + voffset * 2, r=radius, $fn=50, center=true);
 
-  translate([30, 35, voffset])
-    cylinder(h=height * 2, r=radius, $fn=50, center=true);
+  translate([30, 35.6, voffset])
+    cylinder(h=height * 2 + voffset * 2, r=radius, $fn=50, center=true);
 }
 
 module angled_magnet_plane(radius, height, voffset) {
@@ -217,6 +217,15 @@ module double_magnet_plane_half(radius, height, voffset = 0) {
   }
 }
 
+module test_magnet() {
+  difference() {
+    cylinder(h=3, r=magnet_radius + holder_thickness, $fn=50);
+    translate([0, 0, -0.1])
+      cylinder(h=2 + 0.1, r=magnet_radius, $fn=50);
+  }
+}
+
+//test_magnet();
 //difference() {
 
 //}

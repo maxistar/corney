@@ -13,10 +13,10 @@ $fn = 50;
 
 magnet_radius = 4 / 2 + 0.2;
 
-magnet1_pos = [8.8, -21.5, 9.6];
-magnet2_pos = [8.8, -56.9, 9.6];
-magnet3_pos = [91.5, -85.0, 8.5];
-magnet4_pos = [101, -14.5, 8.4];
+magnet1_pos = [8.8, -21.5, 9.4];
+magnet2_pos = [8.8, -56.9, 9.4];
+magnet3_pos = [91.5, -85.0, 8.4];
+magnet4_pos = [101, -14.5, 8.2];
 
 module body() {
   difference() {
