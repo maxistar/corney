@@ -3,8 +3,8 @@
 features todo: 
 - [ ] magnetic latch
 - [ ] placing keybouad on top of case as tilted support
-- [ ] magnetic fixation of the keyboard
-- [ ] additional pads fixation for the keyboard
+- [x] magnetic fixation of the keyboard
+- [x] additional pads fixation for the keyboard
 - [ ] rubber perimeter for better stability
 
 */
@@ -62,7 +62,7 @@ module corne() {
 }
 
 module corne_centered() {
-  translate([-90, -95, 2])
+  translate([-90, -95, 0])
     corne();
 }
 
@@ -74,22 +74,28 @@ module base_centered() {
 }
 
 module cut_centered() {
-  rotate([0,-1,0]) 
-  translate([-70, 45, -6])
-    //hull() {
-      import("corne_shape.stl"); 
-    //}
+  rotate([0, -0.7, 0])
+    translate([-70, 45, -6])
+      //hull() {
+      import("corne_shape_with_stands.stl");
+  //} 
+}
+
+module two_cornes() {
+  corne_centered();
+
+  rotate([0, 180, 0])
+    scale([1, -1, 1])
+      corne_centered();
 }
 
 module outline() {
   hull() {
-    corne_centered();
-
-    rotate([0, 180, 0])
-      scale([1, -1, 1])
-        corne_centered();
+    two_cornes();
   }
 }
+
+two_cornes();
 
 module shell() {
   difference() {
@@ -104,15 +110,20 @@ module shell() {
     }
   }
 }
-/*
+
 difference() {
   shell();
 
-  rotate([0, 14, 0])
+  rotate([-9, 15, 0])
     translate([0, 0, -50])
       cube([400, 400, 100], center=true);
+
+  translate([5, 0, 20])
+    cut_centered();
 }
-*/
+
+//translate([5, 0, 20])
+//  cut_centered();
 
 //corne_centered();
 
@@ -123,6 +134,7 @@ translate([0, 0, -40])
       corne_centered();
 */
 
+/*
 difference() {
 
   translate([0, 0, -40])
@@ -137,6 +149,8 @@ difference() {
   translate([-15, 0, -60])
     rotate([0, 180, 0])
       scale([1, -1, 1])
-        cut_centered();
+        cut_centered(); 
 }
-//import("corne_shape.stl"); 
+
+*/
+//import("corne_shape.stl");
