@@ -44,7 +44,7 @@
    &trans     &kp N1        &kp N2       &kp N3       &kp N4       &kp N5         &kp N6           &kp N7         &kp N8       &kp N9          &kp N0   &trans
    &trans     &trans        &trans       &trans       &trans       &trans         &mmv MOVE_LEFT   &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans   &trans
    &bt BT_CLR &to_linux     &to_mac      &to_android  &bt BT_SEL 3 &bt BT_SEL 4   &msc SCRL_DOWN   &mkp LCLK      &mkp RCLK    &msc SCRL_UP    &trans   &trans
-                                    &kp LGUI     &mo LOWER       &kp LCTRL      &kp RCTRL  &mo MAGIs   &kp RGUI
+                                    &kp LGUI     &mo LOWER       &kp LCTRL      &kp RCTRL  &mo MAGIC   &kp RGUI
                         >;
                 };
 
@@ -59,7 +59,7 @@
    &trans    &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &trans
    &trans    &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &kp GRAVE
    &trans    &trans    &trans    &trans    &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LALT &mo LOWER   &kp SPACE   &kp RET   &mo MAGI    &kp RALT
+                             &kp LALT &mo LOWER   &kp SPACE   &kp RET   &mo MAGIC    &kp RALT
                         >;
                 };
 
