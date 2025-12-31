@@ -53,22 +53,22 @@
         to_linux: to_linux {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&bt BT_SEL 0>,
-                     <&to DEFAULT_LINUX>;
+          bindings = <&to DEFAULT_LINUX>,
+                     <&bt BT_SEL 0>;
         };
 
         to_mac: to_mac {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&bt BT_SEL 1>,
-                     <&to DEFAULT_MAC>;
+          bindings = <&to DEFAULT_MAC>,
+                     <&bt BT_SEL 1>;
         };
 
         to_android: to_android {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&bt BT_SEL 2>,
-                     <&to DEFAULT_ANDROID>;
+          bindings = <&to DEFAULT_ANDROID>,
+                     <&bt BT_SEL 2>;
         };
 
         cycle_lang_de: cycle_lang_de {
