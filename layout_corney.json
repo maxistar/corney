@@ -21,19 +21,21 @@
     "shift": [
       null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Z", "KeyY"], ["U", "KeyU"], ["I", "KeyI"], ["O", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
       null, ["A", "KeyA"], ["S", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
-      null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], null, null, null, null, null, null, null, null, null, null, null
+      null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["<", "Comma"], [">", "Dot"], ["?", "Slash"], ["⇧", "ShiftRight"],
+      null, null, null, null, null, null
     ],
     "altgr": [
       null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Z", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
       null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
-      null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], null, null, null, null, null, null, null, null, null, null, null
+      null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], null, null, 
+      null, null, null, null, null, null
     ],
     "russian": [
       null,
       ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
       ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
-      ["Я", "KeyY"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"
-      ], null, null, null, null, null, null, null, null
+      ["Я", "KeyY"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"], null, null, 
+      null, null, null, null, null, null
     ],
     "russian-altgr": [
       null,
@@ -43,17 +45,16 @@
       ], null, null, null, null, null, null, null, null
     ],
     "lower": [
-      null,
-      ["1", "KeyQ"], ["2", "KeyW"], ["3", "KeyE"], ["4", "KeyR"], ["5", "KeyT"], ["6", "KeyY"], ["7", "KeyU"], ["8", "KeyI"], ["9", "KeyO"], ["0", "KeyP"], null, null,
+      ["~", "KeyQ"], ["1", "KeyQ"], ["2", "KeyW"], ["3", "KeyE"], ["4", "KeyR"], ["5", "KeyT"], ["6", "KeyY"], ["7", "KeyU"], ["8", "KeyI"], ["9", "KeyO"], ["0", "KeyP"], null, null,
       ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], null,null,
       ["BT Clr", "KeyY"], ["BT1", "KeyY", "assets/images/linux-logo-penguin.png"], ["BT2", "KeyX", "assets/images/apple_rainbow.png"], ["BT3", "KeyC", "assets/images/android-logo.png"], ["BT4", "KeyV"], ["BT5", "KeyB"], ["s↓", ""], ["LC", ""], ["RC", ""], ["s↑", ""], ["", ""], null, 
-      ["GUI", ""], null, ["{", "ControlLeft"], ["}", "ControlRight"], null, ["GUI", ""]
+      ["GUI", ""], null, ["", ""], ["", ""], null, ["GUI", ""]
     ],
     "magic": [
-      ["CAPS", "KeyQ"], ["!", "KeyW"], ["@", "KeyE"], ["#", "KeyR"], ["$", "KeyT"], ["%", "KeyY"], ["^", "KeyU"], ["&", "KeyI"], ["*", "KeyO"], ["(", "KeyP"], [")", "KeyP"], ["BSPC", "KeyA"], 
-      ["CTRL", "KeyS"], ["-", "KeyD"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["\\", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], null, null, 
+      ["+", "KeyQ"], ["!", "KeyW"], ["@", "KeyE"], ["#", "KeyR"], ["$", "KeyT"], ["%", "KeyY"], ["^", "KeyU"], ["&", "KeyI"], ["*", "KeyO"], ["(", "KeyP"], [")", "KeyP"], ["~", "KeyA"], 
+      ["_", "KeyS"], ["-", "KeyD"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["\\", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], null, null, 
       ["F1", ""], ["F2", ""], ["F3", ""], ["F4", ""], ["F5", ""], ["F6", ""], ["F7", ""], ["F8", ""], ["F9", ""], ["F10", ""], ["F11", ""], ["F12", ""], 
-      ["ALT", ""], null, ["Enter", ""], ["Enter", ""], null, ["ALT", ""]
+      ["ALT", ""], null, ["", ""], ["", ""], null, ["ALT", ""]
     ]
   }
 }
