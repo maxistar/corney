@@ -25,22 +25,22 @@
         };
         combo_enter {
             timeout-ms = <50>;
-            key-positions = <31 32>;
+            key-positions = <15 16>;
             bindings = <&kp RET>;
         };
         combo_left_enter {
             timeout-ms = <50>;
-            key-positions = <27 28>;
+            key-positions = <19 20>;
             bindings = <&kp RET>;
         };
         combo_delete {
             timeout-ms = <50>;
-            key-positions = <43 44>;
+            key-positions = <27 28>;
             bindings = <&kp BSPC>;
         };
         combo_left_delete {
             timeout-ms = <50>;
-            key-positions = <39 40>;
+            key-positions = <31 32>;
             bindings = <&kp BSPC>;
         };
     };
