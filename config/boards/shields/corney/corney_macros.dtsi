@@ -1,12 +1,13 @@
 // layers
 #define DEFAULT 0
 #define DEFAULT_LINUX 1
-#define DEFAULT_ANDROID 2
-#define DEFAULT_MAC  3
-#define RUSSIAN 4
-#define RUSSIAN_ALT 5
-#define LOWER 6
-#define MAGIC 7
+#define DEFAULT_LINUX_ALT 2
+#define DEFAULT_ANDROID 3
+#define DEFAULT_MAC  4
+#define RUSSIAN 5
+#define RUSSIAN_ALT 6
+#define LOWER 7
+#define MAGIC 8
 
 
 #define RUSSIAN_MAC 7
