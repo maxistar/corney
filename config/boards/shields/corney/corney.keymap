@@ -128,12 +128,12 @@
                 lower_layer {
                         display-name = "Lower Layer";
 // -----------------------------------------------------------------------------------------
-// |      |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
+// |  ~   |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
 // |      |     |     |     |     |     |   | M←  | M↓  | M↑  | M→  |     |      |
 // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | s↓  | LC  | RC  | s↑  |     |      |
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
-   &trans     &kp N1        &kp N2       &kp N3       &kp N4       &kp N5         &kp N6           &kp N7         &kp N8       &kp N9          &kp N0   &trans
+   &kp TILDE  &kp N1        &kp N2       &kp N3       &kp N4       &kp N5         &kp N6           &kp N7         &kp N8       &kp N9          &kp N0   &trans
    &trans     &trans        &trans       &trans       &trans       &trans         &mmv MOVE_LEFT   &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans   &trans
    &bt BT_CLR &to_linux     &to_mac      &to_android  &bt BT_SEL 3 &bt BT_SEL 4   &msc SCRL_DOWN   &mkp LCLK      &mkp RCLK    &msc SCRL_UP    &trans   &trans
                                     &kp LGUI     &trans       &kp LCTRL      &kp RCTRL  &trans   &kp RGUI
@@ -143,15 +143,15 @@
                 raise_layer {
                         display-name = "Raise Layer";
 // -----------------------------------------------------------------------------------------
-// |      |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
-// |      |  -  |  =  |  [  |  ]  |  \  |   | LFT | DWN |  UP | RGT |     |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// | +    |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
+// |  _   |  -  |  =  |  [  |  ]  |  \  |   | LFT | DWN |  UP | RGT | "|" |  `   |
+// | F1   | F2  | F3  | F4  | F5  | F6  |   | F7  | F8  |  F9 | F10 | F11 |  F12 |
+//                    | GUI |     | {   |   |  }  |     | ALT |
                         bindings = <
-   &trans    &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &trans
-   &trans    &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &kp GRAVE
-   &trans    &trans    &trans    &trans    &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC  &kp RBRC &kp PIPE &kp TILDE
-                             &kp LALT &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   &kp PLUS    &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT  &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &trans
+   &kp UNDER &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH   &kp LEFT  &kp DOWN &kp UP &kp RIGHT &kp PIPE &kp GRAVE
+   &kp F1    &kp F2    &kp F3    &kp F4    &kp F5   &kp F6     &kp F7    &kp F8   &kp F9 &kp 10 &kp 11 &kp 12  
+                             &kp LALT &trans   &kp LBRC   &kp RBRC   &trans    &kp RALT
                         >;
                 };
 
