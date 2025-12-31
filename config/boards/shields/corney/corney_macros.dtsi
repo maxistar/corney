@@ -53,7 +53,8 @@
         to_linux: to_linux {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&bt BT_SEL 0 &to DEFAULT_LINUX>;
+          bindings = <&bt BT_SEL 0>,
+                     <&to DEFAULT_LINUX>;
         };
 
         to_mac: to_mac {
