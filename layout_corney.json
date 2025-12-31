@@ -23,13 +23,18 @@
       null, ["A", "KeyA"], ["S", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
       null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], null, null, null, null, null, null, null, null, null, null, null
     ],
-    "layer2": [
+    "russian": [
       null,
-      ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"
-      ], null, null,
-      ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["О", "KeyK"], ["Л", "KeyL"], ["Д", "KeyL"
-      ], null, null,
+      ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
+      ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
       ["Я", "KeyY"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"
+      ], null, null, null, null, null, null, null, null
+    ],
+    "russian-altgr": [
+      null,
+      ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Ё", "BackQuote"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
+      ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
+      ["Я", "KeyY"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"
       ], null, null, null, null, null, null, null, null
     ],
     "lower": [
@@ -38,8 +43,9 @@
       ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], null,null,
       ["BT Clr", "KeyY"], ["BT1", "KeyY", "assets/images/linux-logo-penguin.png"], ["BT2", "KeyX", "assets/images/apple_rainbow.png"], ["BT3", "KeyC", "assets/images/android-logo.png"], ["BT4", "KeyV"], ["BT5", "KeyB"], ["s↓", ""], ["LC", ""], ["RC", ""], ["s↑", ""], ["", ""], null, null, null, null, null, null, null, null
     ],
-    "layer4": [
-      ["CAPS", "KeyQ"], ["!", "KeyW"], ["@", "KeyE"], ["#", "KeyR"], ["$", "KeyT"], ["%", "KeyY"], ["^", "KeyU"], ["&", "KeyI"], ["*", "KeyO"], ["(", "KeyP"], [")", "KeyP"], ["BSPC", "KeyA"], ["CTRL", "KeyS"], ["-", "KeyD"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["\\", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"
+    "magic": [
+      ["CAPS", "KeyQ"], ["!", "KeyW"], ["@", "KeyE"], ["#", "KeyR"], ["$", "KeyT"], ["%", "KeyY"], ["^", "KeyU"], ["&", "KeyI"], ["*", "KeyO"], ["(", "KeyP"], [")", "KeyP"], ["BSPC", "KeyA"], 
+      ["CTRL", "KeyS"], ["-", "KeyD"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["\\", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"
       ], null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null
     ]
   }

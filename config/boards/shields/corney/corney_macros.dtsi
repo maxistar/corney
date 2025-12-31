@@ -4,8 +4,9 @@
 #define DEFAULT_ANDROID 2
 #define DEFAULT_MAC  3
 #define RUSSIAN 4
-#define LOWER 5
-#define MAGIC 6
+#define RUSSIAN_ALT 5
+#define LOWER 6
+#define MAGIC 7
 
 
 #define RUSSIAN_MAC 7
