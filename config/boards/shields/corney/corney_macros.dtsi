@@ -1,13 +1,14 @@
 // layers
 #define DEFAULT 0
-#define DEFAULT_ANDROID 1
-#define DEUTSCH 2
-#define DE_MAC  3
-#define RUSSIAN 4
-#define RUSSIAN_MAC 5
-#define RU_ANDROID 6
-#define LOWER 7
-#define MAGIC 8
+#define LOWER 1
+#define MAGIC 2
+#define DEFAULT_LINUX 3
+#define DEFAULT_ANDROID 4
+#define DEFAULT_MAC  5
+#define RUSSIAN 6
+
+#define RUSSIAN_MAC 7
+#define RU_ANDROID 8
 #define DE_SHIFT 9
 #define DE_SHIFT_MAC 10
 #define DE_RALT 11
@@ -52,28 +53,14 @@
         to_linux: to_linux {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          bindings = <&bt BT_SEL 0 &to DEUTSCH>;
-        };
-
-        to_lower: to_lower {
-          compatible = "zmk,behavior-macro";
-          #binding-cells = <0>;
-          bindings = <&to LOWER>,
-                     <&kp F18>;
-        };
-
-        to_magic: to_magic {
-          compatible = "zmk,behavior-macro";
-          #binding-cells = <0>;
-          bindings = <&to MAGIC>,
-                     <&kp F19>;
+          bindings = <&bt BT_SEL 0 &to DEFAULT_LINUX>;
         };
 
         to_mac: to_mac {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
           bindings = <&bt BT_SEL 1>,
-                     <&to DE_MAC>;
+                     <&to DEFAULT_MAC>;
         };
 
         to_android: to_android {
@@ -87,7 +74,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&to DEUTSCH>,
+                = <&to DEFAULT_LINUX>,
                   <&kp CAPS>;
         };
 
@@ -111,7 +98,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&to DE_MAC>,
+                = <&to DEFAULT_MAC>,
                   <&kp CAPS>;
         };
 
