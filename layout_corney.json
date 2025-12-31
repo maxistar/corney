@@ -13,9 +13,9 @@
   ],
   "keyLayers": {
     "default": [
-      ["Tab", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["z", "KeyY"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["⌫", "Backspace"], 
-      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], ["ö", "SemiColon"], ["ä", "Quote"], 
-      ["⇧", "ShiftLeft"], ["y", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["ESC", "Escape"], 
+      ["Tab", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["z", "KeyY"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Backspace"], 
+      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "SemiColon"], ["'", "Quote"], 
+      ["⇧", "ShiftLeft"], ["y", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["⇧", "ShiftRight"], 
       ["Ctrl", "ControlLeft"], ["Low", ""], ["SPACE", "Space"], ["SPACE", "Space"], ["Up", ""], ["ALT", "AltGr"]
     ],
     "layer1": [
