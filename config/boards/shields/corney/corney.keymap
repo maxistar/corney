@@ -82,14 +82,44 @@
                 default_mac {
                         display-name = "Default Mac";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// |  TAB |  q  |  w  |  e  |  r  |  t  |   |  y  |  u   |  i  |  o  |  p  | -     |
+// | LANG |  a  |  s  |  d  |  f  |  g  |   |  h  |  j   |  k  |  l  |  ;  |  '    |
+// | SHFT |  z  |  x  |  c  |  v  |  b  |   |  n  |  m   |  ,  |  .  |  /  | SHFT  |
+//                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
+                        bindings = <
+   &kp TAB                 &kp Q &kp W &kp E     &kp R    &kp T           &kp Y      &kp U         &kp I     &kp O   &kp P         &kp FSLH
+   &cycle_lang_ru          &kp A &kp S &kp D     &kp F    &kp G           &kp H      &kp J         &kp K     &kp L   &shift_COMMA  &shift_BSLH
+   &mo DEFAULT_MAC_SHIFT   &kp Z &kp X &kp C     &kp V    &kp B           &kp N      &kp M         &kp COMMA &kp DOT &shift_N7 &mo DEFAULT_MAC_SHIFT
+                                       &kp LCTRL &mo FUNC &kp SPACE       &kp SPACE  &mo CHARS_MAC &mo DEFAULT_MAC_ALT 
+                        >;
+                };
+
+                default_mac_shift {
+                        display-name = "Default Mac - Shift";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | _     |
+// | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  "    |
+// |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  /  |       |
+//                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
+                        bindings = <
+   &kp TAB        &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Y  &shift_U  &shift_I             &shift_O                &shift_P     &shift_FSLH
+   &cycle_mac_ru &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K             &shift_L                &shift_DOT   &shift_N2
+   &trans         &shift_Z &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp NON_US_BACKSLASH &shift_NON_US_BACKSLASH &shift_MINUS &trans
+                                    &kp LCTRL &mo FUNC &kp SPACE    &kp SPACE &mo CHARS &kp RALT 
+                        >;
+                };
+
+                default_mac_alt {
+                        display-name = "Default Mac - Alt";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  Ü   |  I  |  Ö  |  P  | BSPC |
+// | LANG |  Ä  |  ß  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT  |
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &trans
-   &kp CAPS  &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
-   &trans    &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
+   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp LBKT &kp I     &kp  SEMI &kp P        &kp FSLH
+   &cycle_mac_ru &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H &kp J    &kp K     &kp L     &shift_COMMA  &shift_BSLH
+   &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &shift_N7    &kp RSHFT
                      &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
@@ -124,6 +154,21 @@
                         >;
                 };
 
+                russian_mac {
+                        display-name = "MAC: Russian Layer";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Й  |  Ц  |  У  |  К  |  Е  |   |  Н  |  Г   |  Ш  |  Щ  |  З  |  Х   |
+// | LANG |  A  |  S  |  D  |  F  |  G  |   |  Р  |  О   |  Л  |  Д  |  Ж  |  Э   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ь   |  Б  |  Ю  |  .  | SHFT |
+//                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
+                        bindings = <
+   &kp TAB       &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P    &kp GRAVE
+   &cycle_mac_de &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J         &kp K     &kp L     &kp SEMI &kp SQT
+   &trans        &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
+                             &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS_MAC &mo RUSSIAN_ALT 
+                        >;
+                };
+
                 russia_altgr {
                         display-name = "Russian Layer - ALT";
 // -----------------------------------------------------------------------------------------
@@ -133,7 +178,7 @@
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
    &kp TAB        &kp Q &kp W &kp E &kp R &kp GRAVE       &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
-   &cycle_lang_en &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
+   &trans &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp RIGHT_BRACKET  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
                      &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS &kp RALT 
                         >;
@@ -185,6 +230,21 @@
                                           &kp LALT      &trans    &trans         &trans   &trans    &kp RALT
                         >;
                 };
+
+                chars_layer_mac {
+                        display-name = "MAC: Characters and Navigation";
+// -----------------------------------------------------------------------------------------
+// | TAB  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  ~   |
+// |  \   |  -  |  +  |  =  |  [  |  ]  |   |  ←  |  ↓  |  ↑  |  →  | "|" |  `   |
+// | SHFT |     |     |     |  {  |  }  |   |Home | PgDn|PgUp | End | Ins | Del  |
+//                    | GUI |     |     |   |    |     | ALT |
+                        bindings = <
+   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_N
+   &altgr_MINUS &kp FSLH  &kp RBKT        &shift_N0     &altgr_N8 &altgr_N9      &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT      &altgr_NUBACK &shift_EQUAL
+   &kp LSHFT    &trans    &trans          &trans        &altgr_N7 &altgr_N0      &kp HOME   &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
+                                          &kp LALT      &trans    &trans         &trans   &trans    &kp RALT
+                        >;
+                };                
 
                 mouse_layer {
                         display-name = "Mouse Layer";

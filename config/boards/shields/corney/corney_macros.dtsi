@@ -3,23 +3,19 @@
 #define DEFAULT_LINUX 1
 #define DEFAULT_LINUX_SHIFT 2
 #define DEFAULT_LINUX_ALT 3
-#define DEFAULT_ANDROID 4
-#define DEFAULT_MAC  5
-#define RUSSIAN 6
-#define RUSSIAN_ALT 7
-#define FUNC 8
-#define CHARS 9
-#define CHARS_DE 10
-#define MOUSE_LAYER 11
+#define DEFAULT_MAC  4
+#define DEFAULT_MAC_SHIFT  5
+#define DEFAULT_MAC_ALT  6
+#define DEFAULT_ANDROID 7
+#define RUSSIAN 8
+#define RUSSIAN_MAC 9
+#define RUSSIAN_ALT 10
+#define FUNC 11
+#define CHARS 12
+#define CHARS_DE 13
+#define CHARS_MAC 14
+#define MOUSE_LAYER 15
 
-#define RUSSIAN_MAC 7
-#define RU_ANDROID 8
-#define DE_SHIFT 9
-#define DE_SHIFT_MAC 10
-#define DE_RALT 11
-#define DE_RALT_MAC 12
-#define RU_SHIFT 13
-#define RU_SHIFT_MAC 14
 
 / {
     combos {
