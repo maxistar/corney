@@ -89,7 +89,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
-                = <&to RU_ANDROID>,
+                = <&to RUSSIAN>,
                   <&sk LCTRL &kp SPACE>;
         };
 
