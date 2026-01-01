@@ -164,7 +164,7 @@
 //                    | GUI |     |  {  |   |  }  |     | ALT |
                         bindings = <
    &kp TAB     &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT  &kp CARET &kp AMPS  &kp ASTRK &kp LPAR  &kp RPAR   &kp TILDE
-   &kp UNDER   &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH   &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp PIPE   &kp GRAVE
+   &kp UNDER   &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH   &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &kp PIPE   &trans
    &kp LSHFT   &trans    &trans    &trans    &trans   &trans     &kp HOME  &kp PG_UP &kp PG_DN &kp END   &kp INSERT &kp DELETE
                              &kp LALT &trans   &kp LBRC   &kp RBRC   &trans    &kp RALT
                         >;
@@ -179,10 +179,10 @@
 // | SHFT |     |     |     |     |     |   |Home | PgDn|PgUp | End | Ins | Del  |
 //                    | GUI |     |  {  |   |  }  |     | ALT |
                         bindings = <
-   &kp TAB     &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR &kp PRCNT    &kp NON_US_BACKSLASH &kp CARET &shift_RBKT &kp ASTRK &kp LPAR &kp GRAVE
-   &kp UNDER   &kp MINUS &kp EQUAL       &kp LBKT      &kp RBKT &kp BSLH     &kp LEFT             &kp DOWN  &kp UP      &kp RIGHT &kp PIPE   &kp GRAVE
-   &kp LSHFT   &trans    &trans          &trans        &trans   &trans       &kp HOME             &kp PG_UP &kp PG_DN   &kp END   &kp INSERT &kp DELETE
-                                         &kp LALT      &trans   &kp LBRC     &kp RBRC             &trans    &kp RALT
+   &kp TAB     &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR &kp PRCNT    &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK &kp LPAR     &altgr_RBKT
+   &kp UNDER   &kp MINUS &kp EQUAL       &kp LBKT      &kp RBKT &kp BSLH     &kp LEFT   &kp DOWN  &kp UP      &kp RIGHT altgr_NUBACK &trans
+   &kp LSHFT   &trans    &trans          &trans        &trans   &trans       &kp HOME   &kp PG_UP &kp PG_DN   &kp END   &kp INSERT   &kp DELETE
+                                         &kp LALT      &trans   &kp LBRC     &kp RBRC   &trans    &kp RALT
                         >;
                 };
 
