@@ -13,35 +13,35 @@
   ],
   "keyLayers": {
     "Default": [
-      ["Tab", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["z", "KeyY"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Backspace"], 
+      ["Tab", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyY"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Backspace"], 
       ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "SemiColon"], ["'", "Quote"], 
-      ["⇧", "ShiftLeft"], ["y", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["⇧", "ShiftRight"], 
+      ["⇧", "ShiftLeft"], ["z", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["⇧", "ShiftRight"], 
       ["Ctrl", "ControlLeft"], ["Func", ""], ["SPACE", "Space"], ["SPACE", "Space"], ["Char", ""], ["ALT", "AltGr"]
     ],
     "Shift": [
-      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Z", "KeyY"], ["U", "KeyU"], ["I", "KeyI"], ["O", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
+      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["U", "KeyU"], ["I", "KeyI"], ["O", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
       null, ["A", "KeyA"], ["S", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
-      null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["<", "Comma"], [">", "Dot"], ["?", "Slash"], ["⇧", "ShiftRight"],
+      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["<", "Comma"], [">", "Dot"], ["?", "Slash"], ["⇧", "ShiftRight"],
       null, null, null, null, null, null
     ],
     "AltGr": [
-      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Z", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
+      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
       null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
-      null, ["Y", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], null, null, 
+      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], null, null, 
       null, null, null, null, null, null
     ],
     "Russian": [
       null,
       ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
       ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
-      ["Я", "KeyY"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"], null, null, 
+      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"], null, null, 
       null, null, null, null, null, null
     ],
     "Russian-AltGr": [
       null,
       ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Ё", "BackQuote"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
       ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
-      ["Я", "KeyY"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"
+      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"
       ], null, null, null, null, null, null, null, null
     ],
     "Functional": [
