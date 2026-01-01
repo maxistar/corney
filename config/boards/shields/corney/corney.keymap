@@ -165,7 +165,7 @@
    &kp TAB       &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P    &kp GRAVE
    &cycle_mac_de &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J         &kp K     &kp L     &kp SEMI &kp SQT
    &trans        &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                             &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS_MAC &mo RUSSIAN_ALT 
+                             &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS_MAC &mo RUSSIAN_MAC_ALT 
                         >;
                 };
 
@@ -177,12 +177,27 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ъ   |  Б  |  Ю  |  ,  | SHFT |
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB        &kp Q &kp W &kp E &kp R &kp GRAVE       &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
-   &trans &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
-   &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp RIGHT_BRACKET  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
+   &kp TAB &kp Q &kp W &kp E &kp R &kp GRAVE             &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
+   &trans  &kp A &kp S &kp D &kp F &kp G                 &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
+   &trans  &kp Z &kp X &kp C &kp V &kp B                 &kp N &kp RIGHT_BRACKET  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
                      &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
+
+                russia_mac_altgr {
+                        display-name = "MAC: Russian Layer - ALT";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Й  |  Ц  |  У  |  К  |  Ё  |   |  Н  |  Г   |  Ш  |  Щ  |  З  |  Х   |
+// | LANG |  A  |  S  |  D  |  F  |  G  |   |  Р  |  О   |  Л  |  Д  |  Ж  |  Э   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ъ   |  Б  |  Ю  |  ,  | SHFT |
+//                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
+                        bindings = <
+   &kp TAB &kp Q &kp W &kp E &kp R &kp BACKSLASH         &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
+   &trans  &kp A &kp S &kp D &kp F &kp G                 &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
+   &trans  &kp Z &kp X &kp C &kp V &kp B                 &kp N &kp RIGHT_BRACKET  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
+                     &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS &kp RALT 
+                        >;
+                };                
 
 
                 functional_layer {

@@ -10,11 +10,12 @@
 #define RUSSIAN 8
 #define RUSSIAN_MAC 9
 #define RUSSIAN_ALT 10
-#define FUNC 11
-#define CHARS 12
-#define CHARS_DE 13
-#define CHARS_MAC 14
-#define MOUSE_LAYER 15
+#define RUSSIAN_MAC_ALT 11
+#define FUNC 12
+#define CHARS 13
+#define CHARS_DE 14
+#define CHARS_MAC 15
+#define MOUSE_LAYER 16
 
 
 / {
