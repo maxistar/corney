@@ -142,12 +142,12 @@
                 russian {
                         display-name = "Russian Layer";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Й  |  Ц  |  У  |  К  |  Е  |   |  Н  |  Г   |  Ш  |  Щ  |  З  |  Х   |
-// | LANG |  A  |  S  |  D  |  F  |  G  |   |  Р  |  О   |  Л  |  Д  |  Ж  |  Э   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ь   |  Б  |  Ю  |  .  | SHFT |
+// |  TAB |  й  |  ц  |  у  |  к  |  е  |   |  н  |  г   |  ш  |  щ  |  з  |  х   |
+// | LANG |  ф  |  ы  |  в  |  а  |  п  |   |  р  |  о   |  л  |  д  |  ж  |  э   |
+// | SHFT |  я  |  ч  |  с  |  м  |  и  |   |  т  |  ь   |  б  |  ю  |  .  | SHFT |
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
+   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &kp LEFT_BRACKET
    &cycle_lang_en &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
                      &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS &mo RUSSIAN_ALT 
