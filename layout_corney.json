@@ -51,7 +51,7 @@
       ["GUI", ""], null, ["", ""], ["", ""], null, ["GUI", ""]
     ],
     "Characters / Navigation": [
-      ["TAB", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "KeyU"], ["&", "KeyI"], ["*", "KeyO"], ["(", "KeyP"], [")", "KeyP"], ["~", "KeyA"], 
+      ["TAB", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
       ["_", "KeyS"], ["-", "KeyD"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["\\", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "KeyL"], ["", ""], 
       ["", ""], ["{", ""], ["}", ""], ["<", ""], [">", ""], ["", ""], ["Start", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["ALT", ""], null, ["", ""], ["", ""], null, ["ALT", ""]
