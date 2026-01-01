@@ -213,7 +213,7 @@
             bindings = <&sk RALT &kp NON_US_BACKSLASH>;
         };
 
-        alt_N: altgr_N
+        altgr_N: altgr_N
         {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
