@@ -8,7 +8,7 @@
 #define RUSSIAN_ALT 6
 #define LOWER 7
 #define MAGIC 8
-
+#define MOUSE_LAYER 9
 
 #define RUSSIAN_MAC 7
 #define RU_ANDROID 8
@@ -46,6 +46,11 @@
             timeout-ms = <50>;
             key-positions = <31 32>;
             bindings = <&kp BSPC>;
+        };
+        combo_mouse_layer {
+            timeout-ms = <50>;
+            key-positions = <40 41>;
+            bindings = <&tog MOUSE_LAYER>;
         };
     };
 };
