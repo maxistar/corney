@@ -9,7 +9,7 @@
 #define RUSSIAN_ALT 7
 #define FUNC 8
 #define CHARS 9
-#define CHARS 10
+#define CHARS_DE 10
 #define MOUSE_LAYER 11
 
 #define RUSSIAN_MAC 7
