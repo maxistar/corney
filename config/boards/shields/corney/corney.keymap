@@ -88,7 +88,7 @@
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
    &kp TAB                 &kp Q &kp W &kp E     &kp R    &kp T           &kp Y      &kp U         &kp I     &kp O   &kp P         &kp FSLH
-   &cycle_lang_ru          &kp A &kp S &kp D     &kp F    &kp G           &kp H      &kp J         &kp K     &kp L   &shift_COMMA  &shift_BSLH
+   &cycle_mac_ru          &kp A &kp S &kp D     &kp F    &kp G           &kp H      &kp J         &kp K     &kp L   &shift_COMMA  &shift_BSLH
    &mo DEFAULT_MAC_SHIFT   &kp Z &kp X &kp C     &kp V    &kp B           &kp N      &kp M         &kp COMMA &kp DOT &shift_N7 &mo DEFAULT_MAC_SHIFT
                                        &kp LCTRL &mo FUNC &kp SPACE       &kp SPACE  &mo CHARS_MAC &mo DEFAULT_MAC_ALT 
                         >;
