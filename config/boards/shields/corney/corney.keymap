@@ -179,9 +179,9 @@
 // | SHFT |     |     |     |     |     |   |Home | PgDn|PgUp | End | Ins | Del  |
 //                    | GUI |     |  {  |   |  }  |     | ALT |
                         bindings = <
-   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK &kp LPAR      &altgr_RBKT
-   &altgr_MINUS &kp FSLH  &kp RBKT        &kp LBKT      &shift_N0 &altgr_N8      &altgr_N9  &kp DOWN  &kp UP      &kp RIGHT &altgr_NUBACK &kp GRAVE
-   &kp LSHFT    &trans    &trans          &trans        &trans    &trans         &kp HOME   &kp PG_DN &kp PG_UP   &kp END   &kp INSERT    &kp DELETE
+   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_RBKT
+   &altgr_MINUS &kp FSLH  &kp LBKT        &shift_N0     &altgr_N8 &altgr_N9      &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT      &altgr_NUBACK &kp EQUAL
+   &kp LSHFT    &trans    &trans          &trans        &trans    &trans         &kp HOME   &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
                                           &kp LALT      &trans    &kp LBRC       &kp RBRC   &trans    &kp RALT
                         >;
                 };
