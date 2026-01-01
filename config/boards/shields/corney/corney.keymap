@@ -29,7 +29,7 @@
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &kp MINUS
    &cycle_lang_de &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &kp LSHFT      &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                      &kp LCTRL &mo LOWER &kp SPACE       &kp SPACE  &mo MAGIC &kp RALT 
+                      &kp LCTRL &mo FUNC &kp SPACE       &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
                 
@@ -45,7 +45,7 @@
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U &kp I     &kp O   &kp P         &kp FSLH
    &cycle_lang_ru &kp A &kp S &kp D &kp F &kp G           &kp H &kp J &kp K     &kp L   &shift_COMMA  &shift_BSLH
    &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M &kp COMMA &kp DOT &shift_N7     &kp RSHFT
-                     &kp LCTRL &mo LOWER &kp SPACE   &kp SPACE  &mo MAGIC &mo DEFAULT_LINUX_ALT 
+                     &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &mo DEFAULT_LINUX_ALT 
                         >;
                 };
 
@@ -60,7 +60,7 @@
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp LBKT &kp I     &kp  SEMI &kp P        &kp FSLH
    &cycle_lang_ru &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H &kp J    &kp K     &kp L     &shift_COMMA &shift_BSLH
    &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M    &kp COMMA &kp DOT   &shift_N7    &kp RSHFT
-                     &kp LCTRL &mo LOWER &kp SPACE   &kp SPACE  &mo MAGIC &kp RALT 
+                     &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
 
@@ -75,7 +75,7 @@
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &trans
    &kp CAPS  &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &trans    &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                     &kp LCTRL &mo LOWER &kp SPACE   &kp SPACE  &mo MAGIC &kp RALT 
+                     &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
 
@@ -90,7 +90,7 @@
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &trans
    &kp CAPS  &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &trans    &kp Z &kp X &kp C &kp V &kp B              &kp N &kp M  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                     &kp LCTRL &mo LOWER &kp SPACE   &kp SPACE  &mo MAGIC &kp RALT 
+                     &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
 
@@ -105,7 +105,7 @@
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
    &cycle_lang_en &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                     &kp LCTRL &mo LOWER &kp SPACE        &kp SPACE  &mo MAGIC &mo RUSSIAN_ALT 
+                     &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS &mo RUSSIAN_ALT 
                         >;
                 };
 
@@ -120,37 +120,37 @@
    &kp TAB        &kp Q &kp W &kp E &kp R &kp GRAVE       &kp Y &kp U  &kp I     &kp O     &kp P    &kp GRAVE
    &cycle_lang_en &kp A &kp S &kp D &kp F &kp G           &kp H &kp J  &kp K     &kp L     &kp SEMI &kp SQT
    &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp RIGHT_BRACKET  &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                     &kp LCTRL &mo LOWER &kp SPACE        &kp SPACE  &mo MAGIC &kp RALT 
+                     &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
 
 
-                lower_layer {
-                        display-name = "Lower Layer";
+                functional_layer {
+                        display-name = "Functional Layer";
 // -----------------------------------------------------------------------------------------
 // |  ~   |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
-// |      |     |     |     |     |     |   | M←  | M↓  | M↑  | M→  |     |      |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | s↓  | LC  | RC  | s↑  |     |      |
+// | F1   | F2  | F3  | F4  | F5  | F6  |   | F7  | F8  |  F9 | F10 | F11 |  F12 |
+// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   |     |     |     |     |     |      |
 //                    | GUI |     |  {  |   |  }  |     | ALT |
                         bindings = <
-   &kp TILDE  &kp N1        &kp N2       &kp N3       &kp N4       &kp N5         &kp N6           &kp N7         &kp N8       &kp N9          &kp N0   &trans
-   &trans     &trans        &trans       &trans       &trans       &trans         &mmv MOVE_LEFT   &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans   &trans
-   &bt BT_CLR &to_linux     &to_mac      &to_android  &bt BT_SEL 3 &bt BT_SEL 4   &msc SCRL_DOWN   &mkp LCLK      &mkp RCLK    &msc SCRL_UP    &trans   &trans
+   &kp TILDE  &kp N1        &kp N2       &kp N3       &kp N4       &kp N5         &kp N6  &kp N7   &kp N8 &kp N9  &kp N0  &trans
+   &kp F1     &kp F2        &kp F3       &kp F4       &kp F5       &kp F6         &kp F7  &kp F8   &kp F9 &kp F10 &kp F11 &kp F12
+   &bt BT_CLR &to_linux     &to_mac      &to_android  &bt BT_SEL 3 &bt BT_SEL 4   &trans  &trans   &trans &trans  &trans  &trans
                                     &kp LGUI     &trans     &kp LBRC   &kp RBRC  &trans   &kp RGUI
                         >;
                 };
 
-                raise_layer {
-                        display-name = "Raise Layer";
+                chars_layer {
+                        display-name = "Characters and Navigation";
 // -----------------------------------------------------------------------------------------
 // | +    |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  ~   |
-// |  _   |  -  |  =  |  [  |  ]  |  \  |   | LFT | DWN |  UP | RGT | "|" |  `   |
-// | F1   | F2  | F3  | F4  | F5  | F6  |   | F7  | F8  |  F9 | F10 | F11 |  F12 |
+// |  _   |  -  |  =  |  [  |  ]  |  \  |   |  ←  |  ↓  |  ↑  |  →  | "|" |  `   |
+// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
 //                    | GUI |     |  {  |   |  }  |     | ALT |
                         bindings = <
    &kp PLUS    &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT  &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp TILDE
-   &kp UNDER &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH   &kp LEFT  &kp DOWN &kp UP &kp RIGHT &kp PIPE &kp GRAVE
-   &kp F1    &kp F2    &kp F3    &kp F4    &kp F5   &kp F6     &kp F7    &kp F8   &kp F9 &kp 10 &kp 11 &kp 12  
+   &kp UNDER   &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH   &kp LEFT  &kp DOWN &kp UP &kp RIGHT &kp PIPE &kp GRAVE
+   &kp LSHFT   &trans    &trans    &trans    &trans   &trans     &trans    &trans   &trans &trans &trans &kp RSHFT
                              &kp LALT &trans   &kp LBRC   &kp RBRC   &trans    &kp RALT
                         >;
                 };
@@ -158,15 +158,15 @@
                 mouse_layer {
                         display-name = "Mouse Layer";
 // -----------------------------------------------------------------------------------------
-// | 1    |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  ~   |
-// |  _   |  -  |  =  |  [  |  ]  |  \  |   | LFT | DWN |  UP | RGT | "|" |  `   |
-// | F1   | F2  | F3  | F4  | F5  | F6  |   | F7  | F8  |  F9 | F10 | F11 |  F12 |
-//                    | GUI |     |  {  |   |  }  |     | ALT |
+// |NumLock|  /  |  7  |  8  |  9  |  *  |   |     |     |     |     |     |      |
+// |       |  ,  |  4  |  5  |  6  |  -  |   | M←  | M↓  | M↑  | M→  |     |      |
+// |       |  0  |  1  |  2  |  3  |  +  |   | s↓  | LC  | RC  | s↑  |     |      |
+//                     | GUI |     |  ⏎  |   |  }  |     | ALT |
                         bindings = <
-   &kp N1    &kp EXCL  &kp AT    &kp HASH  &kp DLLR &kp PRCNT  &kp CARET &kp AMPS  &kp ASTRK &kp LPAR &kp RPAR &kp TILDE
-   &kp UNDER &kp MINUS &kp EQUAL &kp LBKT  &kp RBKT &kp BSLH   &kp LEFT  &kp DOWN &kp UP &kp RIGHT &kp PIPE &kp GRAVE
-   &kp F1    &kp F2    &kp F3    &kp F4    &kp F5   &kp F6     &kp F7    &kp F8   &kp F9 &kp 10 &kp 11 &kp 12  
-                             &kp LALT &trans   &kp LBRC   &kp RBRC   &trans    &kp RALT
+   &kp KP_NUM &kp KP_DIVIDE &kp KP_N7 &kp KP_N8 &kp KP_N9    &kp KP_MULTIPLY   &trans           &trans         &trans       &trans          &trans &trans
+   &trans     &kp KP_COMMA  &kp KP_N4 &kp KP_N5 &kp KP_N6    &kp KP_MINUS      &mmv MOVE_LEFT   &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans &trans
+   &kp LSHFT  &kp KP_N0     &kp KP_N1 &kp KP_N2 &kp KP_N3    &kp KP_PLUS       &msc SCRL_DOWN   &mkp LCLK      &mkp RCLK    &msc SCRL_UP    &trans &kp RSHFT  
+                             &kp LALT &trans   &kp KP_ENTER                    &mkp LCLK        &trans         &kp RALT
                         >;
                 };
 

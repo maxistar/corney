@@ -6,8 +6,8 @@
 #define DEFAULT_MAC  4
 #define RUSSIAN 5
 #define RUSSIAN_ALT 6
-#define LOWER 7
-#define MAGIC 8
+#define FUNC 7
+#define CHARS 8
 #define MOUSE_LAYER 9
 
 #define RUSSIAN_MAC 7
