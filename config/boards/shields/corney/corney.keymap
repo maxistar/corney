@@ -37,15 +37,30 @@
                 default_linux {
                         display-name = "Default Linux";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BSPC |
-// | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT  |
+// |  TAB |  q  |  w  |  e  |  r  |  t  |   |  y  |  u   |  i  |  o  |  p  | BSPC |
+// | LANG |  a  |  s  |  d  |  f  |  g  |   |  h  |  j   |  k  |  l  |  ;  |  '   |
+// | SHFT |  z  |  x  |  c  |  v  |  b  |   |  n  |  m   |  ,  |  .  |  /  | SHFT  |
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp U &kp I     &kp O   &kp P         &kp FSLH
-   &cycle_lang_ru &kp A &kp S &kp D &kp F &kp G           &kp H &kp J &kp K     &kp L   &shift_COMMA  &shift_BSLH
-   &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M &kp COMMA &kp DOT &shift_N7     &kp RSHFT
-                     &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &mo DEFAULT_LINUX_ALT 
+   &kp TAB                 &kp Q &kp W &kp E     &kp R    &kp T           &kp Y      &kp U     &kp I     &kp O   &kp P         &kp FSLH
+   &cycle_lang_ru          &kp A &kp S &kp D     &kp F    &kp G           &kp H      &kp J     &kp K     &kp L   &shift_COMMA  &shift_BSLH
+   &mo DEFAULT_LINUX_SHIFT &kp Z &kp X &kp C     &kp V    &kp B           &kp N      &kp M     &kp COMMA &kp DOT &shift_N7 &mo DEFAULT_LINUX_SHIFT
+                                       &kp LCTRL &mo FUNC &kp SPACE       &kp SPACE  &mo CHARS &mo DEFAULT_LINUX_ALT 
+                        >;
+                };
+
+                default_linux_shift {
+                        display-name = "Default Linux - Shift";
+// -----------------------------------------------------------------------------------------
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | _     |
+// | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  "    |
+// |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  /  |       |
+//                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
+                        bindings = <
+   &kp TAB        &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Y  &shift_U  &shift_I             &shift_O                &shift_P     &shift_FSLH
+   &cycle_lang_ru &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K             &shift_L                &shift_DOT   &shift_N2
+   &trans         &shift_Z &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp NON_US_BACKSLASH &shift_NON_US_BACKSLASH &shift_MINUS &trans
+                                    &kp LCTRL &mo FUNC &kp SPACE    &kp SPACE &mo CHARS &kp RALT 
                         >;
                 };
 

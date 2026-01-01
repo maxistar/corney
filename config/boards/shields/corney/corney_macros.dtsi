@@ -2,13 +2,14 @@
 #define DEFAULT 0
 #define DEFAULT_LINUX 1
 #define DEFAULT_LINUX_ALT 2
-#define DEFAULT_ANDROID 3
-#define DEFAULT_MAC  4
-#define RUSSIAN 5
-#define RUSSIAN_ALT 6
-#define FUNC 7
-#define CHARS 8
-#define MOUSE_LAYER 9
+#define DEFAULT_LINUX_SHIFT 3
+#define DEFAULT_ANDROID 4
+#define DEFAULT_MAC  5
+#define RUSSIAN 6
+#define RUSSIAN_ALT 7
+#define FUNC 8
+#define CHARS 9
+#define MOUSE_LAYER 10
 
 #define RUSSIAN_MAC 7
 #define RU_ANDROID 8
