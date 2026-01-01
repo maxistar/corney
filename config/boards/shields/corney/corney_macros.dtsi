@@ -169,11 +169,11 @@
             bindings = <&sk RALT &kp N7>;
         };
         
-                altgr_shift_N7: altgr_shift_N7 {
-                    compatible = "zmk,behavior-macro";
-                    #binding-cells = <0>;
-                    bindings = <&sk RALT &sk LSHIFT &kp N7>;
-                };
+        altgr_shift_N7: altgr_shift_N7 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &sk LSHIFT &kp N7>;
+        };
 
         altgr_N8: altgr_N8 {
             compatible = "zmk,behavior-macro";
