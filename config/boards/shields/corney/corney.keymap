@@ -164,9 +164,9 @@
 //                     | GUI |     |  ⏎  |   |  }  |     | ALT |
                         bindings = <
    &kp KP_NUM &kp KP_DIVIDE &kp KP_N7 &kp KP_N8 &kp KP_N9    &kp KP_MULTIPLY   &trans           &trans         &trans       &trans          &trans &trans
-   &trans     &kp KP_DEL    &kp KP_N4 &kp KP_N5 &kp KP_N6    &kp KP_MINUS      &mmv MOVE_LEFT   &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans &trans
+   &trans     &kp KP_DOT    &kp KP_N4 &kp KP_N5 &kp KP_N6    &kp KP_MINUS      &mmv MOVE_LEFT   &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans &trans
    &kp LSHFT  &kp KP_N0     &kp KP_N1 &kp KP_N2 &kp KP_N3    &kp KP_PLUS       &msc SCRL_DOWN   &mkp LCLK      &mkp RCLK    &msc SCRL_UP    &trans &kp RSHFT  
-                             &kp LALT &trans   &kp KP_ENTER                    &mkp LCLK        &trans         &kp RALT
+                            &kp LALT &trans   &kp KP_ENTER                     &mkp LCLK        &trans         &kp RALT
                         >;
                 };
 
