@@ -102,9 +102,9 @@
 // |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  /  |       |
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB        &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Y  &shift_U  &shift_I             &shift_O                &shift_P     &shift_FSLH
-   &cycle_mac_ru &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K             &shift_L                &shift_DOT   &shift_N2
-   &trans         &shift_Z &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp NON_US_BACKSLASH &shift_NON_US_BACKSLASH &shift_MINUS &trans
+   &kp TAB        &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Y  &shift_U  &shift_I  &shift_O     &shift_P     &shift_FSLH
+   &cycle_mac_ru  &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K  &shift_L     &shift_DOT   &shift_N2
+   &trans         &shift_Z &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp GRAVE &shift_GRAVE &shift_MINUS &trans
                                     &kp LCTRL &mo FUNC &kp SPACE    &kp SPACE &mo CHARS &kp RALT 
                         >;
                 };
@@ -118,8 +118,8 @@
 //                    | CTRL| LWR | SPACE |   | SPACE| RSE  | ALT |
                         bindings = <
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Y &kp LBKT &kp I     &kp  SEMI &kp P        &kp FSLH
-   &cycle_mac_ru &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H &kp J    &kp K     &kp L     &shift_COMMA  &shift_BSLH
-   &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M   &altgr_N8 &altgr_N9 &shift_N7     &kp RSHFT
+   &cycle_mac_ru &kp SQT &kp MINUS &kp D &kp F &kp G      &kp H &kp J    &kp K     &kp L     &shift_COMMA  &shift_BSLH
+   &trans         &kp Z &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &shift_N7     &kp RSHFT
                      &kp LCTRL &mo FUNC &kp SPACE   &kp SPACE  &mo CHARS &kp RALT 
                         >;
                 };
@@ -239,10 +239,10 @@
 // | SHFT |     |     |     |  {  |  }  |   |Home | PgDn|PgUp | End | Ins | Del  |
 //                    | GUI |     |     |   |    |     | ALT |
                         bindings = <
-   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_N
-   &altgr_shift_N7 &kp FSLH  &kp RBKT     &shift_N0     &altgr_N5 &altgr_N6      &kp LEFT   &kp DOWN  &kp UP      &kp RIGHT     &altgr_N7     &shift_EQUAL
-   &kp LSHFT    &trans    &trans          &trans        &altgr_N8 &altgr_N9      &kp HOME   &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
-                                          &kp LALT      &trans    &trans         &trans   &trans    &kp RALT
+   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp NON_US_BACKSLASH &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_N
+   &altgr_shift_N7 &kp FSLH  &kp RBKT     &shift_N0     &altgr_N5 &altgr_N6      &kp LEFT             &kp DOWN  &kp UP      &kp RIGHT     &altgr_N7     &shift_EQUAL
+   &kp LSHFT    &trans    &trans          &trans        &altgr_N8 &altgr_N9      &kp HOME             &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
+                                          &kp LALT      &trans    &trans         &trans               &trans    &kp RALT
                         >;
                 };                
 
