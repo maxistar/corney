@@ -90,7 +90,7 @@
    &kp TAB                 &kp Q &kp W &kp E     &kp R    &kp T           &kp Z      &kp U         &kp I     &kp O   &kp P         &kp FSLH
    &cycle_mac_ru          &kp A  &kp S &kp D     &kp F    &kp G           &kp H      &kp J         &kp K     &kp L   &shift_COMMA  &shift_BSLH
    &mo DEFAULT_MAC_SHIFT   &kp Y &kp X &kp C     &kp V    &kp B           &kp N      &kp M         &kp COMMA &kp DOT &shift_N7 &mo DEFAULT_MAC_SHIFT
-                                       &kp LCTRL &mo FUNC &kp SPACE       &kp SPACE  &mo CHARS_MAC &mo DEFAULT_MAC_ALT 
+                                       &kp LEFT_COMMAND &mo FUNC &kp SPACE       &kp SPACE  &mo CHARS_MAC &mo DEFAULT_MAC_ALT 
                         >;
                 };
 
@@ -105,7 +105,7 @@
    &kp TAB        &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I  &shift_O     &shift_P     &shift_FSLH
    &cycle_mac_ru  &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K  &shift_L     &shift_DOT   &shift_N2
    &trans         &shift_Y &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp GRAVE &shift_GRAVE &shift_MINUS &trans
-                                    &kp LCTRL &mo FUNC &kp SPACE    &kp SPACE &mo CHARS &kp RALT 
+                                    &kp LEFT_COMMAND &mo FUNC &kp SPACE    &kp SPACE &mo CHARS &kp RALT 
                         >;
                 };
 
@@ -165,7 +165,7 @@
    &kp TAB       &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P    &kp GRAVE
    &cycle_mac_de &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J         &kp K     &kp L     &kp SEMI &kp SQT
    &trans        &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
-                             &kp LCTRL &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS_MAC &mo RUSSIAN_MAC_ALT 
+                             &kp LEFT_COMMAND &mo FUNC &kp SPACE        &kp SPACE  &mo CHARS_MAC &mo RUSSIAN_MAC_ALT 
                         >;
                 };
 
@@ -257,7 +257,7 @@
    &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT                &kp NON_US_BACKSLASH &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_N
    &altgr_shift_N7 &kp FSLH  &kp RBKT     &shift_N0     &altgr_N5 &altgr_N6                &kp LEFT             &kp DOWN  &kp UP      &kp RIGHT     &altgr_N7     &shift_EQUAL
    &kp LSHFT    &trans    &trans          &trans        &altgr_N8 &altgr_N9                &kp HOME             &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
-                                          &kp LALT      &trans    &kp LEFT_COMMAND         &trans               &trans    &kp RALT
+                                          &kp LALT      &trans    &kp LCTRL                &trans               &trans    &kp RALT
                         >;
                 };                
 
