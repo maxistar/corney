@@ -51,6 +51,11 @@
             key-positions = <40 41>;
             bindings = <&tog MOUSE_LAYER>;
         };
+        combo_mouse_layer_left {
+            timeout-ms = <50>;
+            key-positions = <37 38>;
+            bindings = <&tog MOUSE_LAYER>;
+        };
     };
 };
 
