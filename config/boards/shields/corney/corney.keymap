@@ -70,12 +70,12 @@
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  Ü   |  I  |  Ö  |  P  | BSPC |
 // | LANG |  Ä  |  ß  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT  |
-//                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
+//                    | LALT| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z &kp LBKT &kp I     &kp  SEMI &kp P        &kp FSLH
    &cycle_lang_ru &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H &kp J    &kp K     &kp L     &shift_COMMA &shift_BSLH
    &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &shift_N7    &kp RSHFT
-                     &kp LCTRL &kp SPACE &mo FUNC         &kp RGUI       &mo CHARS &kp RALT 
+                     &kp LALT &kp SPACE &mo FUNC         &kp RGUI       &mo CHARS &kp RALT 
                         >;
                 };
 
@@ -237,12 +237,12 @@
 // | TAB  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  ~   |
 // |  \   |  -  |  +  |  =  |  [  |  ]  |   |  ←  |  ↓  |  ↑  |  →  | "|" |  `   |
 // | SHFT |     |     |     |  {  |  }  |   |Home | PgDn|PgUp | End | Ins | Del  |
-//                    | GUI |     |     |   |    |     | ALT |
+//                    | ALT |     | GUI |   |    |     | ALT |
                         bindings = <
    &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_RBKT
    &altgr_MINUS &kp FSLH  &kp RBKT        &shift_N0     &altgr_N8 &altgr_N9      &kp LEFT   &kp DOWN   &kp UP    &kp RIGHT      &altgr_NUBACK &shift_EQUAL
    &kp LSHFT    &trans    &trans          &trans        &altgr_N7 &altgr_N0      &kp HOME   &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
-                                          &kp LGUI      &trans    &kp LALT       &trans   &trans    &kp RALT
+                                          &kp LALT      &trans    &kp LGUI       &trans   &trans    &kp RALT
                         >;
                 };
 
