@@ -257,7 +257,7 @@
    &kp TAB      &kp EXCL  &altgr_l_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT                &kp NON_US_BACKSLASH &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_N
    &altgr_shift_N7 &kp FSLH  &kp RBKT     &shift_N0     &altgr_N5 &altgr_N6                &kp LEFT             &kp DOWN  &kp UP      &kp RIGHT     &altgr_N7     &shift_EQUAL
    &kp LSHFT    &trans    &trans          &trans        &altgr_N8 &altgr_N9                &kp HOME             &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
-                                          &kp LALT      &trans    &kp LCTRL                &trans               &trans    &kp RALT
+                                          &kp LCTRL.    &kp LALT  &kp LEFT_COMMAND     &trans               &trans    &kp RALT
                         >;
                 };                
 
