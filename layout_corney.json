@@ -34,9 +34,9 @@
       null, null, null, null, null, null
     ],
     "Linux AltGr": [
-      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
-      null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
-      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], null, null, 
+      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["=", "KeyP"], 
+      null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "SemiColon"], ["\"", "Quote"], 
+      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], ["\\", "Quote"], null, 
       null, null, null, null, null, null
     ],
     "Linux Russian": [

@@ -54,7 +54,7 @@
 // -----------------------------------------------------------------------------------------
 // |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | _     |
 // | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  "    |
-// |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  /  |       |
+// |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  ?  |       |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
    &shift_TAB     &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I             &shift_O                &shift_P     &shift_FSLH
@@ -67,14 +67,14 @@
                 default_linux_alt {
                         display-name = "Default Linux - Alt";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  Ü   |  I  |  Ö  |  P  | BSPC |
-// | LANG |  Ä  |  ß  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT  |
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  Ü   |  I  |  Ö  |  P  |  =   |
+// | LANG |  Ä  |  ß  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  | "|" |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  \  | SHFT |
 //                    | LALT| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z &kp LBKT &kp I     &kp  SEMI &kp P        &kp FSLH
-   &cycle_lang_ru &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H &kp J    &kp K     &kp L     &shift_COMMA &shift_BSLH
-   &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &shift_N7    &kp RSHFT
+   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z &kp LBKT &kp I     &kp  SEMI &kp P         &shift_N0
+   &cycle_lang_ru &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H &kp J    &kp K     &kp L     &altgr_NUBACK &shift_BSLH
+   &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &altgr_MINUS  &kp RSHFT
                      &kp LALT &kp SPACE &mo FUNC         &kp RGUI       &mo CHARS &kp RALT 
                         >;
                 };
@@ -97,9 +97,9 @@
                 default_mac_shift {
                         display-name = "Default Mac - Shift";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | _     |
-// | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  "    |
-// |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  /  |       |
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | _   |
+// | LANG |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  "  |
+// |      |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  <  |  >  |  ?  |     |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
    &shift_TAB     &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I  &shift_O     &shift_P     &shift_FSLH
@@ -112,14 +112,14 @@
                 default_mac_alt {
                         display-name = "Default Mac - Alt";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  Ü   |  I  |  Ö  |  P  | BSPC |
-// | LANG |  Ä  |  ß  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT  |
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  Ü   |  I  |  Ö  |  P  | =    |
+// | LANG |  Ä  |  ß  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  | "|" |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  \  | SHFT |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z &kp LBKT &kp I     &kp  SEMI &kp P        &kp FSLH
-   &cycle_mac_ru  &kp SQT &kp MINUS &kp D &kp F &kp G      &kp H &kp J    &kp K     &kp L     &shift_COMMA  &shift_BSLH
-   &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &shift_N7     &kp RSHFT
+   &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z &kp LBKT &kp I     &kp  SEMI &kp P           &shift_N0
+   &cycle_mac_ru  &kp SQT &kp MINUS &kp D &kp F &kp G      &kp H &kp J    &kp K    &kp L     &altgr_N7       &shift_BSLH
+   &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N &kp M    &altgr_N8 &altgr_N9 &altgr_shift_N7 &kp RSHFT
                      &kp LCTRL &kp SPACE &mo FUNC         &kp RCTRL  &mo CHARS &kp RALT 
                         >;
                 };
@@ -239,9 +239,9 @@
 // | SHFT |     |     |     |  {  |  }  |   |Home | PgDn|PgUp | End | Ins | Del  |
 //                    | ALT |     | GUI |   |    |     | ALT |
                         bindings = <
-   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_RBKT
-   &altgr_MINUS &kp FSLH  &kp RBKT        &shift_N0     &altgr_N8 &altgr_N9      &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT      &altgr_NUBACK &shift_EQUAL
-   &kp LSHFT    &trans    &trans          &trans        &altgr_N7 &altgr_N0      &kp HOME   &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
+   &kp TAB      &kp EXCL  &altgr_q_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT      &kp GRAVE  &kp CARET &shift_RBKT &kp ASTRK  &kp LPAR      &altgr_RBKT
+   &altgr_MINUS &kp FSLH  &kp RBKT        &shift_N0     &altgr_N8 &altgr_N9      &kp LEFT   &kp DOWN  &kp UP    &kp RIGHT    &altgr_NUBACK &shift_EQUAL
+   &kp LSHFT    &trans    &trans          &trans        &altgr_N7 &altgr_N0      &kp HOME   &kp PG_DN &kp PG_UP   &kp END    &kp INSERT    &kp DELETE
                                           &kp LCTRL     &kp LGUI  &kp LALT      &trans     &trans    &kp RALT
                         >;
                 };
