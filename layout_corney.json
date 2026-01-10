@@ -50,8 +50,7 @@
       null,
       ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Ё", "BackQuote"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
       ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
-      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"
-      ], null, null, null, null, null, null, null, null
+      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], ["?", "KeyM"], null, null, null, null, null, null, null, null
     ],
     "Linux Functional": [
       ["~", "KeyQ"], ["1", "KeyQ"], ["2", "KeyW"], ["3", "KeyE"], ["4", "KeyR"], ["5", "KeyT"], ["6", "KeyY"], ["7", "KeyU"], ["8", "KeyI"], ["9", "KeyO"], ["0", "KeyP"], null, 
