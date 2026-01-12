@@ -162,7 +162,7 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ь   |  Б  |  Ю  |  .  | SHFT |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB       &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P    &kp GRAVE
+   &kp TAB       &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P    &kp LEFT_BRACKET
    &cycle_mac_de &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J         &kp K     &kp L     &kp SEMI &kp SQT
    &trans        &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT   &kp FSLH &kp RSHFT
                              &kp LEFT_COMMAND &kp SPACE &mo FUNC     &kp RCTRL  &mo CHARS_MAC &mo RUSSIAN_MAC_ALT 
