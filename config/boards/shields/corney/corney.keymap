@@ -104,7 +104,7 @@
                         bindings = <
    &shift_TAB     &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I  &shift_O     &shift_P     &shift_FSLH
    &cycle_mac_ru  &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K  &shift_L     &shift_DOT   &shift_N2
-   &trans         &shift_Y &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp GRAVE &shift_GRAVE &shift_MINUS &trans
+   &kp LSHFT      &shift_Y &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp GRAVE &shift_GRAVE &shift_MINUS &trans
                                     &kp LEFT_COMMAND &kp SPACE &mo FUNC    &kp RCTRL &mo CHARS &kp RALT 
                         >;
                 };
@@ -119,7 +119,7 @@
                         bindings = <
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z      &kp LBKT  &kp I     &kp  SEMI &kp P           &shift_N0
    &cycle_mac_ru  &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H      &kp J     &kp K     &kp L     &altgr_N7       &shift_BSLH
-   &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N      &kp M     &altgr_N8 &altgr_N9 &altgr_shift_N7 &kp RSHFT
+   &kp LSHFT      &kp Y &kp X &kp C &kp V &kp B           &kp N      &kp M     &altgr_N8 &altgr_N9 &altgr_shift_N7 &kp RSHFT
                      &kp LCTRL &kp LALT &kp LEFT_COMMAND &kp RCTRL  &mo CHARS &kp RALT 
                         >;
                 };
@@ -177,9 +177,9 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ъ   |  Б  |  Ю  |  ,  | SHFT |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB &kp Q &kp W &kp E &kp R &kp GRAVE             &kp Y &kp U  &kp I      &kp O     &kp P    &kp GRAVE
-   &trans  &kp A &kp S &kp D &kp F &kp G                 &kp H &kp J  &kp K      &kp L     &kp SEMI &kp SQT
-   &trans  &kp Z &kp X &kp C &kp V &kp B                 &kp N &kp RIGHT_BRACKET &kp COMMA &kp DOT  &shift_N7 &kp RSHFT
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp GRAVE             &kp Y &kp U  &kp I      &kp O     &kp P    &kp GRAVE
+   &trans    &kp A &kp S &kp D &kp F &kp G                 &kp H &kp J  &kp K      &kp L     &kp SEMI &kp SQT
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B                 &kp N &kp RIGHT_BRACKET &kp COMMA &kp DOT  &shift_N7 &kp RSHFT
                      &kp LCTRL &kp SPACE &mo FUNC        &kp RGUI  &mo CHARS &kp RALT 
                         >;
                 };
@@ -192,9 +192,9 @@
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  Т  |  Ъ   |  Б  |  Ю  |  ,  | SHFT |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB &kp Q &kp W &kp E &kp R &kp BACKSLASH         &kp Y     &kp U              &kp I     &kp O   &kp P       &kp GRAVE
-   &trans  &kp A &kp S &kp D &kp F &kp G                 &kp H     &kp J              &kp K     &kp L   &kp SEMI    &kp SQT
-   &trans  &kp Z &kp X &kp C &kp V &kp B                 &kp N     &kp RIGHT_BRACKET  &kp COMMA &kp DOT &shift_FSLH &kp RSHFT
+   &kp TAB   &kp Q &kp W &kp E &kp R &kp BACKSLASH         &kp Y     &kp U              &kp I     &kp O   &kp P       &kp GRAVE
+   &trans    &kp A &kp S &kp D &kp F &kp G                 &kp H     &kp J              &kp K     &kp L   &kp SEMI    &kp SQT
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B                 &kp N     &kp RIGHT_BRACKET  &kp COMMA &kp DOT &shift_FSLH &kp RSHFT
                      &kp LCTRL &kp LALT &kp LEFT_COMMAND &kp SPACE &mo CHARS          &kp RALT 
                         >;
                 };                
