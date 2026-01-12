@@ -120,7 +120,7 @@
    &kp TAB        &kp Q &kp W &kp E &kp R &kp T           &kp Z      &kp LBKT  &kp I     &kp  SEMI &kp P           &shift_N0
    &cycle_mac_ru  &kp SQT &kp MINUS &kp D &kp F &kp G     &kp H      &kp J     &kp K     &kp L     &altgr_N7       &shift_BSLH
    &trans         &kp Y &kp X &kp C &kp V &kp B           &kp N      &kp M     &altgr_N8 &altgr_N9 &altgr_shift_N7 &kp RSHFT
-                     &kp LCTRL &kp SPACE &mo FUNC         &kp RCTRL  &mo CHARS &kp RALT 
+                     &kp LCTRL &kp LALT &kp LEFT_COMMAND &kp RCTRL  &mo CHARS &kp RALT 
                         >;
                 };
 
@@ -195,7 +195,7 @@
    &kp TAB &kp Q &kp W &kp E &kp R &kp BACKSLASH         &kp Y     &kp U              &kp I     &kp O   &kp P       &kp GRAVE
    &trans  &kp A &kp S &kp D &kp F &kp G                 &kp H     &kp J              &kp K     &kp L   &kp SEMI    &kp SQT
    &trans  &kp Z &kp X &kp C &kp V &kp B                 &kp N     &kp RIGHT_BRACKET  &kp COMMA &kp DOT &shift_FSLH &kp RSHFT
-                     &kp LCTRL &kp SPACE &mo FUNC        &kp SPACE &mo CHARS          &kp RALT 
+                     &kp LCTRL &kp LALT &kp LEFT_COMMAND &kp SPACE &mo CHARS          &kp RALT 
                         >;
                 };                
 

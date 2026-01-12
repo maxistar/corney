@@ -64,6 +64,12 @@
       ["", ""],["", ""],["", ""],["", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["Ctrl", ""], ["GUI", ""], ["ALT", ""], ["", ""], null, ["ALT", ""]
     ],
+    "Mac AltGr": [
+      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["=", "KeyP"], 
+      null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "SemiColon"], ["\"", "Quote"], 
+      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], ["\\", "Quote"], null, 
+      ["⌃", ""], ["⌥", ""], ["⌘", ""], null, null, null
+    ],
     "Mac Characters / Navigation": [
       ["TAB", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
       ["\\", ""], ["-", "KeyD"], ["+", "KeyS"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
