@@ -52,25 +52,28 @@
       null, null, null, null, null, null
     ],
     "Linux Russian": [
-      null,
-      ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
-      ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
-      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"], null, null, 
+      null, ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], 
+      null, ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], 
+      null, ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ь", "KeyM"], ["Б", "KeyM"], ["Ю", "KeyM"], [".", "KeyM"], null, null, 
       null, null, null, null, null, null
     ],
     "Mac Russian": [
-      null,
-      ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "LeftBracket"], null,
-      ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "SemiColon"], ["Э", "Quote"], null,
-      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyN"], ["Ь", "KeyM"], ["Б", "Comma"], ["Ю", "Dot"], [".", "Num7"], null, 
+      null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["е", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "LeftBracket"], 
+      null, ["ф", "KeyA"], ["ы", "KeyS"], ["в", "KeyD"], ["а", "KeyF"], ["п", "KeyG"], ["р", "KeyH"], ["о", "KeyJ"], ["л", "KeyK"], ["д", "KeyL"], ["ж", "SemiColon"], ["э", "Quote"], 
+      null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyN"], ["ь", "KeyM"], ["б", "Comma"], ["ю", "Dot"], [".", "Num7"], null, 
       null, null, null, null, null, null
     ],
+    "Mac Russian Shift": [
+      null, ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "LeftBracket"], 
+      null, ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "SemiColon"], ["Э", "Quote"], 
+      null, ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyN"], ["Ь", "KeyM"], ["Б", "Comma"], ["Ю", "Dot"], [",", "Num7"], null, 
+      null, null, null, null, null, null
+    ],    
     "Russian-AltGr": [
-      null,
-      ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Ё", "BackQuote"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], null,
-      ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], null,
-      ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], ["?", "KeyM"], null, null, null, null, null, null, null, null
-    ],
+      null, ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Ё", "BackQuote"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "KeyP"], 
+      null, ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "KeyL"], ["Э", "KeyL"], 
+      null, ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyM"], ["Ъ", "RightBracket"], ["Б", "KeyM"], ["Ю", "KeyM"], ["?", "KeyM"], null, null, null, null, null, null, null, null
+    ],   
     "Functional": [
       ["~", "KeyQ"], ["1", "KeyQ"], ["2", "KeyW"], ["3", "KeyE"], ["4", "KeyR"], ["5", "KeyT"], ["6", "KeyY"], ["7", "KeyU"], ["8", "KeyI"], ["9", "KeyO"], ["0", "KeyP"], null, 
       ["F1", "KeyA"], ["F2", "KeyS"], ["F3", "KeyD"], ["F4", "KeyF"], ["F5", "KeyG"], ["F6", "KeyJ"], ["F7", "KeyK"], ["F8", "KeyL"], ["F9", "KeyL"], ["F10", ""],["F11", ""], ["F12", ""],

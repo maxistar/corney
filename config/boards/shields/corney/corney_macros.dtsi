@@ -517,6 +517,24 @@
             #binding-cells = <0>;
             bindings = <&sk LSHIFT &kp LBKT>;
         };
+
+        shift_SEMI: shift_SEMI {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp SEMI>;
+        };
+
+        shift_LEFT_BRACKET: shift_LEFT_BRACKET {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp LEFT_BRACKET>;
+        };
+
+        shift_SQT: shift_SQT {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk LSHIFT &kp SQT>;
+        };
         
     };
 

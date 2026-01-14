@@ -164,7 +164,7 @@
                         bindings = <
    &kp TAB               &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P     &kp LEFT_BRACKET
    &cycle_mac_de         &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J         &kp K     &kp L     &kp SEMI  &kp SQT
-   &mo RUSSIAN_MAC_SHIFT &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT   &shift_N7 &mo RUSSIAN_MAC_SHIFT
+   &mo RUSSIAN_MAC_SHIFT &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT,   &shift_N7 &mo RUSSIAN_MAC_SHIFT
                              &kp LEFT_COMMAND &kp SPACE &mo FUNC     &kp RCTRL  &mo CHARS_MAC &mo RUSSIAN_MAC_ALT 
                         >;
                 };
@@ -177,9 +177,9 @@
 // |      |  Я  |  Ч  |  С  |  М  |  И  |   |  Т  |  Ь   |  Б  |  Ю  |  ,  |     |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &shift_TAB     &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I  &shift_O     &shift_P     &shift_FSLH
-   &cycle_mac_ru  &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K  &shift_L     &shift_DOT   &shift_N2
-   &kp LSHFT      &shift_Y &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &kp GRAVE &shift_GRAVE &shift_N6    &trans
+   &shift_TAB     &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I     &shift_O     &shift_P     &shift_LEFT_BRACKET
+   &cycle_mac_ru  &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K     &shift_L     &shift_SEMI  &shift_SQT
+   &kp LSHFT      &shift_Y &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &shift_COMMA &shift_DOT   &shift_N6    &trans
                                     &trans &trans &trans    &trans &trans &trans 
                         >;
                 };                
