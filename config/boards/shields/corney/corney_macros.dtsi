@@ -9,13 +9,14 @@
 #define DEFAULT_ANDROID 7
 #define RUSSIAN 8
 #define RUSSIAN_MAC 9
-#define RUSSIAN_ALT 10
-#define RUSSIAN_MAC_ALT 11
-#define FUNC 12
-#define CHARS 13
-#define CHARS_DE 14
-#define CHARS_MAC 15
-#define MOUSE_LAYER 16
+#define RUSSIAN_MAC_SHIFT 10
+#define RUSSIAN_ALT 11
+#define RUSSIAN_MAC_ALT 12
+#define FUNC 13
+#define CHARS 14
+#define CHARS_DE 15
+#define CHARS_MAC 16
+#define MOUSE_LAYER 17
 
 
 / {
