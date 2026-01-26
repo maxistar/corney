@@ -89,13 +89,13 @@
     "Linux Characters / Navigation": [
       ["TAB", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
       ["\\", "Minus"], ["-", "Slash"], ["+", "RightBracket"], ["=", "Num0"], ["[", "Num8"], ["]", "Num9"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
-      ["", ""],["", ""],["", ""],["", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
+      ["", ""],["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["Ctrl", ""], ["GUI", ""], ["ALT", ""], ["", ""], null, ["ALT", ""]
     ],
     "Mac Characters / Navigation": [
       ["TAB", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
       ["\\", ""], ["-", "KeyD"], ["+", "KeyS"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
-      ["", ""],["", ""],["", ""],["", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
+      ["", ""],["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["", ""], null, ["ALT", ""]
     ],
     "Numbers / Mouse": [

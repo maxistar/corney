@@ -146,6 +146,12 @@
             bindings = <&sk RALT &kp Q>;
         };
         
+        altgr_e: altgr_e {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&sk RALT &kp L>;
+        };
+
         altgr_l_for_at: altgr_l_for_at {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
