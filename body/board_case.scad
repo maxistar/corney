@@ -6,10 +6,11 @@ features todo:
 - [x] magnetic fixation of the keyboard
 - [x] additional pads fixation for the keyboard
 - [x] rubber perimeter for better stability
+- [ ] make maglet holders 3dprint friendly
 
 */
 
-cut_angle = [-7, 14, 0];
+cut_angle = [-6, 13, 0];
 magnet_radius = 4 / 2 + 0.05;
 holder_thickness = 0.8;
 
@@ -139,6 +140,7 @@ module one_half() {
 
 one_half();
 
+
 /*
 translate([0, 0, -30])
   rotate([0, 180, 0])
@@ -159,7 +161,7 @@ module rubber_cuts() {
     rotate([0, 0, 22.9])
       cube([20, 1.8, 1.8], center=true);
 
-  translate([44, 32.5, 0])
+  translate([44, 33.5, 0])
     rotate([0, 0, -22])
       cube([20, 1.8, 1.8], center=true);
 
@@ -237,12 +239,12 @@ module test_magnet() {
 
 //corne_centered();
 
-/*
-translate([0, 0, -40])
-  rotate([0, 180, 0])
-    scale([1, -1, 1])
-      corne_centered();
-*/
+
+//translate([0, 0, -40])
+//  rotate([0, 180, 0])
+//    scale([1, -1, 1])
+//      corne_centered();
+
 
 /*
 difference() {

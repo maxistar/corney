@@ -18,6 +18,9 @@ magnet2_pos = [8.8, -56.9, 9.4];
 magnet3_pos = [91.5, -85.0, 8.4];
 magnet4_pos = [101, -14.5, 8.2];
 
+cuts_rotatinon = [0, 0.7, 0];
+
+
 module body() {
   difference() {
 
@@ -52,8 +55,8 @@ module body() {
     translate(magnet4_pos)
       cylinder(h=4.04, r=magnet_radius);
 
-    rotate([0, 1, 0])
-      linearCuts();
+    rotate(cuts_rotatinon)
+      linearCutsV2();
 
     // standCuts();
     //cube([25,250,100], center=true);
@@ -123,16 +126,17 @@ module bottomCube2() {
 
 module bottomCube1() {
   //cube([10,10,1]);
-  translate([0, 10, 0])
-    cube([38, 6, 1.5]);
+  translate([0, 2, 0])
+    cube([38, 52, 1]);
 }
 
 module thicknessCubes() {
+    rotate(cuts_rotatinon)
   translate([6, -70, 9.2])
     bottomCube1();
 
-  translate([6, -18, 9.2])
-    bottomCube2();
+  //translate([6, -18, 9.2])
+    //bottomCube2();
 }
 
 module standCut() {
@@ -167,7 +171,39 @@ module linearCuts() {
     linearCut();
 }
 
-//linearCuts();
+
+module linearCutV2() {
+  cube([50, 8, 1.8]);
+  translate([0, 9, 0])
+    cube([50, 8, 1.8]);
+  translate([0, 18, 0])
+    cube([50, 8, 1.8]);
+}
+
+module linearCutV2_long() {
+  cube([65, 8, 1.8]);
+  translate([0, 9, 0])
+    cube([66, 8, 1.8]);
+  translate([0, 18, 0])
+    cube([67, 8, 1.8]);
+}
+
+module linearCutsV2() {
+
+  depth = 8.3;
+
+  translate([12, -17, depth])
+    rotate([0, 0, -90])
+      linearCutV2();
+    
+  translate([108, -17, depth])
+    rotate([0, 0, -95])
+      linearCutV2_long();
+
+}
+
+//rotate(cuts_rotatinon)
+  //linearCutsV2();
 
 module standCuts() {
   zoffset = 9;
@@ -181,10 +217,15 @@ module standCuts() {
 module body_solid() {
 
   union() {
-    import("corne_shape.stl");
+    //import("corne_shape.stl");
 
-    rotate([0, 0.7, 0])
-      linearCuts();
+    translate([70,-50,13.22])
+      rotate(cuts_rotatinon)
+        cube([200, 130, 10], center= true);
+
+
+    rotate(cuts_rotatinon)
+      linearCutsV2();
 
     translate([0, 0, -6.8]) {
       translate(magnet1_pos)
@@ -202,4 +243,7 @@ module body_solid() {
   }
 }
 
+//body();
+
+// corne shape with stands
 body_solid();
