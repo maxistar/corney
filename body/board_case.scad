@@ -109,7 +109,7 @@ module shell() {
   difference() {
     minkowski() {
       outline();
-      sphere(r=4);
+      sphere(r=4.2);
     }
 
     minkowski() {

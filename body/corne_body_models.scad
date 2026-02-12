@@ -213,7 +213,7 @@ module linearCutsV2() {
 
   depth = 8.3;
 
-  translate([11, -17, depth])
+  translate([11.5, -17, depth])
     rotate([0, 0, -90])
       linearCutV2();
 
