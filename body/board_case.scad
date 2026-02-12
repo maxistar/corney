@@ -83,7 +83,7 @@ module base_centered() {
 
 module cut_centered() {
   rotate([1, -1.0, 0])
-    translate([-70, 48, -8.25])
+    translate([-70, 48, -8.35])
       //hull() {
       import("corne_shape_with_stands.stl");
   //} 
