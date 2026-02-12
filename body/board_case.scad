@@ -82,8 +82,8 @@ module base_centered() {
 }
 
 module cut_centered() {
-  rotate([1, -1.5, 0])
-    translate([-70, 48, -8])
+  rotate([1, -1.0, 0])
+    translate([-70, 48, -8.25])
       //hull() {
       import("corne_shape_with_stands.stl");
   //} 
@@ -161,7 +161,7 @@ module print_helpers() {
     hull() {
       cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
 
-      translate([0, -10, 20])
+      translate([0, -10, 10])
         cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
     }
 
