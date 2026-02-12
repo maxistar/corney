@@ -11,14 +11,16 @@ $fn = 50;
   *  
   */
 
-magnet_radius = 4 / 2 + 0.2;
+magnet_radius = 4 / 2 + 0.1;
 
 magnet1_pos = [8.8, -21.5, 9.4];
 magnet2_pos = [8.8, -56.9, 9.4];
 magnet3_pos = [91.5, -85.0, 9.4];
 magnet4_pos = [101, -14.5, 9.2];
+magnet5_pos = [132, -52.5, 9.2];
 
 cuts_rotation = [0, 0.7, 0];
+rubber_width = 5.2;
 
 module magnets_holders() {
 
@@ -34,6 +36,9 @@ module magnets_holders() {
       cylinder(h=2.14, r=magnet_radius + 0.5);
 
     translate(magnet4_pos)
+      cylinder(h=2.14, r=magnet_radius + 0.5);
+
+    translate(magnet5_pos)
       cylinder(h=2.14, r=magnet_radius + 0.5);
   }
 }
@@ -52,6 +57,9 @@ module magnets() {
 
     translate(magnet4_pos)
       cylinder(h=4.04, r=magnet_radius);
+
+    translate(magnet5_pos)
+      cylinder(h=4.04, r=magnet_radius);      
   }
 }
 
@@ -87,7 +95,7 @@ module body() {
 module stand() {
   difference() {
     union() {
-      cylinder(h=3, r1=1.5, r2=1.5);
+      cylinder(h=3, r=1.8);
       cylinder(h=2, r1=4.5, r2=4);
     }
     cylinder(h=4, r=1);
@@ -125,7 +133,7 @@ module innerStands() {
   translate([6.1, -70.5, 9.427])
     innerStands2();
 
-  translate([6.1, -29.4, 9.427])
+  translate([6.0, -29.2, 9.427])
     innerStands3();
 
   translate([114.4, -77.0, 9.427])
@@ -146,7 +154,7 @@ module bottomCube1() {
 
 module thicknessCubes() {
   rotate(cuts_rotation)
-    translate([6, -70, 9.2])
+    translate([6, -70, 9.3])
       bottomCube1();
 
   //translate([6, -18, 9.2])
@@ -186,30 +194,30 @@ module linearCuts() {
 }
 
 module linearCutV2() {
-  cube([50, 5, 1.8]);
-  translate([0, 9, 0])
-    cube([50, 5, 1.8]);
-  translate([0, 18, 0])
-    cube([50, 5, 1.8]);
+  cube([50, rubber_width, 1.8]);
+  translate([0, 7, 0])
+    cube([50, rubber_width, 1.8]);
+  translate([0, 14, 0])
+    cube([50, rubber_width, 1.8]);
 }
 
 module linearCutV2_long() {
-  cube([65, 5, 1.8]);
-  translate([0, 9, 0])
-    cube([66, 5, 1.8]);
-  translate([0, 18, 0])
-    cube([67, 5, 1.8]);
+  cube([65, rubber_width, 1.8]);
+  translate([0, 7, 0])
+    cube([66, rubber_width, 1.8]);
+  translate([0, 14, 0])
+    cube([67, rubber_width, 1.8]);
 }
 
 module linearCutsV2() {
 
   depth = 8.3;
 
-  translate([12, -17, depth])
+  translate([11, -17, depth])
     rotate([0, 0, -90])
       linearCutV2();
 
-  translate([110, -17, depth])
+  translate([113, -19, depth])
     rotate([0, 0, -95])
       linearCutV2_long();
 }
@@ -251,6 +259,9 @@ module body_solid() {
 
         translate(magnet4_pos)
           cylinder(h=6.04, r=magnet_radius);
+
+        translate(magnet5_pos)
+          cylinder(h=6.04, r=magnet_radius);          
       }
   }
 }
