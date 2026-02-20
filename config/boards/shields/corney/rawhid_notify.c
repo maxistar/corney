@@ -1,11 +1,16 @@
 #include <zephyr/kernel.h>
-#include <zephyr/device.h>
-#include <zephyr/drivers/hid.h>
+#include <stdint.h>
 #include <string.h>
 
-#define REPORT_SIZE 32
+#if IS_ENABLED(CONFIG_RAW_HID)
+#include <raw_hid/events.h>
+#endif
 
-static uint8_t report_buf[REPORT_SIZE];
+#if IS_ENABLED(CONFIG_RAW_HID)
+static uint8_t report_buf[CONFIG_RAW_HID_REPORT_SIZE];
+#else
+static uint8_t report_buf[32];
+#endif
 
 void rawhid_send_layer(uint8_t layer, uint8_t flags)
 {
@@ -14,7 +19,10 @@ void rawhid_send_layer(uint8_t layer, uint8_t flags)
     report_buf[2] = flags;
 
     // остальные байты нули
-    memset(report_buf + 3, 0, REPORT_SIZE - 3);
+    memset(report_buf + 3, 0, sizeof(report_buf) - 3);
 
-    hid_int_ep_write(report_buf, REPORT_SIZE, NULL);
+#if IS_ENABLED(CONFIG_RAW_HID)
+    raise_raw_hid_sent_event(
+        (struct raw_hid_sent_event){.data = report_buf, .length = sizeof(report_buf)});
+#endif
 }
