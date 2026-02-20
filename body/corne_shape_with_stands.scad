@@ -1,6 +1,5 @@
 include <corne_body_models.scad>;
 
-body();
 
 // corne shape with stands
-// body_solid();
+body_solid();
