@@ -1,8 +1,8 @@
 / {
     behaviors {
         raw_layer: raw_layer {
-            compatible = "zmk,behavior";
-            label = "RAW_LAYER";
+            compatible = "zmk,behavior-raw-layer";
+            #binding-cells = <1>;
         };
     };
 };
