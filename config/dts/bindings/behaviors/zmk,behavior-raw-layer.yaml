@@ -1,0 +1,5 @@
+description: Raw HID layer report behavior
+
+compatible: "zmk,behavior-raw-layer"
+
+include: one_param.yaml
