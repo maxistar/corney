@@ -1,0 +1,7 @@
+name: corney-config
+build:
+  cmake: .
+  kconfig: Kconfig
+  settings:
+    board_root: .
+    dts_root: .

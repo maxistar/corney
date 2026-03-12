@@ -1,0 +1,5 @@
+if(CONFIG_SHIELD_CORNEY_LEFT OR CONFIG_SHIELD_CORNEY_RIGHT)
+  zephyr_library_include_directories(${CMAKE_SOURCE_DIR}/include)
+  zephyr_library_sources(boards/shields/corney/rawhid_layer_behavior.c)
+  zephyr_library_sources(boards/shields/corney/rawhid_notify.c)
+endif()
