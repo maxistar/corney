@@ -1,0 +1,8 @@
+menuconfig ZMK_GATT_LAYER_EXPOSITION
+    bool "Expose active layer number over GATT"
+    depends on ZMK_BLE && BT_GATT
+    help
+      Adds a custom GATT service/characteristic that exposes the currently
+      active layer number as a readable byte and optionally notifies on
+      layer changes.
+

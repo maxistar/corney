@@ -14,3 +14,11 @@ This document defines the custom GATT service and characteristic used to expose 
 ## Properties
 - Read
 - Notify
+
+## Configuration
+- Kconfig: `CONFIG_ZMK_GATT_LAYER_EXPOSITION`
+- This repo enables the feature in `config/boards/shields/corney/corney.conf`.
+
+## Validation
+- Connect with a BLE GATT browser and read the Layer Number characteristic to confirm it returns the active layer index.
+- Subscribe to notifications, switch layers on the keyboard, and verify notifications contain the updated layer index.
