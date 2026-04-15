@@ -162,10 +162,10 @@
 // | SHFT |  я  |  ч  |  с  |  м  |  и  |   |  т  |  ь   |  б  |  ю  |  .  | SHFT |
 //                    | CTRL| SPACE | LWR |   | SPACE| RSE  | ALT |
                         bindings = <
-   &kp TAB               &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U         &kp I     &kp O     &kp P     &kp LEFT_BRACKET
-   &cycle_mac_de         &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J         &kp K     &kp L     &kp SEMI  &kp SQT
-   &mo RUSSIAN_MAC_SHIFT &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M         &kp COMMA &kp DOT   &shift_N7 &mo RUSSIAN_MAC_SHIFT
-                             &kp LEFT_COMMAND &kp SPACE &mo FUNC     &kp RCTRL  &mo CHARS_MAC &mo RUSSIAN_MAC_ALT 
+   &kp TAB               &kp Q &kp W &kp E     &kp R    &kp T            &kp Y      &kp U             &kp I     &kp O     &kp P     &kp LEFT_BRACKET
+   &cycle_mac_de         &kp A &kp S &kp D     &kp F    &kp G            &kp H      &kp J             &kp K     &kp L     &kp SEMI  &kp SQT
+   &mo RUSSIAN_MAC_SHIFT &kp Z &kp X &kp C     &kp V    &kp B            &kp N      &kp M             &kp COMMA &kp DOT   &shift_N7 &mo RUSSIAN_MAC_SHIFT
+                             &kp LEFT_COMMAND &kp SPACE &mo FUNC         &kp RCTRL  &mo CHARS_MAC_RUS &mo RUSSIAN_MAC_ALT 
                         >;
                 };
 
@@ -180,7 +180,7 @@
    &shift_TAB     &shift_Q &shift_W &shift_E  &shift_R &shift_T     &shift_Z  &shift_U  &shift_I     &shift_O     &shift_P     &shift_LEFT_BRACKET
    &cycle_mac_ru  &shift_A &shift_S &shift_D  &shift_F &shift_G     &shift_H  &shift_J  &shift_K     &shift_L     &shift_SEMI  &shift_SQT
    &kp LSHFT      &shift_Y &shift_X &shift_C  &shift_V &shift_B     &shift_N  &shift_M  &shift_COMMA &shift_DOT   &shift_N6    &trans
-                                    &trans &trans &trans    &trans &trans &trans 
+                                    &trans    &trans   &trans       &trans    &trans    &trans 
                         >;
                 };                
 
@@ -265,7 +265,7 @@
                         display-name = "MAC: Characters and Navigation";
 // -----------------------------------------------------------------------------------------
 // | TAB  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  ~   |
-// |  \   |  -  |  +  |  =  |  [  |  ]  |   |  ←  |  ↓  |  ↑  |  →  | "|" |  `   |
+// |      |  -  |  +  |  =  |  [  |  ]  |   |  ←  |  ↓  |  ↑  |  →  | "|" |  `   |
 // | SHFT |     |     |  €  |  {  |  }  |   |Home | PgDn|PgUp | End | Ins | Del  |
 //                    | GUI |     |     |   |    |     | ALT |
                         bindings = <
@@ -275,6 +275,21 @@
                                           &kp LCTRL     &kp LALT  &kp LEFT_COMMAND     &trans               &trans    &kp RALT
                         >;
                 };                
+
+                chars_layer_mac_rus {
+                        display-name = "MAC: Characters and Navigation Russian";
+// -----------------------------------------------------------------------------------------
+// | TAB  |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  |  ~   |
+// |      |  -  |  +  |  =  |  [  |  ]  |   |  ←  |  ↓  |  ↑  |  →  | "|" |  `   |
+// | SHFT |     |     |  €  |  {  |  }  |   |Home | PgDn|PgUp | End | Ins | Del  |
+//                    | GUI |     |     |   |    |     | ALT |
+                        bindings = <
+   &kp TAB         &kp EXCL  &altgr_l_for_at &kp BACKSLASH &kp DLLR  &kp PRCNT                &kp NON_US_BACKSLASH &kp CARET &shift_RBKT &kp ASTRK     &kp LPAR      &altgr_N
+   &altgr_shift_N7 &kp MINUS &shift_EQUAL    &kp EQUAL     &altgr_N5 &altgr_N6                &kp LEFT             &kp DOWN  &kp UP      &kp RIGHT     &altgr_N7     &shift_EQUAL
+   &kp LSHFT       &trans    &trans          &altgr_e      &altgr_N8 &altgr_N9                &kp HOME             &kp PG_DN &kp PG_UP   &kp END       &kp INSERT    &kp DELETE
+                                             &kp LCTRL     &kp LALT  &kp LEFT_COMMAND         &trans               &trans    &kp RALT
+                        >;
+                };  
 
                 mouse_layer {
                         display-name = "Mouse Layer";

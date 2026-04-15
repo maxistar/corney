@@ -16,7 +16,8 @@
 #define CHARS 14
 #define CHARS_DE 15
 #define CHARS_MAC 16
-#define MOUSE_LAYER 17
+#define CHARS_MAC_RUS 17
+#define MOUSE_LAYER 18
 
 
 / {
