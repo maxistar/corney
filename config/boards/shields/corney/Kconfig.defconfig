@@ -10,7 +10,13 @@ endif # SHIELD_CORNEY_LEFT
 
 if SHIELD_CORNEY_LEFT || SHIELD_CORNEY_RIGHT
 
+config ZMK_BLE
+    default y
+
 config ZMK_SPLIT
+    default y
+
+config ZMK_GATT_LAYER_EXPOSITION
     default y
 
 # Enable mouse support

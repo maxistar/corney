@@ -1,6 +1,8 @@
 # GATT layer number exposition
 
 This document defines the custom GATT service and characteristic used to expose the active layer number.
+The feature is implemented as part of this repository's external ZMK module and is enabled by
+default for Corney shield builds through shield `Kconfig.defconfig` defaults.
 
 ## UUIDs
 - Service UUID: `715d81e1-377d-4f26-a678-a506675d99ec`
@@ -14,3 +16,10 @@ This document defines the custom GATT service and characteristic used to expose 
 ## Properties
 - Read
 - Notify
+
+## Build integration
+- GitHub Actions user-config builds discover the service through this repo's `zephyr/module.yml`.
+- Local `west build` commands should include `-DZMK_EXTRA_MODULES=$PWD` so the module sources are
+  compiled alongside the Corney config.
+- The feature can be disabled for a build by setting `CONFIG_ZMK_GATT_LAYER_EXPOSITION=n` in an
+  override `.conf` file or via an explicit CMake config override.

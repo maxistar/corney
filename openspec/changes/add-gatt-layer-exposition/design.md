@@ -9,6 +9,7 @@ ZMK currently exposes BLE HID services, but not a dedicated characteristic for l
 - Decision: Use a dedicated custom GATT service and characteristic to avoid overloading HID semantics.
 - Decision: Represent the layer as a zero-based unsigned integer corresponding to the highest active layer.
 - Decision: Service UUID `715d81e1-377d-4f26-a678-a506675d99ec` and characteristic UUID `e87c518a-f323-4dd7-9dd5-0991add1c01b`.
+- Decision: Implement the feature as a repo-local external ZMK/Zephyr module instead of patching core ZMK.
 - Alternatives considered: Advertising layer in BLE name (too noisy), HID feature reports (tooling complexity).
 
 ## Risks / Trade-offs
@@ -16,7 +17,7 @@ ZMK currently exposes BLE HID services, but not a dedicated characteristic for l
 - Companion apps must know the UUIDs; coordination/documentation is required.
 
 ## Migration Plan
-- Introduce the characteristic behind a config flag enabled by default for this repo.
+- Introduce the characteristic behind a config flag enabled by default for Corney shield builds.
 - Provide documentation and example UUIDs for companion apps.
 
 ## Open Questions
