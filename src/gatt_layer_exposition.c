@@ -16,10 +16,10 @@ static uint8_t current_layer;
 static bool notify_enabled;
 
 static struct bt_uuid_128 service_uuid = BT_UUID_INIT_128(
-    BT_UUID_128_ENCODE(0x715d81e1, 0x377d, 0x4f26, 0xa678, 0xa506675d99ec));
+    BT_UUID_128_ENCODE(0x12341234, 0x1234, 0x5678, 0x7856, 0x123412345678));
 
 static struct bt_uuid_128 layer_uuid = BT_UUID_INIT_128(
-    BT_UUID_128_ENCODE(0xe87c518a, 0xf323, 0x4dd7, 0x9dd5, 0x0991add1c01b));
+    BT_UUID_128_ENCODE(0x12341234, 0x1234, 0x5678, 0x7856, 0x123412345679));
 
 static uint8_t highest_active_layer(void) { return (uint8_t)zmk_keymap_highest_layer_active(); }
 

@@ -1,6 +1,7 @@
 menuconfig ZMK_GATT_LAYER_EXPOSITION
     bool "Expose active layer over a custom GATT characteristic"
     depends on ZMK_BLE
+    depends on !ZMK_SPLIT || ZMK_SPLIT_ROLE_CENTRAL
     default y
     help
       Exposes the highest active layer as a custom BLE GATT characteristic
