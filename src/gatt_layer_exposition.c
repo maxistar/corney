@@ -5,6 +5,7 @@
 #include <zephyr/kernel.h>
 #include <zephyr/init.h>
 #include <zephyr/logging/log.h>
+#include <zephyr/sys/byteorder.h>
 
 #include <zmk/event_manager.h>
 #include <zmk/events/layer_state_changed.h>
@@ -12,7 +13,7 @@
 
 LOG_MODULE_REGISTER(zmk_gatt_layer_exposition, LOG_LEVEL_INF);
 
-static uint8_t current_layer;
+static int32_t current_layer;
 static bool notify_enabled;
 
 static struct bt_uuid_128 service_uuid = BT_UUID_INIT_128(
@@ -21,16 +22,18 @@ static struct bt_uuid_128 service_uuid = BT_UUID_INIT_128(
 static struct bt_uuid_128 layer_uuid = BT_UUID_INIT_128(
     BT_UUID_128_ENCODE(0x12341234, 0x1234, 0x5678, 0x7856, 0x123412345679));
 
-static uint8_t highest_active_layer(void) { return (uint8_t)zmk_keymap_highest_layer_active(); }
+static int32_t highest_active_layer(void) { return (int32_t)zmk_keymap_highest_layer_active(); }
 
 static ssize_t read_layer(struct bt_conn *conn,
                           const struct bt_gatt_attr *attr,
                           void *buf,
                           uint16_t len,
                           uint16_t offset) {
+    int32_t le_layer = sys_cpu_to_le32(current_layer);
+
     ARG_UNUSED(attr);
 
-    return bt_gatt_attr_read(conn, attr, buf, len, offset, &current_layer, sizeof(current_layer));
+    return bt_gatt_attr_read(conn, attr, buf, len, offset, &le_layer, sizeof(le_layer));
 }
 
 static void layer_ccc_cfg_changed(const struct bt_gatt_attr *attr, uint16_t value) {
@@ -50,7 +53,8 @@ BT_GATT_SERVICE_DEFINE(gatt_layer_exposition_svc,
                        BT_GATT_CCC(layer_ccc_cfg_changed,
                                    BT_GATT_PERM_READ | BT_GATT_PERM_WRITE));
 
-static int set_current_layer(uint8_t layer) {
+static int set_current_layer(int32_t layer) {
+    int32_t le_layer;
     int err;
 
     if (current_layer == layer) {
@@ -63,8 +67,8 @@ static int set_current_layer(uint8_t layer) {
         return 0;
     }
 
-    err = bt_gatt_notify(NULL, &gatt_layer_exposition_svc.attrs[2], &current_layer,
-                         sizeof(current_layer));
+    le_layer = sys_cpu_to_le32(current_layer);
+    err = bt_gatt_notify(NULL, &gatt_layer_exposition_svc.attrs[2], &le_layer, sizeof(le_layer));
     if (err) {
         LOG_WRN("Failed to notify layer update (%d)", err);
     }
