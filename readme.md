@@ -12,10 +12,20 @@
 - `docs/gatt-layer-exposition.md`: UUIDs, data format, and build notes for the BLE layer
   characteristic.
 
+## Clone
+
+```bash
+git clone https://github.com/maxistar/corney.git
+cd corney
+```
+
+## Prerequisites
+
+- Zephyr SDK and `west` already installed ([ZMK setup guide](https://zmk.dev/docs/development/setup))
+
 ## Build firmware (locally)
 
-1. Install Zephyr SDK + west per ZMK docs: https://zmk.dev/docs/development/setup
-2. From the repo root, pull ZMK: `west init -l config && west update`.
+1. From the repo root, pull ZMK: `west init -l config && west update`.
 3. Build each half (outputs land in `build/<side>/zephyr/zmk.uf2`):
    - Left: `west build -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
    - Right: `west build -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`

@@ -53,7 +53,7 @@
     ],
     "Default: Mac": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyZ"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Slash"], 
-      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Comma"], ["'", "BackSlash"], 
+      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Shift+Comma"], ["'", "BackSlash"], 
       ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⇧", "ShiftRight"], 
       ["⌘", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⏎", "Return"], ["Char", ""], ["⌥", "AltGr"]
     ],
@@ -100,9 +100,9 @@
       null, null, null, null, null, null
     ],
     "Russian-Mac-AltGr": [
-      null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["ё", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "LeftBracket"], 
+      null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["ё", "BackSlash"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "BackQuote"], 
       null, ["ф", "KeyA"], ["ы", "KeyS"], ["в", "KeyD"], ["а", "KeyF"], ["п", "KeyG"], ["р", "KeyH"], ["о", "KeyJ"], ["л", "KeyK"], ["д", "KeyL"], ["ж", "SemiColon"], ["э", "Quote"], 
-      null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyN"], ["ъ", "KeyM"], ["б", "Comma"], ["ю", "Dot"], [".", "Num7"], null, 
+      null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyN"], ["ъ", "RightBracket"], ["б", "Comma"], ["ю", "Dot"], [".", "Slash"], null, 
       null, null, null, null, null, null
     ],   
     "Functional": [
@@ -118,14 +118,14 @@
       ["Ctrl", ""], ["GUI", ""], ["ALT", ""], ["", ""], null, ["ALT", ""]
     ],
     "De Characters / Navigation": [
-      ["⇥", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
+      ["⇥", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "AltGr+KeyL"], 
       ["", ""], ["-", "KeyD"], ["+", "KeyS"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
       null,["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["", ""], null, ["ALT", ""]
     ],
     "Mac Characters / Navigation": [
-      ["⇥", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
-      ["", ""], ["-", "KeyD"], ["+", "KeyS"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
+      ["⇥", "Tab"], ["!", "Shift+Num1"], ["@", "AltGr+KeyL"], ["#", "BackSlash"], ["$", "Shift+Num4"], ["%", "Shift+Num5"], ["^", "BackQuote"], ["&", "Shift+Num6"], ["*", "Shift+RightBracket"], ["(", "Shift+Num8"], [")", "Shift+Num9"], ["~", "AltGr+KeyN"], 
+      ["", ""], ["-", "Slash"], ["+", "RightBracket"], ["=", "Shift+Num0"], ["[", "AltGr+Num5"], ["]", "AltGr+Num6"], ["←", "LeftArrow"], ["↓", "DownArrow"], ["↑", "UpArrow"], ["→", "RightArrow"], ["|", "AltGr+Num7"], ["`", "Shift+Equal"], 
       null,["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["", ""], null, ["ALT", ""]
     ],
