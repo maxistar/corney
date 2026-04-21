@@ -40,15 +40,15 @@
       ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⏎", "Space"], ["Char", ""], ["ALT", "AltGr"]
     ],
     "Linux Shift": [
-      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["U", "KeyU"], ["I", "KeyI"], ["O", "KeyO"], ["P", "KeyP"], ["_", "KeyP"], 
-      null, ["A", "KeyA"], ["S", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "SemiColon"], ["\"", "Quote"], 
-      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["<", "Comma"], [">", "Dot"], ["?", "Slash"], ["⇧", "ShiftRight"],
+      null, ["Q", "Shift+KeyQ"], ["W", "Shift+KeyW"], ["E", "Shift+KeyE"], ["R", "Shift+KeyR"], ["T", "Shift+KeyT"], ["Y", "Shift+KeyZ"], ["U", "Shift+KeyU"], ["I", "Shift+KeyI"], ["O", "Shift+KeyO"], ["P", "Shift+KeyP"], ["_", "Shift+Slash"],
+      null, ["A", "Shift+KeyA"], ["S", "Shift+KeyS"], ["D", "Shift+KeyD"], ["F", "Shift+KeyF"], ["G", "Shift+KeyG"], ["H", "Shift+KeyH"], ["J", "Shift+KeyJ"], ["K", "Shift+KeyK"], ["L", "Shift+KeyL"], [":", "Shift+Dot"], ["\"", "Shift+Num2"],
+      null, ["Z", "Shift+KeyY"], ["X", "Shift+KeyX"], ["C", "Shift+KeyC"], ["V", "Shift+KeyV"], ["B", "Shift+KeyB"], ["N", "Shift+KeyN"], ["M", "Shift+KeyM"], ["<", "IntlBackslash"], [">", "Shift+IntlBackslash"], ["?", "Shift+Minus"], ["⇧", "ShiftRight"],
       null, null, null, null, null, null
     ],
     "Linux AltGr": [
-      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["=", "KeyP"], 
-      null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "SemiColon"], ["\"", "Quote"], 
-      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], ["\\", "Quote"], null, 
+      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyZ"], ["Ü", "LeftBracket"], ["I", "KeyI"], ["Ö", "SemiColon"], ["P", "KeyP"], ["=", "Shift+Num0"],
+      null, ["Ä", "Quote"], ["ß", "Minus"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "AltGr+IntlBackslash"], ["\"", "Shift+BackSlash"],
+      null, ["Z", "KeyY"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyN"], ["M", "KeyM"], ["{", "AltGr+Num8"], ["}", "AltGr+Num9"], ["\\", "AltGr+Minus"], null,
       null, null, null, null, null, null
     ],
     "Default: Mac": [
@@ -58,15 +58,15 @@
       ["⌘", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⏎", "Return"], ["Char", ""], ["⌥", "AltGr"]
     ],
     "Default: Mac - Shift": [
-      ["⇥", "Tab"], ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyZ"], ["U", "KeyU"], ["I", "KeyI"], ["O", "KeyO"], ["P", "KeyP"], ["-", "Slash"], 
-      ["🌐", "CapsLock"], ["A", "KeyA"], ["S", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], [":", "Comma"], ["\"", "BackSlash"], 
-      ["⇧", "ShiftLeft"], ["Z", "KeyY"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyN"], ["M", "KeyM"], ["<", "Comma"], [">", "Dot"], ["?", "Num7"], ["⇧", "ShiftRight"], 
+      ["⇥", "Shift+Tab"], ["Q", "Shift+KeyQ"], ["W", "Shift+KeyW"], ["E", "Shift+KeyE"], ["R", "Shift+KeyR"], ["T", "Shift+KeyT"], ["Y", "Shift+KeyZ"], ["U", "Shift+KeyU"], ["I", "Shift+KeyI"], ["O", "Shift+KeyO"], ["P", "Shift+KeyP"], ["-", "Shift+Slash"],
+      ["🌐", "CapsLock"], ["A", "Shift+KeyA"], ["S", "Shift+KeyS"], ["D", "Shift+KeyD"], ["F", "Shift+KeyF"], ["G", "Shift+KeyG"], ["H", "Shift+KeyH"], ["J", "Shift+KeyJ"], ["K", "Shift+KeyK"], ["L", "Shift+KeyL"], [":", "Shift+Dot"], ["\"", "Shift+Num2"],
+      ["⇧", "ShiftLeft"], ["Z", "Shift+KeyY"], ["X", "Shift+KeyX"], ["C", "Shift+KeyC"], ["V", "Shift+KeyV"], ["B", "Shift+KeyB"], ["N", "Shift+KeyN"], ["M", "Shift+KeyM"], ["<", "BackQuote"], [">", "Shift+BackQuote"], ["?", "Shift+Minus"], ["⇧", "ShiftRight"],
       ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⌫", "Space"], ["Char", ""], ["⌥", "AltGr"]
     ],  
     "Mac AltGr": [
-      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyY"], ["Ü", "KeyU"], ["I", "KeyI"], ["Ö", "KeyO"], ["P", "KeyP"], ["=", "KeyP"], 
-      null, ["Ä", "KeyA"], ["ß", "KeyS"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "SemiColon"], ["\"", "Quote"], 
-      null, ["Z", "KeyZ"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyM"], ["M", "KeyM"], ["{", "Comma"], ["}", "Dot"], ["\\", "Quote"], null, 
+      null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyZ"], ["Ü", "LeftBracket"], ["I", "KeyI"], ["Ö", "SemiColon"], ["P", "KeyP"], ["=", "Shift+Num0"],
+      null, ["Ä", "Quote"], ["ß", "Minus"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "AltGr+Num7"], ["\"", "Shift+BackSlash"],
+      null, ["Z", "KeyY"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyN"], ["M", "KeyM"], ["{", "AltGr+Num8"], ["}", "AltGr+Num9"], ["\\", "AltGr+Shift+Num7"], null,
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["⌦", ""], null, null
     ],
     "Default: Android": [
@@ -88,9 +88,9 @@
       null, null, null, null, null, null
     ],
     "Mac Russian Shift": [
-      null, ["Й", "KeyQ"], ["Ц", "KeyW"], ["У", "KeyE"], ["К", "KeyR"], ["Е", "KeyT"], ["Н", "KeyY"], ["Г", "KeyU"], ["Ш", "KeyI"], ["Щ", "KeyO"], ["З", "KeyP"], ["Х", "LeftBracket"], 
-      null, ["Ф", "KeyA"], ["Ы", "KeyS"], ["В", "KeyD"], ["А", "KeyF"], ["П", "KeyG"], ["Р", "KeyH"], ["О", "KeyJ"], ["Л", "KeyK"], ["Д", "KeyL"], ["Ж", "SemiColon"], ["Э", "Quote"], 
-      null, ["Я", "KeyZ"], ["Ч", "KeyX"], ["С", "KeyC"], ["М", "KeyV"], ["И", "KeyB"], ["Т", "KeyN"], ["Ь", "KeyM"], ["Б", "Comma"], ["Ю", "Dot"], [",", "Num7"], null, 
+      null, ["Й", "Shift+KeyQ"], ["Ц", "Shift+KeyW"], ["У", "Shift+KeyE"], ["К", "Shift+KeyR"], ["Е", "Shift+KeyT"], ["Н", "Shift+KeyY"], ["Г", "Shift+KeyU"], ["Ш", "Shift+KeyI"], ["Щ", "Shift+KeyO"], ["З", "Shift+KeyP"], ["Х", "Shift+LeftBracket"],
+      null, ["Ф", "Shift+KeyA"], ["Ы", "Shift+KeyS"], ["В", "Shift+KeyD"], ["А", "Shift+KeyF"], ["П", "Shift+KeyG"], ["Р", "Shift+KeyH"], ["О", "Shift+KeyJ"], ["Л", "Shift+KeyK"], ["Д", "Shift+KeyL"], ["Ж", "Shift+SemiColon"], ["Э", "Shift+Quote"],
+      null, ["Я", "Shift+KeyZ"], ["Ч", "Shift+KeyX"], ["С", "Shift+KeyC"], ["М", "Shift+KeyV"], ["И", "Shift+KeyB"], ["Т", "Shift+KeyN"], ["Ь", "Shift+KeyM"], ["Б", "Shift+Comma"], ["Ю", "Shift+Dot"], [",", "Shift+Num6"], null,
       null, null, null, ["⌫", "Space"], null, null
     ],    
     "Russian-AltGr": [
