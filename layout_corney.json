@@ -112,15 +112,15 @@
       ["GUI", ""], null, ["Func", ""], ["⌦", ""], ["Alt", ""], ["Ctrl", ""]
     ],
     "Characters / Navigation": [
-      ["⇥", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "RightBracket"], 
-      ["", "Minus"], ["-", "Slash"], ["+", "RightBracket"], ["=", "Num0"], ["[", "Num8"], ["]", "Num9"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
-      null,["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
+      ["⇥", "Tab"], ["!", "Shift+Num1"], ["@", "Shift+Num2"], ["#", "Shift+Num3"], ["$", "Shift+Num4"], ["%", "Shift+Num5"], ["^", "Shift+Num6"], ["&", "Shift+Num7"], ["*", "Shift+Num8"], ["(", "Shift+Num9"], [")", "Shift+Num0"], ["~", "Shift+BackQuote"], 
+      ["", ""], ["-", "Minus"], ["+", "Shift+Equal"], ["=", "Equal"], ["[", "LeftBracket"], ["]", "RightBracket"], ["←", "LeftArrow"], ["↓", "DownArrow"], ["↑", "UpArrow"], ["→", "RightArrow"], ["|", "Shift+BackSlash"], ["`", "BackQuote"], 
+      null,["", ""],["", ""],["", ""], ["{", ""], ["}", ""], ["Home", "Home"], ["PgDn", "PageDown"], ["PgUp", "PageUp"], ["End", "End"], ["Ins", "Insert"], ["Del", "Delete"], 
       ["Ctrl", ""], ["GUI", ""], ["ALT", ""], ["", ""], null, ["ALT", ""]
     ],
     "De Characters / Navigation": [
-      ["⇥", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "RightBracket"], ["(", "Num8"], [")", "Num9"], ["~", "AltGr+KeyL"], 
-      ["", ""], ["-", "KeyD"], ["+", "KeyS"], ["=", "KeyF"], ["[", "KeyG"], ["]", "KeyG"], ["←", "KeyJ"], ["↓", "KeyK"], ["↑", "KeyL"], ["→", "KeyL"], ["|", "IntlBackslash"], ["`", "KeyG"], 
-      null,["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
+      ["⇥", "Tab"], ["!", "Num1"], ["@", "KeyQ"], ["#", "BackSlash"], ["$", "Num4"], ["%", "Num5"], ["^", "BackQuote"], ["&", "Num6"], ["*", "Shift+RightBracket"], ["(", "Shift+Num8"], [")", "Shift+Num9"], ["~", "AltGr+RightBracket"], 
+      ["", ""], ["-", "Slash"], ["+", "RightBracket"], ["=", "Shift+Num0"], ["[", "AltGr+Num8"], ["]", "AltGr+Num9"], ["←", "LeftArrow"], ["↓", "DownArrow"], ["↑", "UpArrow"], ["→", "RightArrow"], ["|", "IntlBackslash"], ["`", "Shift+Equal"], 
+      null,["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", "Home"], ["PgDn", "PageDown"], ["PgUp", "PageUp"], ["End", "End"], ["Ins", "Insert"], ["Del", "Delete"],    
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["", ""], null, ["ALT", ""]
     ],
     "Mac Characters / Navigation": [
