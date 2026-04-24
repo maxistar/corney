@@ -2,6 +2,11 @@
 
 - body remixed from this: https://www.printables.com/model/1020389-wireless-corne-chocoflan-minimal-keyboard-case
 
+## Layout Helper
+
+Use Keyboard Layout Helper to inspect and tune layers visually:
+https://projects.maxistar.me/keyboard_helper/
+
 ## What's here
 
 - `config/`: ZMK config for a split Corne on nice!nano (keymap, macros, Bluetooth bindings, west manifest).
