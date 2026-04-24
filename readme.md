@@ -2,6 +2,10 @@
 
 - body remixed from this: https://www.printables.com/model/1020389-wireless-corne-chocoflan-minimal-keyboard-case
 
+## Related Projects
+
+- Dacty: https://github.com/maxistar/dacty
+
 ## Layout Helper
 
 Use Keyboard Layout Helper to inspect and tune layers visually:
