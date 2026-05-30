@@ -30,13 +30,13 @@
     "Default": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyY"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Backspace"], 
       ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "SemiColon"], ["'", "Quote"], 
-      ["⇧", "ShiftLeft"], ["z", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["⇧", "ShiftRight"], 
-      ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⏎", "Space"], ["Char", ""], ["ALT", "AltGr"]
+      ["⇧", "ShiftLeft"], ["z", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["⏎", "Space"], 
+      ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["ALT", "AltGr"]
     ],
-    "Default: Linux": [
+    "Linux: Default": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyZ"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Slash"], 
       ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Comma"], ["'", "BackSlash"], 
-      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⇧", "ShiftRight"], 
+      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⏎", "Space"], 
       ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⏎", "Space"], ["Char", ""], ["ALT", "AltGr"]
     ],
     "Linux: Shift": [
@@ -54,8 +54,8 @@
     "Mac: Default": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyZ"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Slash"], 
       ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Shift+Comma"], ["'", "BackSlash"], 
-      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⇧", "ShiftRight"], 
-      ["⌘", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⏎", "Return"], ["Char", ""], ["⌥", "AltGr"]
+      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⏎", "Return"], 
+      ["⌘", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["⌥", "AltGr"]
     ],
     "Mac: Shift": [
       ["⇥", "Shift+Tab"], ["Q", "Shift+KeyQ"], ["W", "Shift+KeyW"], ["E", "Shift+KeyE"], ["R", "Shift+KeyR"], ["T", "Shift+KeyT"], ["Y", "Shift+KeyZ"], ["U", "Shift+KeyU"], ["I", "Shift+KeyI"], ["O", "Shift+KeyO"], ["P", "Shift+KeyP"], ["-", "Shift+Slash"],
@@ -106,7 +106,7 @@
       null, null, null, null, null, null
     ],   
     "All: Functional": [
-      ["~", "KeyQ"], ["1", "Num1"], ["2", "Num2"], ["3", "Num3"], ["4", "Num4"], ["5", "Num5"], ["6", "Num6"], ["7", "Num7"], ["8", "Num8"], ["9", "Num9"], ["0", "Num0"], null, 
+      ["ESC", "KeyEsc"], ["1", "Num1"], ["2", "Num2"], ["3", "Num3"], ["4", "Num4"], ["5", "Num5"], ["6", "Num6"], ["7", "Num7"], ["8", "Num8"], ["9", "Num9"], ["0", "Num0"], null, 
       ["F1", "F1"], ["F2", "F2"], ["F3", "F3"], ["F4", "F4"], ["F5", "F5"], ["F6", "F6"], ["F7", "F7"], ["F8", "F8"], ["F9", "F9"], ["F10", "F10"],["F11", "F11"], ["F12", "F12"],
       ["BT Clr", "KeyY"], ["BT1", "KeyY", "assets/images/linux-logo-penguin.png"], ["BT2", "KeyX", "assets/images/apple_rainbow.png"], ["BT3", "KeyC", "assets/images/android-logo.png"], ["BT4", "KeyV"], ["BT5", "KeyB"], ["", ""], ["", ""], ["", ""], ["", ""], ["", ""], null, 
       ["GUI", ""], null, ["Func", ""], ["⌦", ""], ["Alt", ""], ["Ctrl", ""]
