@@ -1,11 +1,5 @@
 {
   "name": "Corney (split)",
-  "bleLayerSource": {
-    "deviceName": "Corney",
-    "serviceUuid": "12341234-1234-5678-7856-123412345678",
-    "characteristicUuid": "12341234-1234-5678-7856-123412345679",
-    "format": "int32-le"
-  },  
   "keySize": {
     "w": 57,
     "h": 45,

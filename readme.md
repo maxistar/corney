@@ -16,10 +16,7 @@ https://projects.maxistar.me/keyboard_helper/
 - `config/`: ZMK config for a split Corne on nice!nano (keymap, macros, Bluetooth bindings, west manifest).
 - `body/`: printable/parametric case and plate models for the Chocoflan remix (scad, stl, step, 3mf).
 - `build.yaml`: build matrix for CI (left/right halves on nice_nano@2.0.0).
-- `zephyr/module.yml`: declares the repo as a ZMK module, including the Corney shield root and
-  the custom GATT layer exposition feature.
-- `docs/gatt-layer-exposition.md`: UUIDs, data format, and build notes for the BLE layer
-  characteristic.
+- `zephyr/module.yml`: declares the repo as a ZMK module containing the Corney shield root.
 
 ## Clone
 
@@ -39,4 +36,3 @@ cd corney
    - Left: `west build -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
    - Right: `west build -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
-
