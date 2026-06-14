@@ -36,7 +36,7 @@ cd corney
 
 1. From the repo root, pull ZMK: `west init -l config && west update`.
 3. Build each half (outputs land in `build/<side>/zephyr/zmk.uf2`):
-   - Left: `west build -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
-   - Right: `west build -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
+   - Left: `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
+   - Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
 
