@@ -40,3 +40,26 @@ cd corney
    - Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
 
+## Build firmware with a custom Bluetooth name
+
+The default Bluetooth device name is `Corney`. To override it, pass
+`CONFIG_ZMK_KEYBOARD_NAME` at build time.
+
+Local build examples:
+
+- Left: `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
+- Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
+
+Use the same name for both halves so the full firmware set is built from the same configuration.
+
+## CI/CD builds with a custom Bluetooth name
+
+The GitHub Actions build workflow accepts an optional `keyboard_name` input when started via
+`workflow_dispatch`.
+
+1. Open the `Build ZMK firmware` workflow in GitHub Actions.
+2. Click `Run workflow`.
+3. Set `keyboard_name` to the Bluetooth name you want, for example `My Corney`.
+4. Run the workflow and download the generated firmware artifacts.
+
+If `keyboard_name` is left empty, CI uses the repo default name `Corney`.
