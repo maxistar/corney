@@ -1,2 +1,4 @@
 .vscode
 *.3mf
+.DS_Store
+.idea
