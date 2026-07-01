@@ -75,7 +75,7 @@ jobs:
             extra_west_args="-S \"${snippet}\""
           fi
 
-          if [ -n "${keyboard_name}" ]; then
+          if [ -n "${keyboard_name}" ] && [ "${shield}" = "corney_left" ]; then
             extra_name_arg=" -DCONFIG_ZMK_KEYBOARD_NAME=\"${keyboard_name}\""
           fi
 

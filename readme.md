@@ -43,14 +43,14 @@ cd corney
 ## Build firmware with a custom Bluetooth name
 
 The default Bluetooth device name is `Corney`. To override it, pass
-`CONFIG_ZMK_KEYBOARD_NAME` at build time.
+`CONFIG_ZMK_KEYBOARD_NAME` when building the left half.
 
 Local build examples:
 
 - Left: `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
-- Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
+- Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 
-Use the same name for both halves so the full firmware set is built from the same configuration.
+Do not apply the custom name override to the right half. The left half is the central, host-paired side, and the right half should be built with its default configuration.
 
 ## CI/CD builds with a custom Bluetooth name
 
@@ -61,5 +61,7 @@ The GitHub Actions build workflow accepts an optional `keyboard_name` input when
 2. Click `Run workflow`.
 3. Set `keyboard_name` to the Bluetooth name you want, for example `My Corney`.
 4. Run the workflow and download the generated firmware artifacts.
+
+When `keyboard_name` is provided, CI applies it only to the `corney_left` build. The `corney_right` build remains unchanged.
 
 If `keyboard_name` is left empty, CI uses the repo default name `Corney`.
