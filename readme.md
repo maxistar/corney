@@ -1,6 +1,12 @@
-# A Corney Chocoflan keyboard
+# Corney - Corney Chocoflan and Classical Corne keyboard
+
+![](docs/corne.jpg)
+
+![](docs/cornemx.jpg)
 
 - body remixed from this: https://www.printables.com/model/1020389-wireless-corne-chocoflan-minimal-keyboard-case
+
+
 
 ## Related Projects
 
