@@ -2,17 +2,12 @@
 /**
 features todo: 
 - [x] magnetic latch
-- [x] placing keyboad on top of case as tilted support
-- [x] magnetic fixation of the keyboard
-- [x] additional pads fixation for the keyboard
-- [x] rubber perimeter for better stability
-- [ ] make maglet holders 3dprint friendly
-
 */
 
-use <Outline_thin.scad>
+use <board_assembled.scad>
+use <body_thin.scad>
 
-cut_angle = [-26, -15, 0];
+cut_angle = [-6, -25, 0];
 magnet_radius = 4 / 2 + 0.1;
 holder_thickness = 0.8;
 
@@ -48,9 +43,7 @@ module shell() {
 
 module outline() {
   hull() {
-    //rotate([0,0, 180]) {
     twokeyboards(fullheight=true);
-    //}
   }
 }
 
@@ -63,7 +56,6 @@ module one_half() {
       translate([0, 0, -50])
         cube([400, 400, 100], center=true);
 
-    //translate([5, 0, 20])
     cut_centered();
 
     double_angled_cuts();
@@ -71,8 +63,6 @@ module one_half() {
     double_magnet_plane(magnet_radius, 2, 0.1);
   }
 
-  //  translate([5, 0, 20])
-  //cut_centered();
 
   intersection() {
     minkowski() {
@@ -86,7 +76,7 @@ module one_half() {
 }
 
 module print_helpers() {
-  translate([30, 54, 2.7])
+  translate([30, 52, 2.7])
     hull() {
       cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
 
@@ -94,7 +84,7 @@ module print_helpers() {
         cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
     }
 
-  translate([-30, -54, 2.7])
+  translate([-30, -51, 2.7])
     hull() {
       cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
 
@@ -102,7 +92,7 @@ module print_helpers() {
         cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
     }
 
-  translate([-30, 37, 2.7])
+  translate([-37, 37, 2.7])
     hull() {
       cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
 
@@ -110,7 +100,7 @@ module print_helpers() {
         cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
     }
 
-  translate([30, -37, 2.7])
+  translate([37, -37, 2.7])
     hull() {
       cylinder(h=0.5, r=magnet_radius + holder_thickness, $fn=50);
 
@@ -127,8 +117,7 @@ translate([0, 0, 33]) {
 } 
 */
 
-one_half();
-//rubber_cuts();
+
 //angled_cuts();
 //twokeyboards();
 
@@ -141,31 +130,31 @@ translate([0, 0, -30])
 
 module rubber_cuts() {
 
-  width = 2.2;
+  width = 2.5;
   depth = 2.5;
 
-  translate([30, 58.2, 0])
-    rotate([0, 0, 15])
+  translate([14, 51.5, 0])
+    rotate([0, 0, 8])
       cube([20, width, depth], center=true);
 
-  translate([-14, 46, 0])
-    rotate([0, 0, 16])
+  translate([-25, 43.5, 0])
+    rotate([0, 0, 19])
       cube([20, width, depth], center=true);
 
-  translate([-52.5, 33.5, 0])
-    rotate([0, 0, 20])
+  translate([-62, 27.5, 0])
+    rotate([0, 0, 25])
       cube([20, width, depth], center=true);
 
-  translate([59.6, 53, 0])
-    rotate([0, 0, -56])
+  translate([50, 46, 0])
+    rotate([0, 0, -23])
       cube([20, width, depth], center=true);
 
-  translate([71.5, 23, 0])
-    rotate([0, 0, -85])
+  translate([72.2, 20, 0])
+    rotate([0, 0, -89])
       cube([20, width, depth], center=true);
 
-  translate([72, -10, 0])
-    rotate([0, 0, -92])
+  translate([72.5, -6, 0])
+    rotate([0, 0, -89])
       cube([20, width, depth], center=true);
 }
 
@@ -184,10 +173,10 @@ module double_angled_cuts() {
 
 module magnets_plane(radius, height, voffset) {
 
-  translate([30, -36.9, voffset])
+  translate([37, -36.9, voffset])
     cylinder(h=height * 2 + voffset * 2, r=radius, $fn=50, center=true);
 
-  translate([30, 54, voffset])
+  translate([30, 51, voffset])
     cylinder(h=height * 2 + voffset * 2, r=radius, $fn=50, center=true);
 }
 
@@ -222,6 +211,8 @@ module test_magnet() {
   }
 }
 
+one_half();
+
 //test_magnet();
 //difference() {
 
@@ -239,23 +230,4 @@ module test_magnet() {
 //    scale([1, -1, 1])
 //      corne_centered();
 
-/*
-difference() {
 
-  translate([0, 0, -40])
-    intersection() {
-      shell();
-
-      rotate([0, 20, 0])
-        translate([0, 0, -50])
-          cube([400, 400, 100], center=true);
-    }
-
-  translate([-15, 0, -60])
-    rotate([0, 180, 0])
-      scale([1, -1, 1])
-        cut_centered(); 
-}
-
-*/
-//import("corne_shape.stl");

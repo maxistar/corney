@@ -193,48 +193,7 @@ module body() {
 
 //difference() {
 
-module panelbuttons(fullheight=false) {
-  body();
 
-  scale([-1, 1, 1]) {
-    panel();
-  }
-
-  buttons();
-
-  translate([-58, 13, 20]) {
-    cube([20, 40, 10], center=true);
-  }
-
-  if (fullheight) {
-  translate([0, 0, 23]) {
-    cover();
-  }
-  } else {
-  translate([0, 0, 15]) {
-    cover();
-  }
-  }
-}
-
-module panelbuttonsmoved(fullheight=false) {
-  translate([0, 0, -3]) {
-    panelbuttons(fullheight=fullheight);
-  }
-}
-
-
-
-module twokeyboards(fullheight=false) {
-  panelbuttonsmoved(fullheight=fullheight);
-
-  scale([1, 1, -1]) {
-    rotate([0, 0, 180]) {
-      panelbuttonsmoved(fullheight=fullheight);
-      //bottom_panel();
-    }
-  }
-}
 
 //bodyoutline();
 
@@ -271,147 +230,15 @@ module panel() {
   }
 }
 
-module button() {
-  rotate([0, 0, 45]) {
-    cylinder(h=10, r1=12, r2=10, center=true, $fn=4);
-  }
-}
 
-module button3() {
-  translate([0, 18 * 2, 0]) {
-    button();
-  }
-
-  translate([0, 18, 0]) {
-    button();
-  }
-  button();
-}
-
-module buttons() {
-
-  translate([0, 0, 30]) {
-
-    translate([-19 * 2, -11, 0]) {
-      button3();
-    }
-
-    translate([-19, -9, 0]) {
-      button3();
-    }
-
-    translate([0, -7, 0]) {
-      button3();
-    }
-
-    translate([18.5, -9, 0]) {
-      button3();
-    }
-
-    translate([18.5 * 2, -13, 0]) {
-      button3();
-    }
-
-    translate([18.5 * 3, -13, 0]) {
-      button3();
-    }
-
-    translate([-52, -35, 0]) {
-      rotate([0, 0, 23]) {
-        scale([1, 1.5, 1]) {
-          button();
-        }
-      }
-    }
-
-    translate([-32, -32, 0]) {
-      rotate([0, 0, 13]) {
-        button();
-      }
-    }
-
-    translate([-10, -30, 0]) {
-      rotate([0, 0, 1]) {
-        button();
-      }
-    }
-  }
-}
-
-//cover
-
-module cover() {
-
-  module cuttingcubes() {
-    translate([55, 0, 0]) {
-      rotate([0, -10, 0]) {
-        cube([200, 200, 200], center=true);
-      }
-    }
-
-    translate([0, -107.5, 0]) {
-      rotate([-15, 0, 24]) {
-        cube([200, 200, 200], center=true);
-      }
-    }
-  }
-
-  difference() {
-    translate([-67.25, -256, 0]) {
-      difference() {
-        linear_extrude(12) {
-          minkowski() {
-            import("outline.svg");
-            circle(2);
-          }
-        }
-
-        translate([0, 0, -1]) {
-          linear_extrude(12) {
-            minkowski() {
-              import("outline.svg");
-              circle(0.1);
-            }
-          }
-        }
-      }
-    }
-    cuttingcubes();
-    translate([-58, 20, 5]) {
-      cube([12, 40, 11], center=true);
-    }
-
-    translate([-68, -5, -1]) {
-      cube([12, 5, 11], center=true);
-    }
-  }
-
-  intersection() {
-    difference() {
-      translate([-65.35, -256, -1]) {
-        difference() {
-          linear_extrude(13) {
-            minkowski() {
-              import("outline.svg");
-              circle(2);
-            }
-          }
-        }
-      }
-      cuttingcubes();
-    }
-    translate([0, -102.7, 0]) {
-      rotate([-15, 0, 24]) {
-        cube([200, 200, 200], center=true);
-      }
-    }
-  }
-}
 
 //translate([0, 0, 15]) {
 //  cover();
 //}
 
-//panelbuttons(fullheight=true);
+//panelbuttons(fullheight=false);
 
 //outline();
+
+//cover();
+body();

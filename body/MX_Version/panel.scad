@@ -1,10 +1,7 @@
 difference() {
 
   linear_extrude(1.5) {
-    //minkowski() {
     import("plate_outline.svg");
-    //circle(0.1);
-    //}
   }
 
   translate([0, 0, -5])

@@ -109,12 +109,5 @@ module body() {
   }
 }
 
-//translate([0, 230, 7])
-//  cube([3, 3, 3]);
-
-//difference() {
 body();
-//translate([50,150,-10]) {
-//  cube([100,100,100]);
-//}
-//}
+
