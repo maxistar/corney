@@ -1,11 +1,26 @@
+/**
+ * [x] add screws islands
+ * [x] add cover panel
+ * [ ] design cover for shield
+ * [x] mark buttons positions
+ * create a travel case
+ * 
+ */
+
 //hull() {
 $fn = 20;
 magnet_radius = 4 / 2 + 0.1;
+globalMove = [-209.55, -99.5, 0];
+
+holePosition1 = [161.15, 94.95, 0];
+holePosition2 = [161.1, 113.9, 0];
+holePosition3 = [237.1, 117.4, 0];
+holePosition4 = [250.87, 70.05, 0];
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 9.5]) {
     //translate([0, 0, 13]) {
-    rotate([-3, -1, 0]) {
+    rotate([-3, 1, 0]) {
       translate([-20, 0, -12.8]) {
         cube([300, 200, 15], center=true);
       }
@@ -25,7 +40,7 @@ module bottom_panel(hide_side_magnets = false) {
 }
 
 module magnets2(hide_side_magnets1 = false) {
-  leg1 = [65.0, -22, 15];
+  leg1 = [64.4, -21.0, 15];
   translate(leg1)
     cylinder(h=40, r=magnet_radius, $fn=50, center=true);
 
@@ -142,10 +157,20 @@ module leg() {
   }
 }
 
+module stand() {
+  difference() {
+    union() {
+      cylinder(h=4, r=1.8);
+      cylinder(h=3, r1=4.5, r2=4);
+    }
+    cylinder(h=5, r=1);
+  }
+}
+
 module body() {
 
   difference() {
-    translate([-209.25, -99.5, 0]) {
+    translate(globalMove) {
       union() {
 
         difference() {
@@ -172,7 +197,6 @@ module body() {
           translate([6, 270, 13])
             cube([8, 30, 10]);
         }
-        
 
         linear_extrude(12) {
           minkowski() {
@@ -185,7 +209,11 @@ module body() {
 
     bottom_panel();
   }
-}
+
+  translate([0,0,8.5]) {
+translate(globalMove) {
+  stands();
+}}}
 
 //translate([0, 230, 7])
 //  cube([3, 3, 3]);
@@ -193,8 +221,6 @@ module body() {
 //bottom_panel();
 
 //difference() {
-
-
 
 //bodyoutline();
 
@@ -207,31 +233,84 @@ module body() {
 //}
 //}
 
-module panel() {
-  translate([-146, -122, 13]) {
-    difference() {
 
-      linear_extrude(1.5) {
-        //minkowski() {
-        import("plate_outline.svg");
-        //circle(0.1);
-        //}
-      }
 
-      translate([0, 0, -5])
-        linear_extrude(10) {
-          import("buttons.svg");
-        }
+module holesInPanel() {
+  holeRadius = 1;
 
-      translate([0, 0, -5])
-        linear_extrude(10) {
-          import("holes.svg");
-        }
-    }
+  translate([0, 0, 0]) {
+    //linear_extrude(10) {
+    //import("holes.svg");
+    //}
+
+    translate(holePosition1)
+      cylinder(r=holeRadius, h=10, center=true);
+
+    translate(holePosition2)
+      cylinder(r=holeRadius, h=10, center=true);
+
+    translate(holePosition3)
+      cylinder(r=holeRadius, h=10, center=true);
+
+    translate(holePosition4)
+      cylinder(r=holeRadius, h=10, center=true);
   }
 }
 
+module stands() {
+  holeRadius = 1;
 
+  translate([0, 0, 0]) {
+
+    translate(holePosition1)
+      stand();
+
+    translate(holePosition2)
+      stand();
+
+    translate(holePosition3)
+      stand();
+
+    translate(holePosition4)
+      stand();
+  }
+}
+
+module panel() {
+
+  translate([0, 0, 14]) {
+    translate(globalMove) {
+      // holesInPanel();
+      difference() {
+
+        linear_extrude(1.5) {
+          //minkowski() {
+          import("outline.svg");
+          //circle(0.1);
+          //}
+        }
+
+        translate([0, 0, -5])
+          linear_extrude(10) {
+            import("buttons.svg");
+          }
+
+        holesInPanel();
+
+        translate([268.4, 95, 0]) {
+          difference() {
+            cube([25, 90, 40], center=true);
+            translate([-10, -60, 0]) {
+              rotate([0, 0, 60]) {
+                cube([80, 80, 50], center=true);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 //translate([0, 0, 15]) {
 //  cover();
@@ -242,4 +321,6 @@ module panel() {
 //outline();
 
 //cover();
+//panel();
+//holesInPanel();
 body();
