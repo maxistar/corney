@@ -1,7 +1,7 @@
 {
   "name": "Corney (split)",
   "bleLayerSource": {
-    "deviceName": "Corney",
+    "deviceName": "CorneyMX",
     "serviceUuid": "12341234-1234-5678-7856-123412345678",
     "characteristicUuid": "12341234-1234-5678-7856-123412345679",
     "format": "int32-le"
@@ -53,13 +53,13 @@
     ],
     "Mac: Default": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyZ"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Slash"], 
-      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Shift+Comma"], ["'", "BackSlash"], 
-      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⏎", "Return"], 
-      ["⌘", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["⌥", "AltGr"]
+      ["🌐", ""], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Shift+Comma"], ["'", "Shift+BackSlash"], 
+      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Shift+Num7"], ["⏎", "Return"], 
+      ["⌘", "MetaLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["⌥", ""]
     ],
     "Mac: Shift": [
       ["⇥", "Shift+Tab"], ["Q", "Shift+KeyQ"], ["W", "Shift+KeyW"], ["E", "Shift+KeyE"], ["R", "Shift+KeyR"], ["T", "Shift+KeyT"], ["Y", "Shift+KeyZ"], ["U", "Shift+KeyU"], ["I", "Shift+KeyI"], ["O", "Shift+KeyO"], ["P", "Shift+KeyP"], ["-", "Shift+Slash"],
-      ["🌐", "CapsLock"], ["A", "Shift+KeyA"], ["S", "Shift+KeyS"], ["D", "Shift+KeyD"], ["F", "Shift+KeyF"], ["G", "Shift+KeyG"], ["H", "Shift+KeyH"], ["J", "Shift+KeyJ"], ["K", "Shift+KeyK"], ["L", "Shift+KeyL"], [":", "Shift+Dot"], ["\"", "Shift+Num2"],
+      ["🌐", ""], ["A", "Shift+KeyA"], ["S", "Shift+KeyS"], ["D", "Shift+KeyD"], ["F", "Shift+KeyF"], ["G", "Shift+KeyG"], ["H", "Shift+KeyH"], ["J", "Shift+KeyJ"], ["K", "Shift+KeyK"], ["L", "Shift+KeyL"], [":", "Shift+Dot"], ["\"", "Shift+Num2"],
       ["⇧", "ShiftLeft"], ["Z", "Shift+KeyY"], ["X", "Shift+KeyX"], ["C", "Shift+KeyC"], ["V", "Shift+KeyV"], ["B", "Shift+KeyB"], ["N", "Shift+KeyN"], ["M", "Shift+KeyM"], ["<", "BackQuote"], [">", "Shift+BackQuote"], ["?", "Shift+Minus"], ["⇧", "ShiftRight"],
       ["Ctrl", "MetaLeft"], ["SPACE" , "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["⌥", ""]
     ],  
