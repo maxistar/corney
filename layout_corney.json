@@ -35,9 +35,9 @@
     ],
     "Linux: Default": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyZ"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Slash"], 
-      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Comma"], ["'", "BackSlash"], 
-      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Num7"], ["⏎", "Space"], 
-      ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["ALT", "AltGr"]
+      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "Shift+Comma"], ["'", "Shift+BackSlash"], 
+      ["⇧", "ShiftLeft"], ["z", "KeyY"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Shift+Num7"], ["⏎", "Return"], 
+      ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["ALT", ""]
     ],
     "Linux: Shift": [
       null, ["Q", "Shift+KeyQ"], ["W", "Shift+KeyW"], ["E", "Shift+KeyE"], ["R", "Shift+KeyR"], ["T", "Shift+KeyT"], ["Y", "Shift+KeyZ"], ["U", "Shift+KeyU"], ["I", "Shift+KeyI"], ["O", "Shift+KeyO"], ["P", "Shift+KeyP"], ["_", "Shift+Slash"],
