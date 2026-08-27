@@ -100,7 +100,7 @@
    &kp TAB                &kp Q &kp W &kp E     &kp R    &kp T           &kp Z      &kp U         &kp I     &kp O   &kp P         &kp FSLH
    &cycle_mac_ru          &kp A &kp S &kp D     &kp F    &kp G           &kp H      &kp J         &kp K     &kp L   &shift_COMMA  &shift_BSLH
    &shift_mo DEFAULT_MAC_SHIFT LSHFT  &kp Y &kp X &kp C     &kp V    &kp B          &kp N      &kp M         &kp COMMA &kp DOT &shift_N7 &kp RET
-                                       &kp LEFT_COMMAND &kp SPACE &mo FUNC          &shift_mo DEFAULT_MAC_SHIFT LSHFT  &mo CHARS_MAC &mo DEFAULT_MAC_ALT 
+                                       &kp LEFT_COMMAND &kp SPACE &mo FUNC          &shift_mo DEFAULT_MAC_SHIFT RSHFT &mo CHARS_MAC &mo DEFAULT_MAC_ALT 
                         >;
                 };
 
