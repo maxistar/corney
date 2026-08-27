@@ -145,7 +145,8 @@ module legs() {
 }
 
 module leg() {
-
+  cube([20, 3.5, 1], center=true);
+  /*
   linear_extrude(2, center=true) {
     hull() {
       circle(4);
@@ -155,6 +156,7 @@ module leg() {
       }
     }
   }
+  */
 }
 
 module stand() {

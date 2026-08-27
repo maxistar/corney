@@ -119,7 +119,7 @@ translate([0, 0, 33]) {
 
 
 //angled_cuts();
-twokeyboards();
+//twokeyboards();
 
 /*
 translate([0, 0, -30])
@@ -130,8 +130,8 @@ translate([0, 0, -30])
 
 module rubber_cuts() {
 
-  width = 2.5;
-  depth = 2.5;
+  width = 3.5;
+  depth = 1.2;
 
   translate([29, 40.5, 0])
     rotate([0, 0, -20])
