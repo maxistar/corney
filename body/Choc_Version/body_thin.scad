@@ -18,7 +18,7 @@ holePosition3 = [237.1, 117.4, 0];
 holePosition4 = [250.87, 70.05, 0];
 
 module bottom_panel(hide_side_magnets = false) {
-  translate([-0, -0, 9.5]) {
+  translate([-0, -0, 10.5]) {
     //translate([0, 0, 13]) {
     rotate([-3, 1, 0]) {
       translate([-20, 0, -12.8]) {
@@ -210,12 +210,36 @@ module body() {
     }
 
     bottom_panel();
+
+  // power slider cutout
+  translate([78, -15, 17]) {
+    cube([30, 8, 8], center=true);
+    translate([-10, 0, 0]) {
+      rotate([0, -90, 0]) {
+        rotate([0, 0, 45]) {
+          cylinder(h=4, r1=10, r2=1, center=true, $fn=4);
+        }
+      }
+    }
   }
 
-  translate([0,0,8.5]) {
-translate(globalMove) {
-  stands();
-}}}
+  }
+
+  translate([0, 0, 8.5]) {
+    translate(globalMove) {
+      stands();
+    }
+  }
+
+  // control helpers
+  //translate(globalMove) {
+  //  linear_extrude(height=30) {
+  //    import("controls.svg");
+  //  }
+  //}
+
+
+}
 
 //translate([0, 230, 7])
 //  cube([3, 3, 3]);
@@ -234,8 +258,6 @@ translate(globalMove) {
 //  cube([100,100,100]);
 //}
 //}
-
-
 
 module holesInPanel() {
   holeRadius = 1;
