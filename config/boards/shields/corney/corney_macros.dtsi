@@ -21,42 +21,94 @@
 
 
 / {
+    behaviors {
+        kh_combo_esc: kh_combo_esc {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <1>;
+            key-positions = <1 2>;
+            bindings = <&kp ESC>;
+        };
+        kh_combo_enter: kh_combo_enter {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <2>;
+            key-positions = <15 16>;
+            bindings = <&kp RET>;
+        };
+        kh_combo_left_enter: kh_combo_left_enter {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <3>;
+            key-positions = <19 20>;
+            bindings = <&kp RET>;
+        };
+        kh_combo_delete: kh_combo_delete {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <4>;
+            key-positions = <27 28>;
+            bindings = <&kp BSPC>;
+        };
+        kh_combo_left_delete: kh_combo_left_delete {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <5>;
+            key-positions = <31 32>;
+            bindings = <&kp BSPC>;
+        };
+        kh_combo_mouse_layer: kh_combo_mouse_layer {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <6>;
+            key-positions = <40 41>;
+            bindings = <&tog MOUSE_LAYER>;
+        };
+        kh_combo_mouse_layer_left: kh_combo_mouse_layer_left {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <7>;
+            key-positions = <36 37>;
+            bindings = <&tog MOUSE_LAYER>;
+        };
+    };
+
     combos {
         compatible = "zmk,combos";
         combo_esc {
             timeout-ms = <50>;
             key-positions = <1 2>;
-            bindings = <&kp ESC>;
+            bindings = <&kh_combo_esc>;
         };
         combo_enter {
             timeout-ms = <50>;
             key-positions = <15 16>;
-            bindings = <&kp RET>;
+            bindings = <&kh_combo_enter>;
         };
         combo_left_enter {
             timeout-ms = <50>;
             key-positions = <19 20>;
-            bindings = <&kp RET>;
+            bindings = <&kh_combo_left_enter>;
         };
         combo_delete {
             timeout-ms = <50>;
             key-positions = <27 28>;
-            bindings = <&kp BSPC>;
+            bindings = <&kh_combo_delete>;
         };
         combo_left_delete {
             timeout-ms = <50>;
             key-positions = <31 32>;
-            bindings = <&kp BSPC>;
+            bindings = <&kh_combo_left_delete>;
         };
         combo_mouse_layer {
             timeout-ms = <50>;
             key-positions = <40 41>;
-            bindings = <&tog MOUSE_LAYER>;
+            bindings = <&kh_combo_mouse_layer>;
         };
         combo_mouse_layer_left {
             timeout-ms = <50>;
             key-positions = <36 37>;
-            bindings = <&tog MOUSE_LAYER>;
+            bindings = <&kh_combo_mouse_layer_left>;
         };
     };
 };

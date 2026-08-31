@@ -1,15 +1,32 @@
 name: Build ZMK firmware
+
 on:
   push:
     paths:
-      - 'config/**'
-      - 'zephyr/**'
+      - '.github/workflows/build.yml'
+      - 'CMakeLists.txt'
+      - 'Kconfig'
       - 'build.yaml'
+      - 'config/**'
+      - 'dts/**'
+      - 'include/**'
+      - 'layout_corney.json'
+      - 'src/**'
+      - 'tests/**'
+      - 'zephyr/**'
   pull_request:
     paths:
-      - 'config/**'
-      - 'zephyr/**'
+      - '.github/workflows/build.yml'
+      - 'CMakeLists.txt'
+      - 'Kconfig'
       - 'build.yaml'
+      - 'config/**'
+      - 'dts/**'
+      - 'include/**'
+      - 'layout_corney.json'
+      - 'src/**'
+      - 'tests/**'
+      - 'zephyr/**'
   workflow_dispatch:
     inputs:
       keyboard_name:
@@ -19,6 +36,55 @@ on:
         default: ''
 
 jobs:
+  host-tests:
+    runs-on: ubuntu-22.04
+    name: Host tests and formatting
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends clang-format
+
+      - name: Check formatting
+        run: clang-format --dry-run --Werror include/corney/*.h src/*.c tests/ble_contract_test.c
+
+      - name: Run host tests
+        run: tests/run-host-tests.sh
+
+  zmk-integration-tests:
+    runs-on: ubuntu-latest
+    name: ZMK native integration tests
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create isolated west workspace
+        run: |
+          base_dir="$(mktemp -d)"
+          echo "base_dir=${base_dir}" >> "$GITHUB_ENV"
+          mkdir -p "${base_dir}/config"
+          cp -R config/. "${base_dir}/config/"
+
+      - name: West Init
+        working-directory: ${{ env.base_dir }}
+        run: west init -l config
+
+      - name: West Update
+        working-directory: ${{ env.base_dir }}
+        run: west update
+
+      - name: West Zephyr export
+        working-directory: ${{ env.base_dir }}
+        run: west zephyr-export
+
+      - name: Run ZMK integration tests
+        run: ZMK_SRC_DIR="$base_dir/zmk/app" ZMK_BUILD_DIR="$GITHUB_WORKSPACE/.build/native-tests" tests/run-zmk-integration-tests.sh
+
   matrix:
     runs-on: ubuntu-22.04
     name: Fetch Build Keyboards
@@ -33,14 +99,17 @@ jobs:
 
       - name: Fetch Build Matrix
         run: |
-          echo "build_matrix=$(yaml2json 'build.yaml' | jq -c .)" >> $GITHUB_ENV
+          echo "build_matrix=$(yaml2json 'build.yaml' | jq -c .)" >> "$GITHUB_ENV"
           yaml2json "build.yaml" | jq
 
   build:
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:stable
-    needs: matrix
+    needs:
+      - host-tests
+      - zmk-integration-tests
+      - matrix
     name: Build
     strategy:
       fail-fast: false
@@ -51,7 +120,7 @@ jobs:
 
       - name: Create build directory
         run: |
-          echo "build_dir=$(mktemp -d)" >> $GITHUB_ENV
+          echo "build_dir=$(mktemp -d)" >> "$GITHUB_ENV"
 
       - name: Prepare variables
         shell: sh -x {0}
@@ -66,9 +135,9 @@ jobs:
             export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}'"
             new_tmp_dir="${TMPDIR:-/tmp}/zmk-config"
             mkdir -p "${new_tmp_dir}"
-            echo "base_dir=${new_tmp_dir}" >> $GITHUB_ENV
+            echo "base_dir=${new_tmp_dir}" >> "$GITHUB_ENV"
           else
-            echo "base_dir=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
+            echo "base_dir=${GITHUB_WORKSPACE}" >> "$GITHUB_ENV"
           fi
 
           if [ -n "${snippet}" ]; then
@@ -79,11 +148,11 @@ jobs:
             extra_name_arg=" -DCONFIG_ZMK_KEYBOARD_NAME=\"${keyboard_name}\""
           fi
 
-          echo "zephyr_version=${ZEPHYR_VERSION}" >> $GITHUB_ENV
-          echo "extra_west_args=${extra_west_args}" >> $GITHUB_ENV
-          echo "extra_cmake_args=${shield:+-DSHIELD=\"$shield\"}${zmk_load_arg}${extra_name_arg}" >> $GITHUB_ENV
-          echo "display_name=${shield:+$shield - }${board}" >> $GITHUB_ENV
-          echo "artifact_name=${artifact_name:-${shield:+$shield-}${board}-zmk}" >> $GITHUB_ENV
+          echo "zephyr_version=${ZEPHYR_VERSION}" >> "$GITHUB_ENV"
+          echo "extra_west_args=${extra_west_args}" >> "$GITHUB_ENV"
+          echo "extra_cmake_args=${shield:+-DSHIELD=\"$shield\"}${zmk_load_arg}${extra_name_arg}" >> "$GITHUB_ENV"
+          echo "display_name=${shield:+$shield - }${board}" >> "$GITHUB_ENV"
+          echo "artifact_name=${artifact_name:-${shield:+$shield-}${board}-zmk}" >> "$GITHUB_ENV"
 
       - name: Copy config files to isolated temporary directory
         run: |
@@ -129,8 +198,7 @@ jobs:
 
       - name: ${{ env.display_name }} Kconfig file
         run: |
-          if [ -f "${{ env.build_dir }}/zephyr/.config" ]
-          then
+          if [ -f "${{ env.build_dir }}/zephyr/.config" ]; then
             grep -v -e "^#" -e "^$" "${{ env.build_dir }}/zephyr/.config" | sort
           else
             echo "No Kconfig output"
@@ -139,11 +207,9 @@ jobs:
 
       - name: ${{ env.display_name }} Devicetree file
         run: |
-          if [ -f "${{ env.build_dir }}/zephyr/zephyr.dts" ]
-          then
+          if [ -f "${{ env.build_dir }}/zephyr/zephyr.dts" ]; then
             cat "${{ env.build_dir }}/zephyr/zephyr.dts"
-          elif [ -f "${{ env.build_dir }}/zephyr/zephyr.dts.pre" ]
-          then
+          elif [ -f "${{ env.build_dir }}/zephyr/zephyr.dts.pre" ]; then
             cat -s "${{ env.build_dir }}/zephyr/zephyr.dts.pre"
           else
             echo "No Devicetree output"
@@ -154,11 +220,9 @@ jobs:
         shell: sh -x {0}
         run: |
           mkdir "${{ env.build_dir }}/artifacts"
-          if [ -f "${{ env.build_dir }}/zephyr/zmk.uf2" ]
-          then
+          if [ -f "${{ env.build_dir }}/zephyr/zmk.uf2" ]; then
             cp "${{ env.build_dir }}/zephyr/zmk.uf2" "${{ env.build_dir }}/artifacts/${{ env.artifact_name }}.uf2"
-          elif [ -f "${{ env.build_dir }}/zephyr/zmk.bin" ]
-          then
+          elif [ -f "${{ env.build_dir }}/zephyr/zmk.bin" ]; then
             cp "${{ env.build_dir }}/zephyr/zmk.bin" "${{ env.build_dir }}/artifacts/${{ env.artifact_name }}.bin"
           fi
 

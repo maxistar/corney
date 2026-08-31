@@ -23,9 +23,11 @@ https://projects.maxistar.me/keyboard_helper/
 - `body/`: printable/parametric case and plate models for the Chocoflan remix (scad, stl, step, 3mf).
 - `build.yaml`: build matrix for CI (left/right halves on nice_nano@2.0.0).
 - `zephyr/module.yml`: declares the repo as a ZMK module, including the Corney shield root and
-  the custom GATT layer exposition feature.
+  the custom GATT features.
 - `docs/gatt-layer-exposition.md`: UUIDs, data format, and build notes for the BLE layer
   characteristic.
+- `docs/keyboard-helper-ble-v1.md`: implementation, security, queue, and build notes for the
+  versioned Keyboard Helper event extension.
 
 ## Clone
 
@@ -58,16 +60,13 @@ Local build examples:
 
 Do not apply the custom name override to the right half. The left half is the central, host-paired side, and the right half should be built with its default configuration.
 
-## CI/CD builds with a custom Bluetooth name
+## CI/CD
 
-The GitHub Actions build workflow accepts an optional `keyboard_name` input when started via
-`workflow_dispatch`.
+GitHub Actions is the primary CI/CD pipeline. It runs portable protocol/metadata tests, native ZMK
+integration tests, and builds enhanced, legacy-only, minimal extension, peripheral, and
+settings-reset firmware artifacts. A manual workflow run can override the Bluetooth name for the
+left/central image only.
 
-1. Open the `Build ZMK firmware` workflow in GitHub Actions.
-2. Click `Run workflow`.
-3. Set `keyboard_name` to the Bluetooth name you want, for example `My Corney`.
-4. Run the workflow and download the generated firmware artifacts.
-
-When `keyboard_name` is provided, CI applies it only to the `corney_left` build. The `corney_right` build remains unchanged.
-
-If `keyboard_name` is left empty, CI uses the repo default name `Corney`.
+The GitLab CI configuration is retained as an equivalent alternative for a future GitLab mirror.
+Local Bluetooth name overrides remain a CMake option so the right/peripheral image cannot
+accidentally receive a host-facing name.

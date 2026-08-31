@@ -4,6 +4,8 @@
 .idea
 .west
 build
+.build
+.artifacts
 modules
 zephyr
 zmk

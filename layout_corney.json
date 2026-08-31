@@ -18,13 +18,13 @@
     {"row": 3.2, "col": 5, "cls": "action"}, {"row": 3.2, "col": 6, "cls": "action", "angle": 5}, {"row": 3.4, "col": 7, "cls": "action", "angle": 10}, {"row": 3.4, "col": 9, "cls": "action", "angle": -10}, {"row": 3.2, "col": 10, "cls": "action", "angle": -5}, {"row": 3.2, "col": 11, "cls": "action"}
   ],
   "combos": [
-    {"key1": {"row": 0,"col": 2},"key2": {"row": 0,"col": 3},"code": "Escape"},
-    {"key1": {"row": 1,"col": 4},"key2": {"row": 1,"col": 5},"code": "Return"},
-    {"key1": {"row": 1,"col": 11},"key2": {"row": 1,"col": 12},"code": "Return2"},
-    {"key1": {"row": 2,"col": 4},"key2": {"row": 2,"col": 5},"code": "ccc"},
-    {"key1": {"row": 2,"col": 11},"key2": {"row": 2,"col": 12},"code": "ccc2"},
-    {"key1": {"row": 3.2,"col": 5},"key2": {"row": 3.2,"col": 6},"code": "Backspace"},
-    {"key1": {"row": 3.2,"col": 10},"key2": {"row": 3.2,"col": 11},"code": "Delete"}
+    {"id": 1, "positions": [1, 2], "key1": {"row": 0,"col": 2},"key2": {"row": 0,"col": 3},"code": "Escape"},
+    {"id": 2, "positions": [15, 16], "key1": {"row": 1,"col": 4},"key2": {"row": 1,"col": 5},"code": "Return"},
+    {"id": 3, "positions": [19, 20], "key1": {"row": 1,"col": 11},"key2": {"row": 1,"col": 12},"code": "Return2"},
+    {"id": 4, "positions": [27, 28], "key1": {"row": 2,"col": 4},"key2": {"row": 2,"col": 5},"code": "ccc"},
+    {"id": 5, "positions": [31, 32], "key1": {"row": 2,"col": 11},"key2": {"row": 2,"col": 12},"code": "ccc2"},
+    {"id": 6, "positions": [40, 41], "key1": {"row": 3.2,"col": 10},"key2": {"row": 3.2,"col": 11},"code": "MouseLayer"},
+    {"id": 7, "positions": [36, 37], "key1": {"row": 3.2,"col": 5},"key2": {"row": 3.2,"col": 6},"code": "MouseLayerLeft"}
   ],
   "keyLayers": {
     "Default": [

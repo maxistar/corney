@@ -1,0 +1,16 @@
+description: Corney combo telemetry wrapper behavior
+
+compatible: "corney,behavior-combo-telemetry"
+
+include: zero_param.yaml
+
+properties:
+  combo-id:
+    type: int
+    required: true
+  key-positions:
+    type: array
+    required: true
+  bindings:
+    type: phandle-array
+    required: true

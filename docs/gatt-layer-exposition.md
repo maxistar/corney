@@ -96,8 +96,12 @@ with any ATT client that supports explicit offsets.
 
 ## Build integration
 
-- GitHub Actions user-config builds discover the service through this repo's
-  `zephyr/module.yml`.
+- GitHub Actions builds discover the service through this repo's `zephyr/module.yml`, run the
+  host/native integration checks, and retain enhanced, legacy-only, minimal-extension, peripheral,
+  and settings-reset artifacts.
+- `.gitlab-ci.yml` provides an equivalent alternative pipeline for a future GitLab mirror.
 - Local `west build` commands should include `-DZMK_EXTRA_MODULES=$PWD` so the module sources
   are compiled alongside the Corney config.
 - The feature can be disabled with `CONFIG_ZMK_GATT_LAYER_EXPOSITION=n`.
+- The version 1 Keyboard Helper event extension is independently controlled by
+  `CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION`; see `keyboard-helper-ble-v1.md`.

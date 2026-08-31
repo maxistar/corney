@@ -1,0 +1,104 @@
+stages:
+  - quality
+  - build
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_COMMIT_TAG'
+    - when: never
+
+host-tests:
+  stage: quality
+  image: debian:bookworm-slim
+  interruptible: true
+  before_script:
+    - apt-get update
+    - apt-get install --yes --no-install-recommends build-essential clang-format python3
+  script:
+    - clang-format --dry-run --Werror include/corney/*.h src/*.c tests/ble_contract_test.c
+    - tests/run-host-tests.sh
+
+zmk-integration-tests:
+  stage: quality
+  image: zmkfirmware/zmk-build-arm:stable
+  interruptible: true
+  before_script:
+    - export CORNEY_CI_WEST_DIR="$(mktemp -d)"
+    - mkdir -p "$CORNEY_CI_WEST_DIR/config"
+    - cp -R config/. "$CORNEY_CI_WEST_DIR/config/"
+    - cd "$CORNEY_CI_WEST_DIR"
+    - west init -l config
+    - west update
+    - west zephyr-export
+  script:
+    - cd "$CI_PROJECT_DIR"
+    - ZMK_SRC_DIR="$CORNEY_CI_WEST_DIR/zmk/app" ZMK_BUILD_DIR="$CI_PROJECT_DIR/.build/native-tests" tests/run-zmk-integration-tests.sh
+
+firmware:
+  stage: build
+  image: zmkfirmware/zmk-build-arm:stable
+  interruptible: true
+  parallel:
+    matrix:
+      - TARGET:
+          - central-enhanced
+          - central-legacy
+          - central-extension-minimal
+          - peripheral
+          - settings-reset
+  before_script:
+    - export CORNEY_CI_WEST_DIR="$(mktemp -d)"
+    - mkdir -p "$CORNEY_CI_WEST_DIR/config"
+    - cp -R config/. "$CORNEY_CI_WEST_DIR/config/"
+    - cd "$CORNEY_CI_WEST_DIR"
+    - west init -l config
+    - west update
+    - west zephyr-export
+  script:
+    - |
+      case "$TARGET" in
+        central-enhanced)
+          shield=corney_left
+          west_args="-S studio-rpc-usb-uart"
+          cmake_args="-DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y"
+          ;;
+        central-legacy)
+          shield=corney_left
+          west_args=""
+          cmake_args="-DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=n"
+          ;;
+        central-extension-minimal)
+          shield=corney_left
+          west_args=""
+          cmake_args="-DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_HELPER_KEY_EVENTS=n -DCONFIG_ZMK_KEYBOARD_HELPER_COMBO_EVENTS=n -DCONFIG_ZMK_KEYBOARD_HELPER_LAYER_EVENTS=n -DCONFIG_ZMK_KEYBOARD_HELPER_DIAGNOSTICS=n"
+          ;;
+        peripheral)
+          shield=corney_right
+          west_args=""
+          cmake_args=""
+          ;;
+        settings-reset)
+          shield=settings_reset
+          west_args=""
+          cmake_args=""
+          ;;
+      esac
+      build_dir="$CI_PROJECT_DIR/.build/$TARGET"
+      west build -p always -s zmk/app -d "$build_dir" -b nice_nano@2.0.0 \
+        $west_args -- \
+        -DZMK_CONFIG="$CORNEY_CI_WEST_DIR/config" \
+        -DZMK_EXTRA_MODULES="$CI_PROJECT_DIR" \
+        -DSHIELD="$shield" \
+        $cmake_args
+      mkdir -p "$CI_PROJECT_DIR/.artifacts"
+      cp "$build_dir/zephyr/zmk.uf2" "$CI_PROJECT_DIR/.artifacts/$TARGET.uf2"
+  artifacts:
+    name: "corney-$TARGET-$CI_COMMIT_SHORT_SHA"
+    when: always
+    paths:
+      - .artifacts/*.uf2
+      - .build/$TARGET/zephyr/.config
+      - .build/$TARGET/zephyr/zephyr.dts
+    expire_in: 30 days

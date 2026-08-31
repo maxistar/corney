@@ -6,3 +6,58 @@ menuconfig ZMK_GATT_LAYER_EXPOSITION
     help
       Exposes the highest active layer as a custom BLE GATT characteristic
       that supports read, encrypted write, and notify operations.
+
+if ZMK_GATT_LAYER_EXPOSITION
+
+menuconfig ZMK_KEYBOARD_HELPER_EXTENSION
+    bool "Enable the Keyboard Helper BLE event extension"
+    depends on ZMK_SPLIT_ROLE_CENTRAL
+    default n
+    help
+      Adds the reviewed version 1 capabilities and encrypted event-stream
+      characteristics. The legacy layer register remains available when this
+      option is disabled.
+
+if ZMK_KEYBOARD_HELPER_EXTENSION
+
+config ZMK_KEYBOARD_HELPER_KEY_EVENTS
+    bool "Publish physical key events"
+    default y
+
+config ZMK_KEYBOARD_HELPER_COMBO_EVENTS
+    bool "Publish firmware-resolved combo events"
+    default y
+
+config ZMK_KEYBOARD_HELPER_LAYER_EVENTS
+    bool "Publish authoritative layer events"
+    default y
+
+config ZMK_KEYBOARD_HELPER_DIAGNOSTICS
+    bool "Publish bounded operational diagnostics"
+    default y
+
+config ZMK_KEYBOARD_HELPER_EVENT_QUEUE_SIZE
+    int "Keyboard Helper event queue entries"
+    range 4 64
+    default 16
+
+endif # ZMK_KEYBOARD_HELPER_EXTENSION
+
+endif # ZMK_GATT_LAYER_EXPOSITION
+
+config ZMK_KEYBOARD_HELPER_COMBO_TEST_LOG
+    bool "Emit Keyboard Helper combo integration-test events"
+    depends on BOARD_NATIVE_POSIX
+    default n
+    help
+      Emits deterministic combo-wrapper events for the native ZMK integration
+      tests. Release firmware configurations must leave this disabled.
+
+config ZMK_KEYBOARD_HELPER_EVENT_TEST_LOG
+    bool "Emit Keyboard Helper event-source integration-test events"
+    depends on BOARD_NATIVE_POSIX
+    default n
+    help
+      Emits deterministic physical-position events for the native ZMK
+      integration tests. Release firmware configurations must leave this
+      disabled.
