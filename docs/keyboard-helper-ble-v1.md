@@ -55,9 +55,10 @@ disconnects. A different connection receives `BT_ATT_ERR_INSUFFICIENT_RESOURCES`
 silently replacing the owner.
 
 Telemetry ownership is independent of the active ZMK HID profile. Whether the controller keeps a
-phone helper and a normal BLE host connected simultaneously remains a hardware-verification item.
-Every new owner starts a fresh sequence epoch and receives an authoritative layer snapshot marked
-`STREAM_START | SNAPSHOT` before live events.
+phone helper and a normal BLE host connected simultaneously was not verified on hardware and is not
+a version 1 product guarantee. Clients must handle connection failure or busy state without
+disrupting normal HID behavior. Every new owner starts a fresh sequence epoch and receives an
+authoritative layer snapshot marked `STREAM_START | SNAPSHOT` before live events.
 
 ## Local verification
 

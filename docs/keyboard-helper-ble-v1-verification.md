@@ -18,8 +18,12 @@ material.
 
 The first GitHub Actions native-test run failed before executing a test because the unanchored
 `.gitignore` entry `zmk` also excluded `tests/zmk` from the repository. The rule is now anchored to
-the root checkout as `/zmk`, the integration fixtures are included, and the same native runner
-passes locally. A hosted rerun is pending.
+the root checkout as `/zmk`, and the integration fixtures are included. The next run reached the
+fixtures but invoked `west build` outside the isolated west workspace, so all cases failed before
+compilation. The workflow now runs the checkout's test script with `$base_dir` as its working
+directory and enables verbose build output. All three cases pass locally in the same
+`zmkfirmware/zmk-build-arm:stable` container. The subsequent hosted GitHub Actions rerun completed
+successfully, including host tests, native integration tests, and the firmware build matrix.
 
 | Build | Extension configuration | FLASH | RAM | Result |
 | --- | --- | ---: | ---: | --- |
@@ -38,7 +42,8 @@ fetching remains disabled.
 
 ## Hardware verification
 
-Do not treat the extension as hardware-verified until every row below has evidence.
+The table distinguishes hardware observations from automated coverage and explicitly retained
+limitations. An unverified topology is not implied to be supported.
 
 ### Observed on hardware (2026-08-31)
 
@@ -53,23 +58,31 @@ Do not treat the extension as hardware-verified until every row below has eviden
 - A fresh subscription delivered the current-layer frame first, with protocol `1`, event type
   `LAYER`, flags `STREAM_START | SNAPSHOT` (`0x03`), payload length `4`, sequence `0`, restore
   cause, and unknown origin (`0xff`).
+- The corrected standard-BAS-only image was flashed and manually verified. Battery Level `0x2a19`
+  remained available independently of the extension, reserved capability bit 3 remained clear,
+  and no reserved event type `0x04` appeared during the observation interval.
 
 | Check | Expected observation | Status |
 | --- | --- | --- |
-| Matching halves | ordinary typing, split input, all combos, layers, reconnect, and legacy layer control remain correct | pending |
-| Discovery | service `b34a0001-...`, capabilities `b34a0003-...`, and event `b34a0004-...` appear only on the central | partial: central pass; peripheral observation pending |
+| Matching halves | ordinary typing, split input, all combos, layers, reconnect, and legacy layer control remain correct | pass |
+| Discovery | service `b34a0001-...`, capabilities `b34a0003-...`, and event `b34a0004-...` appear only on the central | pass on central; peripheral exclusion covered by build configuration |
 | Security | capabilities read before pairing; unencrypted event CCC enable fails; encrypted enable succeeds | partial: encrypted enable pass |
 | Stream start | first frame is the current layer with `STREAM_START | SNAPSHOT` | pass |
 | Positions | key down/up from both halves use global positions `0..41` | partial: sampled positions pass; complete both-half sweep pending |
 | Combos | all seven IDs and participant lists match layout metadata | pass |
-| Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pending: reflash standard-BAS-only image and observe one battery update interval |
-| Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pending |
-| Ownership | first encrypted subscriber owns telemetry; a second receives busy; ownership releases on unsubscribe/disconnect | pending |
-| Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | pending |
+| Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pass |
+| Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pass for normal fast typing and automated saturation policy; no hardware saturation threshold measured |
+| Ownership | first encrypted subscriber owns telemetry; a second receives busy; ownership releases on unsubscribe/disconnect | automated owner-state tests pass; multi-client hardware path unverified |
+| Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | limitation: simultaneous HID-host and helper topology unverified |
 
-The observations above predate the standard-BAS-only rebuild. Recheck the Battery row after flashing
-the corrected image; the retained key, combo, layer, and stream-start evidence remains representative
-because those frame formats and sources did not change.
+The retained key, combo, layer, and stream-start evidence remains representative because those
+frame formats and sources did not change in the standard-BAS-only rebuild.
+
+Normal fast typing, layer switching through BLE, and all configured combos showed no visible input
+latency. The hardware saturation threshold, unencrypted CCC rejection, complete 42-position sweep,
+and simultaneous HID-host plus helper topology were not measured. Clients must therefore tolerate
+connection-busy behavior and must not assume that a second BLE central can coexist with the active
+HID host on this firmware/hardware combination.
 
 Use nRF Connect or LightBlue and the umbrella contract's generic-phone procedure. Add only decoded
 representative frames and pass/fail conclusions to this file after testing.
