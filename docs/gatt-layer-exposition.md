@@ -6,8 +6,8 @@ Corney's active ZMK layer. The external module enables the service by default on
 
 ## UUIDs
 
-- Service UUID: `12341234-1234-5678-7856-123412345678`
-- Layer characteristic UUID: `12341234-1234-5678-7856-123412345679`
+- Service UUID: `b34a0001-e782-4706-8f9c-6c056c416507`
+- Layer characteristic UUID: `b34a0002-e782-4706-8f9c-6c056c416507`
 
 These values match `layout_corney.json`.
 

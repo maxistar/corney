@@ -2,3 +2,8 @@
 *.3mf
 .DS_Store
 .idea
+.west
+build
+modules
+zephyr
+zmk

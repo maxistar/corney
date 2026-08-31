@@ -23,10 +23,10 @@ static atomic_t notify_enabled = ATOMIC_INIT(0);
 static atomic_t pending_layer = ATOMIC_INIT(0);
 
 static struct bt_uuid_128 service_uuid = BT_UUID_INIT_128(
-    BT_UUID_128_ENCODE(0x12341234, 0x1234, 0x5678, 0x7856, 0x123412345678));
+    BT_UUID_128_ENCODE(0xb34a0001, 0xe782, 0x4706, 0x8f9c, 0x6c056c416507));
 
 static struct bt_uuid_128 layer_uuid = BT_UUID_INIT_128(
-    BT_UUID_128_ENCODE(0x12341234, 0x1234, 0x5678, 0x7856, 0x123412345679));
+    BT_UUID_128_ENCODE(0xb34a0002, 0xe782, 0x4706, 0x8f9c, 0x6c056c416507));
 
 static int32_t highest_active_layer(void) {
   return (int32_t)zmk_keymap_highest_layer_active();
