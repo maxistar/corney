@@ -6,6 +6,28 @@
     "characteristicUuid": "b34a0002-e782-4706-8f9c-6c056c416507",
     "format": "int32-le"
   },  
+  "inputSourceSync": {
+    "macos": {
+      "settleMs": 1000,
+      "sources": [
+        {
+          "id": "de",
+          "label": "Deutsch",
+          "inputSourceId": "com.apple.keylayout.German",
+          "baseLayer": 4,
+          "layers": [4, 5, 6, 16]
+        },
+        {
+          "id": "ru",
+          "label": "Русский",
+          "inputSourceId": "com.apple.keylayout.Russian",
+          "baseLayer": 9,
+          "layers": [9, 10, 12, 17]
+        }
+      ],
+      "neutralLayers": [13, 18]
+    }
+  },  
   "keySize": {
     "w": 57,
     "h": 45,
