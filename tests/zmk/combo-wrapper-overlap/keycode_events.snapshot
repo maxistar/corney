@@ -1,0 +1,8 @@
+key position=0 action=pressed layer=0
+key position=1 action=pressed layer=0
+key position=2 action=pressed layer=0
+combo id=102 action=pressed
+key position=0 action=released layer=1
+combo id=102 action=released
+key position=1 action=released layer=1
+key position=2 action=released layer=1

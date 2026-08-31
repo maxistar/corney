@@ -1,0 +1,36 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/kscan_mock.h>
+
+#define ___ &none
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <
+                ___ &kp A ___ ___ ___ ___ &tog 1 ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+                ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+            >;
+        };
+
+        alternate_layer {
+            bindings = <
+                ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+                ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+            >;
+        };
+    };
+};
+
+&kscan {
+    rows = <2>;
+    columns = <21>;
+    events = <
+        ZMK_MOCK_PRESS(0, 1, 10)
+        ZMK_MOCK_RELEASE(0, 1, 10)
+        ZMK_MOCK_PRESS(0, 6, 10)
+        ZMK_MOCK_RELEASE(0, 6, 10)
+    >;
+};

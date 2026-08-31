@@ -1,0 +1,62 @@
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/kscan_mock.h>
+
+/ {
+    behaviors {
+        kh_short: kh_short {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <101>;
+            key-positions = <0 1>;
+            bindings = <&kp Y>;
+        };
+
+        kh_long: kh_long {
+            compatible = "corney,behavior-combo-telemetry";
+            #binding-cells = <0>;
+            combo-id = <102>;
+            key-positions = <0 1 2>;
+            bindings = <&tog 1>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_short {
+            timeout-ms = <100>;
+            key-positions = <0 1>;
+            bindings = <&kh_short>;
+        };
+
+        combo_long {
+            timeout-ms = <100>;
+            key-positions = <0 1 2>;
+            bindings = <&kh_long>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            bindings = <&kp A &kp B &kp C &none>;
+        };
+
+        alternate_layer {
+            bindings = <&kp D &kp E &kp F &none>;
+        };
+    };
+};
+
+&kscan {
+    events = <
+        ZMK_MOCK_PRESS(0, 0, 10)
+        ZMK_MOCK_PRESS(0, 1, 10)
+        ZMK_MOCK_PRESS(0, 2, 10)
+        ZMK_MOCK_RELEASE(0, 0, 10)
+        ZMK_MOCK_RELEASE(0, 1, 10)
+        ZMK_MOCK_RELEASE(0, 2, 10)
+    >;
+};

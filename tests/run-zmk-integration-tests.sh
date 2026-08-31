@@ -10,6 +10,11 @@ if [ ! -x "$corney_zmk_source/run-test.sh" ]; then
     exit 1
 fi
 
+if [ ! -d "$corney_repo_dir/tests/zmk" ]; then
+    echo "ZMK integration test cases not found at $corney_repo_dir/tests/zmk" >&2
+    exit 1
+fi
+
 ZMK_SRC_DIR="$corney_zmk_source" \
 ZMK_BUILD_DIR="$corney_test_build" \
 ZMK_EXTRA_MODULES="$corney_repo_dir" \

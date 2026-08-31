@@ -1,0 +1,4 @@
+key position=1 action=pressed layer=0
+key position=1 action=released layer=0
+key position=6 action=pressed layer=0
+key position=6 action=released layer=1

@@ -1,0 +1,8 @@
+key position=0 action=pressed layer=0
+key position=1 action=pressed layer=0
+combo id=101 action=pressed
+hid pressed: usage_page 0x07 keycode 0x1C implicit_mods 0x00 explicit_mods 0x00
+key position=0 action=released layer=0
+combo id=101 action=released
+hid released: usage_page 0x07 keycode 0x1C implicit_mods 0x00 explicit_mods 0x00
+key position=1 action=released layer=0

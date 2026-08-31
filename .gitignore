@@ -8,4 +8,4 @@ build
 .artifacts
 modules
 zephyr
-zmk
+/zmk

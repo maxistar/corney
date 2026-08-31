@@ -1,0 +1,3 @@
+s/.*key_telemetry: /key /p
+s/.*combo_telemetry: /combo /p
+s/.*hid_listener_keycode_/hid /p
