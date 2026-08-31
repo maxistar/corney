@@ -17,13 +17,17 @@ material.
 | Build | Extension configuration | FLASH | RAM | Result |
 | --- | --- | ---: | ---: | --- |
 | Central legacy | extension disabled | 237,656 B | 59,660 B | pass |
-| Central enhanced | all available capabilities | 240,780 B | 60,284 B | pass |
-| Central minimal | extension enabled, optional event sources disabled | 239,436 B | 60,276 B | pass |
+| Central enhanced | release configuration, including ZMK Studio RPC | 268,904 B | 87,538 B | pass |
+| Central extension-only | all extension capabilities, ZMK Studio disabled | 240,512 B | 60,276 B | pass |
+| Central minimal | extension enabled, optional event sources disabled | 239,392 B | 60,276 B | pass |
 | Peripheral/right | no host-facing extension | 172,616 B | 33,884 B | pass |
 | Settings reset | utility image | 46,188 B | 11,552 B | pass |
 
-Enhanced versus legacy central delta is 3,124 B FLASH and 624 B RAM. The enhanced image uses
-29.69% of 792 KiB FLASH and 23.00% of 256 KiB RAM, including the fixed 16-entry queue.
+Extension-only versus legacy central delta is 2,856 B FLASH and 616 B RAM. The release-enhanced
+image also includes ZMK Studio RPC, so its 31,248 B FLASH and 27,878 B RAM delta is not attributable
+to the BLE extension alone. All keyboard variants retain ZMK's standard Battery Service; capability
+bit 3 is masked clear, custom event type `0x04` is reserved, and split-central peripheral battery
+fetching remains disabled.
 
 ## Hardware verification
 
@@ -51,10 +55,14 @@ Do not treat the extension as hardware-verified until every row below has eviden
 | Stream start | first frame is the current layer with `STREAM_START | SNAPSHOT` | pass |
 | Positions | key down/up from both halves use global positions `0..41` | partial: sampled positions pass; complete both-half sweep pending |
 | Combos | all seven IDs and participant lists match layout metadata | pass |
-| Battery | central battery frames appear when available; no right battery is fabricated | pending |
+| Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pending: reflash standard-BAS-only image and observe one battery update interval |
 | Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pending |
 | Ownership | first encrypted subscriber owns telemetry; a second receives busy; ownership releases on unsubscribe/disconnect | pending |
 | Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | pending |
+
+The observations above predate the standard-BAS-only rebuild. Recheck the Battery row after flashing
+the corrected image; the retained key, combo, layer, and stream-start evidence remains representative
+because those frame formats and sources did not change.
 
 Use nRF Connect or LightBlue and the umbrella contract's generic-phone procedure. Add only decoded
 representative frames and pass/fail conclusions to this file after testing.

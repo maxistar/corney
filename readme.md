@@ -44,7 +44,7 @@ cd corney
 
 1. From the repo root, pull ZMK: `west init -l config && west update`.
 3. Build each half (outputs land in `build/<side>/zephyr/zmk.uf2`):
-   - Left: `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
+   - Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y`
    - Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
 
@@ -55,10 +55,12 @@ The default Bluetooth device name is `Corney`. To override it, pass
 
 Local build examples:
 
-- Left: `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
+- Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
 - Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 
 Do not apply the custom name override to the right half. The left half is the central, host-paired side, and the right half should be built with its default configuration.
+Omit `CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y` only when intentionally building the legacy central
+image without the Keyboard Helper service.
 
 ## CI/CD
 
