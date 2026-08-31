@@ -14,6 +14,13 @@ material.
 - Position metadata: 42 unique global positions
 - Combo metadata: IDs `1..7`, complete and consistent between layout and devicetree
 
+### Hosted CI status
+
+The first GitHub Actions native-test run failed before executing a test because the unanchored
+`.gitignore` entry `zmk` also excluded `tests/zmk` from the repository. The rule is now anchored to
+the root checkout as `/zmk`, the integration fixtures are included, and the same native runner
+passes locally. A hosted rerun is pending.
+
 | Build | Extension configuration | FLASH | RAM | Result |
 | --- | --- | ---: | ---: | --- |
 | Central legacy | extension disabled | 237,656 B | 59,660 B | pass |

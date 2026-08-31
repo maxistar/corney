@@ -83,7 +83,8 @@ jobs:
         run: west zephyr-export
 
       - name: Run ZMK integration tests
-        run: ZMK_SRC_DIR="$base_dir/zmk/app" ZMK_BUILD_DIR="$GITHUB_WORKSPACE/.build/native-tests" tests/run-zmk-integration-tests.sh
+        working-directory: ${{ env.base_dir }}
+        run: ZMK_TESTS_VERBOSE=1 ZMK_SRC_DIR="$base_dir/zmk/app" ZMK_BUILD_DIR="$GITHUB_WORKSPACE/.build/native-tests" "$GITHUB_WORKSPACE/tests/run-zmk-integration-tests.sh"
 
   matrix:
     runs-on: ubuntu-22.04
