@@ -75,12 +75,17 @@ void corney_ble_publish_layer(uint8_t layer, uint8_t previous_layer,
 #endif
 }
 
-void corney_ble_publish_initial_snapshots(void) {
+int corney_ble_encode_initial_snapshot(struct corney_ble_frame *frame,
+                                       uint32_t sequence) {
 #if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_LAYER_EVENTS)
   uint8_t layer = corney_layer_current();
-  corney_ble_publish_layer(layer, layer, CORNEY_BLE_LAYER_CAUSE_RESTORE, 0xff,
-                           CORNEY_BLE_FLAG_STREAM_START |
-                               CORNEY_BLE_FLAG_SNAPSHOT);
+  return corney_ble_encode_layer(
+      frame, CORNEY_BLE_FLAG_STREAM_START | CORNEY_BLE_FLAG_SNAPSHOT, sequence,
+      layer, layer, CORNEY_BLE_LAYER_CAUSE_RESTORE, 0xff);
+#else
+  ARG_UNUSED(frame);
+  ARG_UNUSED(sequence);
+  return -ENOTSUP;
 #endif
 }
 

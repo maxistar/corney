@@ -4,8 +4,8 @@ zephyr_library()
 zephyr_include_directories(include ${APPLICATION_SOURCE_DIR}/include)
 
 zephyr_library_sources(src/behavior_combo_telemetry.c)
-zephyr_library_sources(src/ble_frame_queue.c)
-zephyr_library_sources(src/ble_subscription_owner.c)
+zephyr_library_sources(src/ble_frame_history.c)
+zephyr_library_sources(src/ble_subscriber_registry.c)
 zephyr_library_sources(src/ble_transport_policy.c)
 zephyr_library_sources_ifdef(CONFIG_ZMK_GATT_LAYER_EXPOSITION
   src/ble_contract.c

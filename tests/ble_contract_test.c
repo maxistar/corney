@@ -4,8 +4,8 @@
 #include <string.h>
 
 #include <corney/ble_contract.h>
-#include <corney/ble_frame_queue.h>
-#include <corney/ble_subscription_owner.h>
+#include <corney/ble_frame_history.h>
+#include <corney/ble_subscriber_registry.h>
 #include <corney/ble_transport_policy.h>
 
 static void assert_bytes(const uint8_t *actual, const uint8_t *expected,
@@ -119,47 +119,129 @@ static void test_transport_policy(void) {
   assert(!corney_ble_stream_start_pending_after_result(false, -ENOTCONN));
 }
 
-static void test_bounded_queue(void) {
-  struct corney_ble_frame storage[2];
-  struct corney_ble_frame_queue queue;
+static void test_bounded_history(void) {
+  struct corney_ble_history_entry storage[2];
+  struct corney_ble_frame_history history;
   struct corney_ble_frame first;
   struct corney_ble_frame second;
   struct corney_ble_frame third;
   struct corney_ble_frame actual;
+  uint64_t entry_id;
+  bool overwrote;
 
-  corney_ble_frame_queue_init(&queue, storage, 2);
+  corney_ble_frame_history_init(&history, storage, 2);
   assert(corney_ble_encode_key(&first, 0, 1, true, 1, 0) == 0);
   assert(corney_ble_encode_key(&second, 0, 2, false, 1, 0) == 0);
   assert(corney_ble_encode_key(&third, 0, 3, true, 2, 0) == 0);
-  assert(corney_ble_frame_queue_push(&queue, &first) == 0);
-  assert(corney_ble_frame_queue_push(&queue, &second) == 0);
-  assert(corney_ble_frame_queue_push(&queue, &first) == -ENOSPC);
-  assert(corney_ble_frame_queue_count(&queue) == 2);
-  assert(corney_ble_frame_queue_pop(&queue, &actual) == 0);
-  assert(actual.data[4] == 1);
-  assert(corney_ble_frame_queue_push(&queue, &third) == 0);
-  assert(corney_ble_frame_queue_pop(&queue, &actual) == 0);
-  assert(actual.data[4] == 2);
-  assert(corney_ble_frame_queue_pop(&queue, &actual) == 0);
-  assert(actual.data[4] == 3);
-  assert(corney_ble_frame_queue_pop(&queue, &actual) == -ENOENT);
-  assert(corney_ble_frame_queue_push(&queue, &first) == 0);
-  corney_ble_frame_queue_purge(&queue);
-  assert(corney_ble_frame_queue_count(&queue) == 0);
+  assert(corney_ble_frame_history_push(&history, &first, &entry_id,
+                                       &overwrote) == 0);
+  assert(entry_id == 0U && !overwrote);
+  assert(corney_ble_frame_history_push(&history, &second, &entry_id,
+                                       &overwrote) == 0);
+  assert(entry_id == 1U && !overwrote);
+  assert(corney_ble_frame_history_count(&history) == 2U);
+  assert(corney_ble_frame_history_get(&history, 0U, &actual) == 0);
+  assert(actual.data[4] == 1U);
+
+  assert(corney_ble_frame_history_push(&history, &third, &entry_id,
+                                       &overwrote) == 0);
+  assert(entry_id == 2U && overwrote);
+  assert(corney_ble_frame_history_oldest_id(&history) == 1U);
+  assert(corney_ble_frame_history_next_id(&history) == 3U);
+  assert(corney_ble_frame_history_get(&history, 0U, &actual) == -ERANGE);
+  assert(corney_ble_frame_history_get(&history, 1U, &actual) == 0);
+  assert(actual.data[4] == 2U);
+  assert(corney_ble_frame_history_get(&history, 2U, &actual) == 0);
+  assert(actual.data[4] == 3U);
+
+  corney_ble_frame_history_discard_before(&history, 2U);
+  assert(corney_ble_frame_history_count(&history) == 1U);
+  assert(corney_ble_frame_history_oldest_id(&history) == 2U);
+  corney_ble_frame_history_purge(&history);
+  assert(corney_ble_frame_history_count(&history) == 0U);
+  assert(corney_ble_frame_history_next_id(&history) == 3U);
 }
 
-static void test_subscription_owner(void) {
-  struct corney_ble_subscription_owner owner = {0};
+static void test_subscriber_registry(void) {
+  struct corney_ble_subscriber slots[2];
+  struct corney_ble_subscriber_registry registry;
   int first = 1;
   int second = 2;
+  int third = 3;
+  size_t index;
+  bool added;
 
-  assert(corney_ble_subscription_claim(&owner, &first) == 0);
-  assert(corney_ble_subscription_claim(&owner, &first) == 0);
-  assert(corney_ble_subscription_claim(&owner, &second) == -EBUSY);
-  assert(corney_ble_subscription_is_owner(&owner, &first));
-  assert(!corney_ble_subscription_release(&owner, &second));
-  assert(corney_ble_subscription_release(&owner, &first));
-  assert(corney_ble_subscription_claim(&owner, &second) == 0);
+  corney_ble_subscriber_registry_init(&registry, slots, 2U);
+  assert(corney_ble_subscriber_add(&registry, &first, &index, &added) == 0);
+  assert(index == 0U && added);
+  slots[index].state = CORNEY_BLE_SUBSCRIBER_INITIALIZING;
+  slots[index].snapshot_sequence = UINT32_MAX;
+  slots[index].next_entry_id = 0U;
+
+  assert(corney_ble_subscriber_add(&registry, &first, &index, &added) == 0);
+  assert(index == 0U && !added);
+  assert(slots[index].state == CORNEY_BLE_SUBSCRIBER_INITIALIZING);
+  assert(corney_ble_subscriber_add(&registry, &second, &index, &added) == 0);
+  assert(index == 1U && added);
+  assert(corney_ble_subscriber_add(&registry, &third, &index, &added) ==
+         -ENOSPC);
+  assert(corney_ble_subscriber_count(&registry) == 2U);
+  assert(corney_ble_subscriber_find(&registry, &first) == &slots[0]);
+  assert(corney_ble_subscriber_find_const(&registry, &second) == &slots[1]);
+
+  assert(corney_ble_subscriber_next_occupied(&registry) == 0U);
+  assert(corney_ble_subscriber_next_occupied(&registry) == 1U);
+  assert(corney_ble_subscriber_next_occupied(&registry) == 0U);
+  assert(!corney_ble_subscriber_remove(&registry, &third));
+  assert(corney_ble_subscriber_remove(&registry, &first));
+  assert(corney_ble_subscriber_count(&registry) == 1U);
+  assert(corney_ble_subscriber_add(&registry, &third, &index, &added) == 0);
+  assert(index == 0U && added);
+  assert(corney_ble_subscriber_next_occupied(&registry) == 1U);
+  assert(corney_ble_subscriber_next_occupied(&registry) == 0U);
+}
+
+static void test_subscriber_scheduling_and_lag_isolation(void) {
+  struct corney_ble_subscriber slots[3];
+  struct corney_ble_subscriber_registry registry;
+  int first = 1;
+  int second = 2;
+  int third = 3;
+  size_t index;
+  bool added;
+
+  corney_ble_subscriber_registry_init(&registry, slots, 3U);
+  assert(corney_ble_subscriber_add(&registry, &first, &index, &added) == 0);
+  slots[index].state = CORNEY_BLE_SUBSCRIBER_ACTIVE;
+  slots[index].next_entry_id = 8U;
+  slots[index].retry_at_ms = 110;
+  slots[index].retry_count = 2U;
+  assert(corney_ble_subscriber_add(&registry, &second, &index, &added) == 0);
+  slots[index].state = CORNEY_BLE_SUBSCRIBER_ACTIVE;
+  slots[index].next_entry_id = 9U;
+  assert(corney_ble_subscriber_add(&registry, &third, &index, &added) == 0);
+  slots[index].state = CORNEY_BLE_SUBSCRIBER_INITIALIZING;
+
+  /* The retrying first subscriber does not block the ready second one. */
+  assert(corney_ble_subscriber_next_ready(&registry, 8U, 10U, 100) == 1U);
+  /* Round-robin proceeds to the joining subscriber before revisiting first. */
+  assert(corney_ble_subscriber_next_ready(&registry, 8U, 10U, 100) == 2U);
+  assert(corney_ble_subscriber_next_delay_ms(&registry, 8U, 10U, 100) == 0);
+
+  slots[1].next_entry_id = 10U;
+  slots[2].state = CORNEY_BLE_SUBSCRIBER_ACTIVE;
+  slots[2].next_entry_id = 10U;
+  assert(corney_ble_subscriber_next_ready(&registry, 8U, 10U, 100) == SIZE_MAX);
+  assert(corney_ble_subscriber_next_delay_ms(&registry, 8U, 10U, 100) == 10);
+
+  /* Retention overrun advances only the lagging cursor and clears its retry. */
+  slots[0].next_entry_id = 4U;
+  assert(corney_ble_subscriber_next_ready(&registry, 7U, 10U, 100) == 0U);
+  assert(slots[0].next_entry_id == 7U);
+  assert(slots[0].retry_count == 0U);
+  assert(slots[0].retry_at_ms == 0);
+  assert(slots[1].next_entry_id == 10U);
+  assert(slots[2].next_entry_id == 10U);
 }
 
 int main(void) {
@@ -169,7 +251,8 @@ int main(void) {
   test_other_frames();
   test_validation();
   test_transport_policy();
-  test_bounded_queue();
-  test_subscription_owner();
+  test_bounded_history();
+  test_subscriber_registry();
+  test_subscriber_scheduling_and_lag_isolation();
   return 0;
 }

@@ -40,6 +40,37 @@ to the BLE extension alone. All keyboard variants retain ZMK's standard Battery 
 bit 3 is masked clear, custom event type `0x04` is reserved, and split-central peripheral battery
 fetching remains disabled.
 
+### Concurrent-transport platform evidence (2026-09-01)
+
+- The supported central configuration explicitly sets `CONFIG_BT_MAX_CONN=6` and
+  `CONFIG_BT_MAX_PAIRED=6`: five ZMK host profiles plus the right split peripheral. The transport
+  has a build assertion requiring `CONFIG_BT_MAX_CONN` to cover configured split-central
+  peripherals plus at least two host subscribers.
+- ZMK `v0.2.1` pins Zephyr `v3.5.0+zmk-fixes`. In that revision, targeted
+  `bt_gatt_notify(conn, ...)` checks the selected connection's CCC state and copies notification
+  data into a Bluetooth buffer before returning. The worker's per-attempt stack frame therefore
+  remains valid without a completion callback; a successful return means the caller-owned bytes
+  have already been copied, not that the radio transmission has completed.
+- A disconnect callback removes only the matching registry slot and releases its retained
+  `bt_conn` reference. Managed CCC restoration after encryption is idempotent, so restoring one
+  persisted subscription does not reset another subscriber.
+- The retained event history remains 16 entries and stores each encoded live frame once. The
+  subscriber registry is fixed at build time from `CONFIG_BT_MAX_CONN`; there is no heap allocation
+  and no single-owner compatibility branch.
+
+The concurrent transport was then rebuilt in the same official ZMK container and pinned workspace:
+
+| Post-change build | FLASH | RAM | Delta from pre-change counterpart | Result |
+| --- | ---: | ---: | ---: | --- |
+| Central enhanced | 270,264 B | 87,906 B | +1,360 B FLASH, +368 B RAM | pass |
+| Peripheral/right | 172,616 B | 33,884 B | unchanged | pass |
+
+The resolved central `.config` contains `CONFIG_BT_MAX_CONN=6`,
+`CONFIG_BT_MAX_PAIRED=6`, `CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS=1`, and a 16-entry retained
+history. The central uses 33.32% of its 792 KiB application FLASH region and 33.53% of its 256 KiB
+RAM region. The pinned native ZMK event/combo integration suite also passes with the concurrent
+sources.
+
 ## Hardware verification
 
 The table distinguishes hardware observations from automated coverage and explicitly retained
@@ -62,6 +93,16 @@ limitations. An unverified topology is not implied to be supported.
   remained available independently of the extension, reserved capability bit 3 remained clear,
   and no reserved event type `0x04` appeared during the observation interval.
 
+### Concurrent hardware observation (2026-09-01)
+
+- Manual verification after flashing the concurrent transport confirmed that multiple clients can
+  subscribe to and receive enhanced event streams at the same time. The former ATT `0x11`
+  single-owner rejection no longer occurs while connection capacity remains available.
+- The two clients observed matching live frame order and sequence values after their independent
+  stream starts. Reconnect/disable of one client did not restart or interrupt the other.
+- Concurrent phone/desktop use and actual capacity exhaustion were also verified successfully.
+  Deliberately starving one subscriber remains an accepted non-blocking follow-up.
+
 | Check | Expected observation | Status |
 | --- | --- | --- |
 | Matching halves | ordinary typing, split input, all combos, layers, reconnect, and legacy layer control remain correct | pass |
@@ -70,10 +111,18 @@ limitations. An unverified topology is not implied to be supported.
 | Stream start | first frame is the current layer with `STREAM_START | SNAPSHOT` | pass |
 | Positions | key down/up from both halves use global positions `0..41` | partial: sampled positions pass; complete both-half sweep pending |
 | Combos | all seven IDs and participant lists match layout metadata | pass |
+<<<<<<< HEAD
 | Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pass |
 | Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pass for normal fast typing and automated saturation policy; no hardware saturation threshold measured |
 | Ownership | first encrypted subscriber owns telemetry; a second receives busy; ownership releases on unsubscribe/disconnect | automated owner-state tests pass; multi-client hardware path unverified |
 | Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | limitation: simultaneous HID-host and helper topology unverified |
+=======
+| Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pending: reflash standard-BAS-only image and observe one battery update interval |
+| Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pending |
+| Concurrent subscribers | two encrypted subscribers each receive an initial snapshot and matching live order/sequence; either can disconnect without restarting the other | pass |
+| Capacity | subscriber rejection occurs only when configured connection resources are exhausted and leaves existing subscribers active | pass |
+| Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | pending |
+>>>>>>> ccedd64 (allow several streams, add 3d model)
 
 The retained key, combo, layer, and stream-start evidence remains representative because those
 frame formats and sources did not change in the standard-BAS-only rebuild.

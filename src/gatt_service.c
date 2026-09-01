@@ -8,18 +8,11 @@
 #include <zephyr/sys/byteorder.h>
 
 #include <corney/ble_contract.h>
-#include <corney/ble_events.h>
 #include <corney/ble_transport.h>
 #include <corney/gatt_service.h>
 #include <corney/layer_state.h>
 
 LOG_MODULE_REGISTER(corney_gatt_service, LOG_LEVEL_INF);
-
-#if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION)
-static void subscription_start_work_handler(struct k_work *work);
-K_WORK_DELAYABLE_DEFINE(subscription_start_work,
-                        subscription_start_work_handler);
-#endif
 
 static struct bt_uuid_128 service_uuid = BT_UUID_INIT_128(
     BT_UUID_128_ENCODE(0xb34a0001, 0xe782, 0x4706, 0x8f9c, 0x6c056c416507));
@@ -72,52 +65,32 @@ static ssize_t event_ccc_write(struct bt_conn *conn,
   ARG_UNUSED(attr);
 
   if (value == 0U) {
-    corney_ble_transport_release(conn);
+    corney_ble_transport_unsubscribe(conn);
     return sizeof(value);
   }
   if (value != BT_GATT_CCC_NOTIFY) {
     return BT_GATT_ERR(BT_ATT_ERR_VALUE_NOT_ALLOWED);
   }
 
-  err = corney_ble_transport_claim(conn);
-  if (err == -EBUSY) {
+  err = corney_ble_transport_subscribe(conn);
+  if (err == -ENOSPC) {
     return BT_GATT_ERR(BT_ATT_ERR_INSUFFICIENT_RESOURCES);
   }
   if (err != 0) {
     return BT_GATT_ERR(BT_ATT_ERR_UNLIKELY);
   }
-
-  corney_ble_transport_start_epoch();
-  k_work_reschedule(&subscription_start_work, K_MSEC(1));
   return sizeof(value);
 }
 
 static bool event_ccc_match(struct bt_conn *conn,
                             const struct bt_gatt_attr *attr) {
   ARG_UNUSED(attr);
-  return corney_ble_transport_is_owner(conn);
+  return corney_ble_transport_is_subscriber(conn);
 }
 
 static struct _bt_gatt_ccc event_ccc = BT_GATT_CCC_INITIALIZER(
     event_ccc_changed, event_ccc_write, event_ccc_match);
 
-static void subscription_start_work_handler(struct k_work *work) {
-  struct bt_conn *conn;
-  ARG_UNUSED(work);
-
-  conn = corney_ble_transport_owner();
-  if (conn == NULL) {
-    return;
-  }
-  if (bt_gatt_is_subscribed(conn, corney_gatt_event_attr(),
-                            BT_GATT_CCC_NOTIFY)) {
-    corney_ble_publish_initial_snapshots();
-    corney_ble_transport_finish_epoch();
-  } else {
-    corney_ble_transport_release(conn);
-  }
-  bt_conn_unref(conn);
-}
 #endif
 
 #if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION)
@@ -165,7 +138,7 @@ const struct bt_gatt_attr *corney_gatt_event_attr(void) {
 int corney_gatt_notify_event(struct bt_conn *conn,
                              const struct corney_ble_frame *frame) {
 #if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION)
-  if (conn == NULL || frame == NULL || !corney_ble_transport_is_owner(conn) ||
+  if (conn == NULL || frame == NULL ||
       !bt_gatt_is_subscribed(conn, corney_gatt_event_attr(),
                              BT_GATT_CCC_NOTIFY)) {
     return -ENOTCONN;
@@ -182,7 +155,7 @@ int corney_gatt_notify_event(struct bt_conn *conn,
 static void disconnected(struct bt_conn *conn, uint8_t reason) {
   ARG_UNUSED(reason);
 #if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION)
-  corney_ble_transport_release(conn);
+  corney_ble_transport_unsubscribe(conn);
 #else
   ARG_UNUSED(conn);
 #endif
@@ -194,9 +167,8 @@ static void security_changed(struct bt_conn *conn, bt_security_t level,
   if (err == BT_SECURITY_ERR_SUCCESS && level >= BT_SECURITY_L2 &&
       bt_gatt_is_subscribed(conn, corney_gatt_event_attr(),
                             BT_GATT_CCC_NOTIFY) &&
-      corney_ble_transport_claim(conn) == 0) {
-    corney_ble_transport_start_epoch();
-    k_work_reschedule(&subscription_start_work, K_MSEC(1));
+      corney_ble_transport_subscribe(conn) != 0) {
+    LOG_WRN("Failed to restore Keyboard Helper event subscription");
   }
 #else
   ARG_UNUSED(conn);

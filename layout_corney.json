@@ -51,7 +51,7 @@
   "keyLayers": {
     "Default": [
       ["⇥", "Tab"], ["q", "KeyQ"], ["w", "KeyW"], ["e", "KeyE"], ["r", "KeyR"], ["t", "KeyT"], ["y", "KeyY"], ["u", "KeyU"], ["i", "KeyI"], ["o", "KeyO"], ["p", "KeyP"], ["-", "Backspace"], 
-      ["🌐", "CapsLock"], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "SemiColon"], ["'", "Quote"], 
+      ["🌐", ""], ["a", "KeyA"], ["s", "KeyS"], ["d", "KeyD"], ["f", "KeyF"], ["g", "KeyG"], ["h", "KeyH"], ["j", "KeyJ"], ["k", "KeyK"], ["l", "KeyL"], [";", "SemiColon"], ["'", "Quote"], 
       ["⇧", "ShiftLeft"], ["z", "KeyZ"], ["x", "KeyX"], ["c", "KeyC"], ["v", "KeyV"], ["b", "KeyB"], ["n", "KeyN"], ["m", "KeyM"], [",", "Comma"], [".", "Dot"], ["/", "Slash"], ["⏎", "Space"], 
       ["Ctrl", "ControlLeft"], ["SPACE", "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["ALT", "AltGr"]
     ],
@@ -82,7 +82,7 @@
     "Mac: Shift": [
       ["⇥", "Shift+Tab"], ["Q", "Shift+KeyQ"], ["W", "Shift+KeyW"], ["E", "Shift+KeyE"], ["R", "Shift+KeyR"], ["T", "Shift+KeyT"], ["Y", "Shift+KeyZ"], ["U", "Shift+KeyU"], ["I", "Shift+KeyI"], ["O", "Shift+KeyO"], ["P", "Shift+KeyP"], ["-", "Shift+Slash"],
       ["🌐", ""], ["A", "Shift+KeyA"], ["S", "Shift+KeyS"], ["D", "Shift+KeyD"], ["F", "Shift+KeyF"], ["G", "Shift+KeyG"], ["H", "Shift+KeyH"], ["J", "Shift+KeyJ"], ["K", "Shift+KeyK"], ["L", "Shift+KeyL"], [":", "Shift+Dot"], ["\"", "Shift+Num2"],
-      ["⇧", "ShiftLeft"], ["Z", "Shift+KeyY"], ["X", "Shift+KeyX"], ["C", "Shift+KeyC"], ["V", "Shift+KeyV"], ["B", "Shift+KeyB"], ["N", "Shift+KeyN"], ["M", "Shift+KeyM"], ["<", "BackQuote"], [">", "Shift+BackQuote"], ["?", "Shift+Minus"], ["⇧", "ShiftRight"],
+      ["⇧", "ShiftLeft"], ["Z", "Shift+KeyY"], ["X", "Shift+KeyX"], ["C", "Shift+KeyC"], ["V", "Shift+KeyV"], ["B", "Shift+KeyB"], ["N", "Shift+KeyN"], ["M", "Shift+KeyM"], ["<", "BackQuote"], [">", "Shift+BackQuote"], ["?", "Shift+Minus"], ["⏎", "Return"],
       ["Ctrl", "MetaLeft"], ["SPACE" , "Space"], ["Func", ""], ["⇧", "ShiftRight"], ["Char", ""], ["⌥", ""]
     ],  
     "Mac: AltGr": [
@@ -106,8 +106,8 @@
     "Mac: Russian": [
       null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["е", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "LeftBracket"], 
       null, ["ф", "KeyA"], ["ы", "KeyS"], ["в", "KeyD"], ["а", "KeyF"], ["п", "KeyG"], ["р", "KeyH"], ["о", "KeyJ"], ["л", "KeyK"], ["д", "KeyL"], ["ж", "SemiColon"], ["э", "Quote"], 
-      null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyN"], ["ь", "KeyM"], ["б", "Comma"], ["ю", "Dot"], [".", "Num7"], null, 
-      null, null, null, null, null, null
+      null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyN"], ["ь", "KeyM"], ["б", "Comma"], ["ю", "Dot"], [".", "Shift+Num7"], ["⏎", "Return"], 
+      ["⌘", "MetaLeft"], null, null, null, null, ["⌥", ""]
     ],
     "Mac: Russian-Shift": [
       null, ["Й", "Shift+KeyQ"], ["Ц", "Shift+KeyW"], ["У", "Shift+KeyE"], ["К", "Shift+KeyR"], ["Е", "Shift+KeyT"], ["Н", "Shift+KeyY"], ["Г", "Shift+KeyU"], ["Ш", "Shift+KeyI"], ["Щ", "Shift+KeyO"], ["З", "Shift+KeyP"], ["Х", "Shift+LeftBracket"],

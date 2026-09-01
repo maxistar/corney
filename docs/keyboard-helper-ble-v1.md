@@ -41,24 +41,39 @@ events in ZMK's native test runner.
 
 ## Queue and loss behavior
 
-Event producers allocate a sequence and perform a bounded, non-blocking push into a 16-entry
-queue. Notification runs later in work context. A transient `-ENOMEM` or `-EAGAIN` result is
-retried no more than three times, 10 ms apart. Permanent failures and an exhausted retry budget
-drop the frame. A later sequence gap is authoritative; queue overflow also schedules diagnostic
-code 1 when capacity becomes available.
+Event producers allocate one global sequence and perform a bounded, non-blocking append into
+16-entry retained history. Each subscriber has its own cursor and retry state while notification
+runs later in work context. A transient `-ENOMEM` or `-EAGAIN` result is retried no more than three
+times, 10 ms apart, for the affected subscriber without delaying other ready subscribers.
+Permanent failures, an exhausted retry budget, and history overwritten before a slow subscriber
+consumes it produce a gap only in that subscriber's observed stream. Shared retention overflow
+also schedules diagnostic code 1 when capacity becomes available.
 
-## Subscriber ownership and security
+## Concurrent subscribers and security
 
 Capabilities remain readable before encryption. Enabling the event CCC requires an encrypted
-connection. The first eligible connection owns the event stream until it disables the CCC or
-disconnects. A different connection receives `BT_ATT_ERR_INSUFFICIENT_RESOURCES` instead of
-silently replacing the owner.
+connection. Every eligible connection receives an independent subscriber slot while configured
+Bluetooth capacity remains available. Corney configures six simultaneous connections: one for
+the right split peripheral and five host profiles, so at least two encrypted event subscribers
+can coexist. `BT_ATT_ERR_INSUFFICIENT_RESOURCES` is reserved for actual subscriber/connection
+capacity exhaustion and never transfers or cancels an existing subscription.
 
+<<<<<<< HEAD
 Telemetry ownership is independent of the active ZMK HID profile. Whether the controller keeps a
 phone helper and a normal BLE host connected simultaneously was not verified on hardware and is not
 a version 1 product guarantee. Clients must handle connection failure or busy state without
 disrupting normal HID behavior. Every new owner starts a fresh sequence epoch and receives an
 authoritative layer snapshot marked `STREAM_START | SNAPSHOT` before live events.
+=======
+Telemetry subscription is independent of the active ZMK HID profile. Every subscriber receives a
+targeted authoritative layer snapshot marked `STREAM_START | SNAPSHOT` before its future live
+events. A subscriber joining, leaving, slowing down, or reconnecting does not reset or purge any
+other subscriber's stream.
+
+Firmware flashed before concurrent subscriber support is a development-only build and must be
+reflashed. Protocol 1.0 UUIDs, capability bytes, and event frame layouts are unchanged; there is
+no single-owner compatibility mode or version branch.
+>>>>>>> ccedd64 (allow several streams, add 3d model)
 
 ## Local verification
 
