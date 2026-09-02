@@ -58,13 +58,6 @@ the right split peripheral and five host profiles, so at least two encrypted eve
 can coexist. `BT_ATT_ERR_INSUFFICIENT_RESOURCES` is reserved for actual subscriber/connection
 capacity exhaustion and never transfers or cancels an existing subscription.
 
-<<<<<<< HEAD
-Telemetry ownership is independent of the active ZMK HID profile. Whether the controller keeps a
-phone helper and a normal BLE host connected simultaneously was not verified on hardware and is not
-a version 1 product guarantee. Clients must handle connection failure or busy state without
-disrupting normal HID behavior. Every new owner starts a fresh sequence epoch and receives an
-authoritative layer snapshot marked `STREAM_START | SNAPSHOT` before live events.
-=======
 Telemetry subscription is independent of the active ZMK HID profile. Every subscriber receives a
 targeted authoritative layer snapshot marked `STREAM_START | SNAPSHOT` before its future live
 events. A subscriber joining, leaving, slowing down, or reconnecting does not reset or purge any
@@ -73,7 +66,6 @@ other subscriber's stream.
 Firmware flashed before concurrent subscriber support is a development-only build and must be
 reflashed. Protocol 1.0 UUIDs, capability bytes, and event frame layouts are unchanged; there is
 no single-owner compatibility mode or version branch.
->>>>>>> ccedd64 (allow several streams, add 3d model)
 
 ## Local verification
 

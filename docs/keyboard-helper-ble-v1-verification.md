@@ -111,27 +111,20 @@ limitations. An unverified topology is not implied to be supported.
 | Stream start | first frame is the current layer with `STREAM_START | SNAPSHOT` | pass |
 | Positions | key down/up from both halves use global positions `0..41` | partial: sampled positions pass; complete both-half sweep pending |
 | Combos | all seven IDs and participant lists match layout metadata | pass |
-<<<<<<< HEAD
 | Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pass |
-| Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pass for normal fast typing and automated saturation policy; no hardware saturation threshold measured |
-| Ownership | first encrypted subscriber owns telemetry; a second receives busy; ownership releases on unsubscribe/disconnect | automated owner-state tests pass; multi-client hardware path unverified |
-| Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | limitation: simultaneous HID-host and helper topology unverified |
-=======
-| Battery | standard Battery Level `0x2a19` reads/notifies independently; capability bit 3 remains clear and no event type `0x04` appears | pending: reflash standard-BAS-only image and observe one battery update interval |
-| Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pending |
+| Backpressure | fast input remains correct; any telemetry loss appears as sequence gaps and optionally diagnostic code 1 | pass for normal fast typing and automated saturation policy; deliberate slow-client hardware observation pending as a non-blocking follow-up |
 | Concurrent subscribers | two encrypted subscribers each receive an initial snapshot and matching live order/sequence; either can disconnect without restarting the other | pass |
 | Capacity | subscriber rejection occurs only when configured connection resources are exhausted and leaves existing subscribers active | pass |
-| Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | pending |
->>>>>>> ccedd64 (allow several streams, add 3d model)
+| Host coexistence | actual USB-host and BLE-host plus helper connection behavior is recorded | partial: concurrent phone/desktop BLE use passes; simultaneous USB HID host plus helper topology remains unverified |
 
 The retained key, combo, layer, and stream-start evidence remains representative because those
 frame formats and sources did not change in the standard-BAS-only rebuild.
 
 Normal fast typing, layer switching through BLE, and all configured combos showed no visible input
-latency. The hardware saturation threshold, unencrypted CCC rejection, complete 42-position sweep,
-and simultaneous HID-host plus helper topology were not measured. Clients must therefore tolerate
-connection-busy behavior and must not assume that a second BLE central can coexist with the active
-HID host on this firmware/hardware combination.
+latency. Deliberate slow-client behavior, unencrypted CCC rejection, the complete 42-position
+sweep, and simultaneous USB HID-host plus helper topology were not measured. Clients must tolerate
+connection-resource exhaustion and per-subscriber sequence gaps without disrupting HID behavior
+or other subscribers.
 
 Use nRF Connect or LightBlue and the umbrella contract's generic-phone procedure. Add only decoded
 representative frames and pass/fail conclusions to this file after testing.

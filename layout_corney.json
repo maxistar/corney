@@ -5,7 +5,7 @@
     "serviceUuid": "b34a0001-e782-4706-8f9c-6c056c416507",
     "characteristicUuid": "b34a0002-e782-4706-8f9c-6c056c416507",
     "format": "int32-le"
-  },  
+  },
   "inputSourceSync": {
     "macos": {
       "settleMs": 1000,
@@ -42,11 +42,11 @@
   "combos": [
     {"id": 1, "positions": [1, 2], "key1": {"row": 0,"col": 2},"key2": {"row": 0,"col": 3},"code": "Escape"},
     {"id": 2, "positions": [15, 16], "key1": {"row": 1,"col": 4},"key2": {"row": 1,"col": 5},"code": "Return"},
-    {"id": 3, "positions": [19, 20], "key1": {"row": 1,"col": 11},"key2": {"row": 1,"col": 12},"code": "Return2"},
-    {"id": 4, "positions": [27, 28], "key1": {"row": 2,"col": 4},"key2": {"row": 2,"col": 5},"code": "ccc"},
-    {"id": 5, "positions": [31, 32], "key1": {"row": 2,"col": 11},"key2": {"row": 2,"col": 12},"code": "ccc2"},
-    {"id": 6, "positions": [40, 41], "key1": {"row": 3.2,"col": 10},"key2": {"row": 3.2,"col": 11},"code": "MouseLayer"},
-    {"id": 7, "positions": [36, 37], "key1": {"row": 3.2,"col": 5},"key2": {"row": 3.2,"col": 6},"code": "MouseLayerLeft"}
+    {"id": 3, "positions": [19, 20], "key1": {"row": 1,"col": 11},"key2": {"row": 1,"col": 12},"code": "Return"},
+    {"id": 4, "positions": [27, 28], "key1": {"row": 2,"col": 4},"key2": {"row": 2,"col": 5},"code": "Backspace"},
+    {"id": 5, "positions": [31, 32], "key1": {"row": 2,"col": 11},"key2": {"row": 2,"col": 12},"code": "Backspace"},
+    {"id": 6, "positions": [40, 41], "key1": {"row": 3.2,"col": 10},"key2": {"row": 3.2,"col": 11},"code": ""},
+    {"id": 7, "positions": [36, 37], "key1": {"row": 3.2,"col": 5},"key2": {"row": 3.2,"col": 6},"code": ""}
   ],
   "keyLayers": {
     "Default": [
@@ -88,7 +88,7 @@
     "Mac: AltGr": [
       null, ["Q", "KeyQ"], ["W", "KeyW"], ["E", "KeyE"], ["R", "KeyR"], ["T", "KeyT"], ["Y", "KeyZ"], ["Ü", "LeftBracket"], ["I", "KeyI"], ["Ö", "SemiColon"], ["P", "KeyP"], ["=", "Shift+Num0"],
       null, ["Ä", "Quote"], ["ß", "Minus"], ["D", "KeyD"], ["F", "KeyF"], ["G", "KeyG"], ["H", "KeyH"], ["J", "KeyJ"], ["K", "KeyK"], ["L", "KeyL"], ["|", "AltGr+Num7"], ["\"", "Shift+BackSlash"],
-      null, ["Z", "KeyY"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyN"], ["M", "KeyM"], ["{", "AltGr+Num8"], ["}", "AltGr+Num9"], ["\\", "AltGr+Shift+Num7"], null,
+      null, ["Z", "KeyY"], ["X", "KeyX"], ["C", "KeyC"], ["V", "KeyV"], ["B", "KeyB"], ["N", "KeyN"], ["M", "KeyM"], ["{", "AltGr+Num8"], ["}", "AltGr+Num9"], ["\\", "AltGr+Shift+Num7"], ["⏎", "Return"],
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["⌦", ""], null, null
     ],
     "Android: Default": [
@@ -146,7 +146,7 @@
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["", ""], null, ["ALT", "AltGr"]
     ],
     "Mac: Characters / Navigation": [
-      ["⇥", "Tab"], ["!", "Shift+Num1"], ["@", "AltGr+KeyL"], ["#", "BackSlash"], ["$", "Shift+Num4"], ["%", "Shift+Num5"], ["^", "BackQuote"], ["&", "Shift+Num6"], ["*", "Shift+RightBracket"], ["(", "Shift+Num8"], [")", "Shift+Num9"], ["~", "AltGr+KeyN"], 
+      ["⇥", "Tab"], ["!", "Shift+Num1"], ["@", "AltGr+KeyL"], ["#", "BackSlash"], ["$", "Shift+Num4"], ["%", "Shift+Num5"], ["^", ""], ["&", "Shift+Num6"], ["*", "Shift+RightBracket"], ["(", "Shift+Num8"], [")", "Shift+Num9"], ["~", "AltGr+KeyN"], 
       ["", ""], ["-", "Slash"], ["+", "RightBracket"], ["=", "Shift+Num0"], ["[", "AltGr+Num5"], ["]", "AltGr+Num6"], ["←", "LeftArrow"], ["↓", "DownArrow"], ["↑", "UpArrow"], ["→", "RightArrow"], ["|", "AltGr+Num7"], ["`", "Shift+Equal"], 
       null,["", ""],["", ""],["€", ""], ["{", ""], ["}", ""], ["Home", ""], ["PgDn", ""], ["PgUp", ""], ["End", ""], ["Ins", ""], ["Del", ""], 
       ["⌃", ""], ["⌥", ""], ["⌘", ""], ["", ""], null, ["ALT", ""]
