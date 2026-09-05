@@ -135,16 +135,18 @@ ZMK `v0.3.0` images preserve the required hardware behavior.
 The left/central shield now contains the I2C-only Cirque Pinnacle polling driver. The sensor is at
 address `0x2a`, has no DR connection, and is polled every 8 ms while the central is active. Host
 tests cover status filtering, malformed packet rejection, signed relative-axis boundaries, wheel
-decoding, and primary-button press/hold/release transitions. The existing BLE metadata/transport
+decoding, explicit X-axis orientation inversion, and primary-button press/hold/release transitions.
+The left shield enables X inversion so physical right/left finger movement maps to the same cursor
+direction while Y remains unchanged. The existing BLE metadata/transport
 host tests and all three native ZMK event/combo integration tests also pass.
 
 Every target declared in `build.yaml` was rebuilt from the pinned ZMK `v0.3.0` workspace:
 
 | Build | FLASH | RAM | UF2 size | Result |
 | --- | ---: | ---: | ---: | --- |
-| Central legacy | 242,576 B | 58,836 B | 485,376 B | pass |
-| Central enhanced with Studio | 275,652 B | 87,162 B | 551,424 B | pass |
-| Central minimal | 245,120 B | 59,820 B | 490,496 B | pass |
+| Central legacy | 242,592 B | 58,836 B | 485,376 B | pass |
+| Central enhanced with Studio | 275,668 B | 87,162 B | 551,424 B | pass |
+| Central minimal | 245,136 B | 59,820 B | 490,496 B | pass |
 | Peripheral/right | 173,320 B | 33,900 B | 347,136 B | pass |
 | Settings reset | 46,188 B | 11,552 B | 92,672 B | pass |
 
@@ -152,6 +154,10 @@ Generated configuration and devicetree output contain `CONFIG_I2C=y`,
 `CONFIG_INPUT_CORNEY_PINNACLE_POLLING=y`, and `glidepoint@2a` only for central targets. The right
 and settings-reset artifacts contain none of them. Hardware movement, tap, suspend/resume, and
 battery-impact checks remain pending until matching images are flashed.
+
+The first hardware movement check found the installed sensor's X direction reversed while Y was
+correct. The rebuilt central images enable the tested `invert-x` transform; same-direction
+right/left cursor movement remains pending confirmation after flashing the corrected left image.
 
 ### Rollback
 

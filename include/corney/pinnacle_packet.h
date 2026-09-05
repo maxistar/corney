@@ -30,4 +30,5 @@ bool corney_pinnacle_status_has_data(uint8_t status);
 int corney_pinnacle_decode_relative(
     const uint8_t *packet, size_t packet_size,
     struct corney_pinnacle_relative_sample *sample);
+int16_t corney_pinnacle_apply_axis_inversion(int16_t value, bool invert);
 uint8_t corney_pinnacle_button_changes(uint8_t previous, uint8_t current);

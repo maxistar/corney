@@ -24,6 +24,10 @@ properties:
     type: boolean
     description: Enable primary tap reports from relative packets.
 
+  invert-x:
+    type: boolean
+    description: Invert relative X reports to match the installed sensor orientation.
+
   sleep-mode-enable:
     type: boolean
     description: Enable the sensor's autonomous low-power mode while idle.

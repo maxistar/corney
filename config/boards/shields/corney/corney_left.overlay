@@ -22,6 +22,7 @@
         sensitivity = "2x";
         poll-interval-ms = <8>;
         primary-tap-enable;
+        invert-x;
         sleep-mode-enable;
     };
 };

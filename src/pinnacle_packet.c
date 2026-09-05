@@ -38,6 +38,10 @@ int corney_pinnacle_decode_relative(
   return 0;
 }
 
+int16_t corney_pinnacle_apply_axis_inversion(int16_t value, bool invert) {
+  return invert ? -value : value;
+}
+
 uint8_t corney_pinnacle_button_changes(uint8_t previous, uint8_t current) {
   return (previous ^ current) & CORNEY_PINNACLE_BUTTON_MASK;
 }

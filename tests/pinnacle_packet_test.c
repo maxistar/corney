@@ -58,6 +58,13 @@ static void test_button_transitions(void) {
          CORNEY_PINNACLE_BUTTON_MASK);
 }
 
+static void test_axis_inversion(void) {
+  assert(corney_pinnacle_apply_axis_inversion(127, false) == 127);
+  assert(corney_pinnacle_apply_axis_inversion(127, true) == -127);
+  assert(corney_pinnacle_apply_axis_inversion(-256, true) == 256);
+  assert(corney_pinnacle_apply_axis_inversion(0, true) == 0);
+}
+
 static void test_invalid_packets(void) {
   const uint8_t packet[CORNEY_PINNACLE_RELATIVE_PACKET_SIZE] = {0};
   struct corney_pinnacle_relative_sample sample;
@@ -77,6 +84,7 @@ int main(void) {
   test_positive_and_zero_axes();
   test_negative_and_boundary_axes();
   test_button_transitions();
+  test_axis_inversion();
   test_invalid_packets();
   return 0;
 }
