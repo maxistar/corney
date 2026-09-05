@@ -7,7 +7,8 @@ material.
 
 - Date: 2026-08-31
 - ZMK revision: `v0.2.1` (`241ff39556b3685c9344c4c22fd9a655af8eb3ba`)
-- Board: `nice_nano@2.0.0`
+- Original requested board string: `nice_nano@2.0.0` (later found to resolve to the v1 board
+  definition on this Zephyr 3.5 baseline; superseded by the corrected v2 artifacts below)
 - Protocol: `1.0`
 - Host tests: passed
 - ZMK native event/combo integration tests: passed
@@ -70,6 +71,94 @@ The resolved central `.config` contains `CONFIG_BT_MAX_CONN=6`,
 history. The central uses 33.32% of its 792 KiB application FLASH region and 33.53% of its 256 KiB
 RAM region. The pinned native ZMK event/combo integration suite also passes with the concurrent
 sources.
+
+## ZMK v0.3.0 upgrade evidence (2026-09-05)
+
+- Manifest revision: `v0.3.0` (`edf5c0814fd3ea202e43aad2d68fd32e882a518c`)
+- Imported Zephyr revision: `v3.5.0+zmk-fixes` (`dacab4875df72109b96cc8977547a0dc04875bcd`)
+- Board: `nice_nano_v2` (legacy Zephyr 3.5 identifier, not HWMv2 syntax)
+- Protocol: unchanged at `1.0`
+- Formatting and host tests: passed
+- ZMK native event/combo integration tests: all three cases passed
+- Firmware source adaptations: none required
+
+All targets declared in `build.yaml` were built from the updated west workspace with Zephyr SDK
+0.16.8. The Studio-enabled target additionally used an isolated Python 3.12 environment containing
+`protobuf`, `grpcio-tools`, and `setuptools<81`; the setuptools upper bound preserves the
+`pkg_resources` API used by the pinned nanopb generator.
+
+| Build | Extension configuration | FLASH | RAM | UF2 size | Result |
+| --- | --- | ---: | ---: | ---: | --- |
+| Central legacy | extension disabled | 238,568 B | 58,620 B | 477,184 B | pass |
+| Central enhanced | release configuration, including ZMK Studio RPC | 271,296 B | 86,874 B | 542,720 B | pass |
+| Central minimal | extension enabled, optional event sources disabled | 241,112 B | 59,604 B | 482,304 B | pass |
+| Peripheral/right | no host-facing extension | 173,320 B | 33,900 B | 347,136 B | pass |
+| Settings reset | utility image | 46,188 B | 11,552 B | 92,672 B | pass |
+
+Every corrected artifact resolves `CONFIG_BOARD_NICE_NANO_V2=y`; all normal keyboard images also
+resolve `CONFIG_ZMK_BATTERY_NRF_VDDH=y`. The enhanced central resolves
+`CONFIG_BT_MAX_CONN=6`, `CONFIG_BT_MAX_PAIRED=6`,
+`CONFIG_ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS=1`, `CONFIG_ZMK_STUDIO=y`, and a 16-entry Keyboard
+Helper history. This retains five host-profile slots alongside the split peripheral and satisfies
+the build assertion reserving capacity for at least two concurrent host subscribers. The
+`v0.3.0` update did not change BLE UUIDs, capability bits, frame layouts, keymap metadata, or the
+legacy layer-control contract.
+
+### v0.3.0 hardware acceptance status
+
+The initial `v0.3.0` images were flashed to both halves and ordinary keyboard behavior was reported
+to work as expected, but BLE Battery Level read 0%. Inspection showed those images had resolved
+`nice_nano@2.0.0` to the pin-compatible v1 board definition and selected its absent ADC voltage
+divider. The previous 100% reading was also not valid: ZMK `v0.2.1` left the Battery Service's
+default value unchanged when the sampled state remained zero, while `v0.3.0` synchronizes zero to
+the service. These preliminary images are superseded and are not accepted artifacts.
+
+The corrected `nice_nano_v2` images select the controller's VDDH sensor and passed the full
+automated matrix. Matching corrected images were then flashed to both halves and manually accepted:
+
+- ordinary typing, both-half input, split reconnect, configured combos, and layers worked as
+  expected;
+- pointing movement and scrolling worked over USB and BLE, including profile switching;
+- ZMK Studio connected and exposed the keymap;
+- an encrypted generic BLE client successfully exercised legacy layer read/write/notify, Keyboard
+  Helper discovery and capabilities, stream-start snapshot, representative key/combo/layer events,
+  disconnect, and resubscription;
+- existing bonds and settings survived the update, so the settings-reset image was not required;
+- standard BLE Battery Level reported a plausible nonzero value independently of Keyboard Helper
+  telemetry.
+
+This confirms that selecting the v2 VDDH sensor fixes the invalid zero reading and that the accepted
+ZMK `v0.3.0` images preserve the required hardware behavior.
+
+## Cirque polling build evidence (2026-09-06)
+
+The left/central shield now contains the I2C-only Cirque Pinnacle polling driver. The sensor is at
+address `0x2a`, has no DR connection, and is polled every 8 ms while the central is active. Host
+tests cover status filtering, malformed packet rejection, signed relative-axis boundaries, wheel
+decoding, and primary-button press/hold/release transitions. The existing BLE metadata/transport
+host tests and all three native ZMK event/combo integration tests also pass.
+
+Every target declared in `build.yaml` was rebuilt from the pinned ZMK `v0.3.0` workspace:
+
+| Build | FLASH | RAM | UF2 size | Result |
+| --- | ---: | ---: | ---: | --- |
+| Central legacy | 242,576 B | 58,836 B | 485,376 B | pass |
+| Central enhanced with Studio | 275,652 B | 87,162 B | 551,424 B | pass |
+| Central minimal | 245,120 B | 59,820 B | 490,496 B | pass |
+| Peripheral/right | 173,320 B | 33,900 B | 347,136 B | pass |
+| Settings reset | 46,188 B | 11,552 B | 92,672 B | pass |
+
+Generated configuration and devicetree output contain `CONFIG_I2C=y`,
+`CONFIG_INPUT_CORNEY_PINNACLE_POLLING=y`, and `glidepoint@2a` only for central targets. The right
+and settings-reset artifacts contain none of them. Hardware movement, tap, suspend/resume, and
+battery-impact checks remain pending until matching images are flashed.
+
+### Rollback
+
+Until hardware acceptance is complete, retain `v0.2.1` as the rollback revision. To roll back,
+restore `revision: v0.2.1` in `config/west.yml`, run `west update`, rebuild matching images for both
+halves, and flash both halves. Use the settings-reset image only if normal rollback and re-pairing
+do not restore connectivity.
 
 ## Hardware verification
 

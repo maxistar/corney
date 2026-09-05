@@ -15,6 +15,10 @@ zephyr_library_sources_ifdef(CONFIG_ZMK_GATT_LAYER_EXPOSITION
 zephyr_library_sources_ifdef(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION
   src/ble_transport.c
 )
+zephyr_library_sources_ifdef(CONFIG_INPUT_CORNEY_PINNACLE_POLLING
+  src/pinnacle_packet.c
+  drivers/input/pinnacle_polling.c
+)
 
 if(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION OR CONFIG_ZMK_KEYBOARD_HELPER_EVENT_TEST_LOG)
   # Position telemetry must observe the original event before ZMK's combo

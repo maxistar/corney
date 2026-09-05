@@ -15,4 +15,12 @@ cc -std=c11 -Wall -Wextra -Werror -pedantic \
   -o "$test_dir/ble-contract-test"
 
 "$test_dir/ble-contract-test"
+
+cc -std=c11 -Wall -Wextra -Werror -pedantic \
+  -I"$repo_dir/include" \
+  "$repo_dir/src/pinnacle_packet.c" \
+  "$repo_dir/tests/pinnacle_packet_test.c" \
+  -o "$test_dir/pinnacle-packet-test"
+
+"$test_dir/pinnacle-packet-test"
 python3 "$repo_dir/tests/verify_ble_metadata.py"

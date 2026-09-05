@@ -10,3 +10,25 @@
         , <&pro_micro 14 GPIO_ACTIVE_HIGH>
         ;
 };
+
+&pro_micro_i2c {
+    status = "okay";
+
+    glidepoint: glidepoint@2a {
+        compatible = "corney,cirque-pinnacle-polling";
+        reg = <0x2a>;
+        status = "okay";
+    
+        sensitivity = "2x";
+        poll-interval-ms = <8>;
+        primary-tap-enable;
+        sleep-mode-enable;
+    };
+};
+
+/ {
+    glidepoint_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint>;
+    };
+};

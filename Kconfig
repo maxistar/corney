@@ -61,3 +61,19 @@ config ZMK_KEYBOARD_HELPER_EVENT_TEST_LOG
       Emits deterministic physical-position events for the native ZMK
       integration tests. Release firmware configurations must leave this
       disabled.
+
+config INPUT_CORNEY_PINNACLE_POLLING
+    bool "Corney Cirque Pinnacle polling driver"
+    depends on I2C
+    depends on INPUT
+    depends on DT_HAS_CORNEY_CIRQUE_PINNACLE_POLLING_ENABLED
+    default y
+    help
+      Enables the I2C-only Cirque Pinnacle input driver used by the Corney
+      central. The driver polls the sensor and does not require a data-ready
+      GPIO.
+
+config INPUT_CORNEY_PINNACLE_INIT_PRIORITY
+    int "Corney Cirque Pinnacle initialization priority"
+    depends on INPUT_CORNEY_PINNACLE_POLLING
+    default INPUT_INIT_PRIORITY

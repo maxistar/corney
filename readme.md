@@ -21,7 +21,7 @@ https://projects.maxistar.me/keyboard_helper/
 
 - `config/`: ZMK config for a split Corne on nice!nano (keymap, macros, Bluetooth bindings, west manifest).
 - `body/`: printable/parametric case and plate models for the Chocoflan remix (scad, stl, step, 3mf).
-- `build.yaml`: build matrix for CI (left/right halves on nice_nano@2.0.0).
+- `build.yaml`: build matrix for CI (left/right halves on `nice_nano_v2`).
 - `zephyr/module.yml`: declares the repo as a ZMK module, including the Corney shield root and
   the custom GATT features.
 - `docs/gatt-layer-exposition.md`: UUIDs, data format, and build notes for the BLE layer
@@ -44,8 +44,8 @@ cd corney
 
 1. From the repo root, pull ZMK: `west init -l config && west update`.
 3. Build each half (outputs land in `build/<side>/zephyr/zmk.uf2`):
-   - Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y`
-   - Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
+   - Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y`
+   - Right: `west build -p -s zmk/app -d build/right -b nice_nano_v2 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
 
 ## Build firmware with a custom Bluetooth name
@@ -55,12 +55,27 @@ The default Bluetooth device name is `Corney`. To override it, pass
 
 Local build examples:
 
-- Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano@2.0.0 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
-- Right: `west build -p -s zmk/app -d build/right -b nice_nano@2.0.0 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
+- Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
+- Right: `west build -p -s zmk/app -d build/right -b nice_nano_v2 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 
 Do not apply the custom name override to the right half. The left half is the central, host-paired side, and the right half should be built with its default configuration.
 Omit `CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y` only when intentionally building the legacy central
 image without the Keyboard Helper service.
+
+## Cirque trackpad
+
+The left/central half supports a Cirque Pinnacle trackpad over the Pro Micro I2C pins. The current
+wiring uses address `0x2a` and does not connect the trackpad's data-ready (`DR`) signal. There is no
+OLED in this configuration.
+
+Because DR is absent, the Corney module reads the sensor status every 8 ms while the keyboard is
+active. The firmware reports relative pointer movement, the sensor's primary tap, and relative
+wheel packets through ZMK's input listener. I2C and the polling driver are enabled only in
+`corney_left` builds.
+
+Continuous polling costs additional battery power. During system suspend the polling work stops;
+trackpad touch alone cannot wake the controller without DR. Press a key or use another configured
+wake source, after which the sensor is reinitialized and polling resumes.
 
 ## CI/CD
 

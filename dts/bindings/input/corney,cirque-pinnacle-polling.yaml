@@ -1,0 +1,29 @@
+description: Cirque Pinnacle trackpad accessed by periodic I2C polling
+
+compatible: "corney,cirque-pinnacle-polling"
+
+include: i2c-device.yaml
+
+properties:
+  poll-interval-ms:
+    type: int
+    default: 8
+    description: Interval between active status polls in milliseconds.
+
+  sensitivity:
+    type: string
+    default: "2x"
+    enum:
+      - "1x"
+      - "2x"
+      - "3x"
+      - "4x"
+    description: ADC attenuation setting; 1x is most sensitive.
+
+  primary-tap-enable:
+    type: boolean
+    description: Enable primary tap reports from relative packets.
+
+  sleep-mode-enable:
+    type: boolean
+    description: Enable the sensor's autonomous low-power mode while idle.

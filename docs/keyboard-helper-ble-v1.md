@@ -78,7 +78,7 @@ tests/run-host-tests.sh
 Build the enhanced central:
 
 ```sh
-west build -p always -s zmk/app -d build/enhanced-left -b nice_nano@2.0.0 -- \
+west build -p always -s zmk/app -d build/enhanced-left -b nice_nano_v2 -- \
   -DZMK_CONFIG="$PWD/config" \
   -DZMK_EXTRA_MODULES="$PWD" \
   -DSHIELD=corney_left \
