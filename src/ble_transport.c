@@ -37,6 +37,9 @@ static atomic_t queue_drop_count = ATOMIC_INIT(0);
 static atomic_t transport_drop_count = ATOMIC_INIT(0);
 static atomic_t last_dropped_sequence = ATOMIC_INIT(0);
 static atomic_t overflow_report_pending = ATOMIC_INIT(0);
+#if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_TEST_DROP_SECOND_SUBSCRIBER)
+static uint32_t test_fault_target_frame_count;
+#endif
 
 struct transport_candidate {
   struct bt_conn *conn;
@@ -109,6 +112,11 @@ int corney_ble_transport_subscribe(struct bt_conn *conn) {
   err = corney_ble_subscriber_add(&subscribers, conn, &slot_index, &added);
   if (err == 0 && added) {
     subscriber = &subscribers.slots[slot_index];
+#if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_TEST_DROP_SECOND_SUBSCRIBER)
+    if (slot_index == 1U) {
+      test_fault_target_frame_count = 0U;
+    }
+#endif
     subscriber->next_entry_id =
         corney_ble_frame_history_next_id(&event_history);
     subscriber->snapshot_sequence = (uint32_t)atomic_get(&next_sequence) - 1U;
@@ -311,6 +319,18 @@ static void schedule_pending_work(void) {
   }
 }
 
+#if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_TEST_DROP_SECOND_SUBSCRIBER)
+static bool
+test_fault_should_drop(const struct transport_candidate *candidate) {
+  if (candidate->snapshot || candidate->slot_index != 1U) {
+    return false;
+  }
+
+  test_fault_target_frame_count++;
+  return test_fault_target_frame_count % 2U == 0U;
+}
+#endif
+
 static void apply_candidate_result(const struct transport_candidate *candidate,
                                    int result, int64_t now_ms) {
   enum corney_ble_transport_action action;
@@ -390,7 +410,15 @@ static void transport_work_handler(struct k_work *work) {
     err = 0;
   }
   if (err == 0) {
-    err = corney_gatt_notify_event(candidate.conn, &candidate.frame);
+#if IS_ENABLED(CONFIG_ZMK_KEYBOARD_HELPER_TEST_DROP_SECOND_SUBSCRIBER)
+    if (test_fault_should_drop(&candidate)) {
+      LOG_WRN("test-only: dropped notification for subscriber %u",
+              (unsigned int)(candidate.slot_index + 1U));
+    } else
+#endif
+    {
+      err = corney_gatt_notify_event(candidate.conn, &candidate.frame);
+    }
   }
   apply_candidate_result(&candidate, err, now_ms);
   bt_conn_unref(candidate.conn);

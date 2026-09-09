@@ -44,6 +44,7 @@ firmware:
     matrix:
       - TARGET:
           - central-enhanced
+          - central-stock
           - central-legacy
           - central-extension-minimal
           - peripheral
@@ -63,6 +64,11 @@ firmware:
           shield=corney_left
           west_args="-S studio-rpc-usb-uart"
           cmake_args="-DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y"
+          ;;
+        central-stock)
+          shield=corney_left
+          west_args=""
+          cmake_args="-DCONFIG_ZMK_GATT_LAYER_EXPOSITION=n"
           ;;
         central-legacy)
           shield=corney_left

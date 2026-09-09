@@ -178,7 +178,7 @@ module body() {
         difference() {
           linear_extrude(15.5) {
             minkowski() {
-              import("outline.svg");
+              import("outline_sp.svg");
               circle(2);
             }
           }
@@ -186,8 +186,8 @@ module body() {
           translate([0, 0, 9]) {
             linear_extrude(10) {
               minkowski() {
-                import("outline.svg");
-                circle(0.1);
+                import("outline_sp.svg");
+                circle(0.3);
               }
             }
           }
@@ -202,8 +202,8 @@ module body() {
 
         linear_extrude(12) {
           minkowski() {
-            import("outline_empty.svg");
-            circle(0.1);
+            import("outline_empty_sp.svg");
+            circle(0.3);
           }
         }
       }
@@ -217,7 +217,7 @@ module body() {
     translate([-10, 0, 0]) {
       rotate([0, -90, 0]) {
         rotate([0, 0, 45]) {
-          cylinder(h=4, r1=10, r2=1, center=true, $fn=4);
+          cylinder(h=3, r1=8.2, r2=1, center=true, $fn=4);
         }
       }
     }
@@ -347,4 +347,11 @@ module panel() {
 //cover();
 //panel();
 //holesInPanel();
-body();
+body();  
+
+//linear_extrude(12) {
+          //minkowski() {
+            //import("outline_empty_sp.svg");
+            //circle(0.3);
+          //}
+//        }
