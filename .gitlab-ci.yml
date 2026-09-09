@@ -92,7 +92,7 @@ firmware:
           ;;
       esac
       build_dir="$CI_PROJECT_DIR/.build/$TARGET"
-      west build -p always -s zmk/app -d "$build_dir" -b nice_nano@2.0.0 \
+      west build -p always -s zmk/app -d "$build_dir" -b nice_nano_v2 \
         $west_args -- \
         -DZMK_CONFIG="$CORNEY_CI_WEST_DIR/config" \
         -DZMK_EXTRA_MODULES="$CI_PROJECT_DIR" \
