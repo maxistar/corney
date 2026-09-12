@@ -84,7 +84,7 @@ module panelbuttons(fullheight = false) {
       cover();
     }
   } else {
-    translate([0, 0, 15]) {
+    translate([0, 0, 16]) {
       cover();
     }
   }
@@ -109,3 +109,16 @@ module twokeyboards(fullheight = false) {
 
 //panel();
 panelbuttonsmoved();
+
+sensorRadius = 20;
+sensolPosition = [67, 13, 0];
+
+// sensor
+showSensor = false;
+if (showSensor) {
+  translate([0, 0, 22]) {
+    translate(sensolPosition) {
+      circle(r=sensorRadius, $fn=50);
+    }
+  }
+}

@@ -1,14 +1,16 @@
 /**
  * [x] add screws islands
  * [x] add cover panel
- * [ ] design cover for shield
+ * [x] design cover for shield
  * [x] mark buttons positions
  * create a travel case
- * 
+ * move battery location to the side
+ * move sheld to the bottom
+ * optimize the globalMove usage
  */
 
 //hull() {
-$fn = 20;
+$fn = 50;
 magnet_radius = 4 / 2 + 0.1;
 globalMove = [-209.55, -99.5, 0];
 
@@ -16,6 +18,10 @@ holePosition1 = [161.15, 94.95, 0];
 holePosition2 = [161.1, 113.9, 0];
 holePosition3 = [237.1, 117.4, 0];
 holePosition4 = [250.87, 70.05, 0];
+wallThickness = 1.2;
+
+sensorRadius = 20;
+sensolPosition = [67, 13, 0];
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 10.5]) {
@@ -61,6 +67,11 @@ module legs() {
   legmove1 = [43, 21.0, 0];
   //legmove2 = [43, 11.0, 0];
   translate([0, 0, -5.0]) {
+
+    translate([75, 15, 0]) {
+      leg();
+    }
+
     translate(legmove1) {
       leg3();
     }
@@ -169,6 +180,26 @@ module stand() {
   }
 }
 
+module pcb() {
+  translate([0, 0, 12.5]) {
+    translate(globalMove) {
+      linear_extrude(1.5) {
+        import("outline.svg");
+      }
+    }
+  }
+}
+
+module bodyProjection() {
+  import("outline.svg");
+
+  translate(-globalMove) {
+    translate(sensolPosition) {
+      circle(r=sensorRadius - wallThickness / 2, $fn=50);
+    }
+  }
+}
+
 module body() {
 
   difference() {
@@ -178,15 +209,15 @@ module body() {
         difference() {
           linear_extrude(15.5) {
             minkowski() {
-              import("outline_sp.svg");
-              circle(2);
+              bodyProjection();
+              circle(wallThickness);
             }
           }
 
           translate([0, 0, 9]) {
             linear_extrude(10) {
               minkowski() {
-                import("outline_sp.svg");
+                bodyProjection();
                 circle(0.3);
               }
             }
@@ -200,9 +231,9 @@ module body() {
             cube([8, 30, 10]);
         }
 
-        linear_extrude(12) {
+        linear_extrude(11.5) {
           minkowski() {
-            import("outline_empty_sp.svg");
+            import("outline_empty.svg");
             circle(0.3);
           }
         }
@@ -211,18 +242,17 @@ module body() {
 
     bottom_panel();
 
-  // power slider cutout
-  translate([78, -15, 17]) {
-    cube([30, 8, 8], center=true);
-    translate([-10, 0, 0]) {
-      rotate([0, -90, 0]) {
-        rotate([0, 0, 45]) {
-          cylinder(h=3, r1=8.2, r2=1, center=true, $fn=4);
+    // power slider cutout
+    translate([77.2, -15, 17]) {
+      cube([30, 8, 8], center=true);
+      translate([-10, 0, 0]) {
+        rotate([0, -90, 0]) {
+          rotate([0, 0, 45]) {
+            cylinder(h=3, r1=9, r2=1, center=true, $fn=4);
+          }
         }
       }
     }
-  }
-
   }
 
   translate([0, 0, 8.5]) {
@@ -232,13 +262,13 @@ module body() {
   }
 
   // control helpers
-  //translate(globalMove) {
-  //  linear_extrude(height=30) {
-  //    import("controls.svg");
-  //  }
-  //}
-
-
+  if (false) {
+    translate(globalMove) {
+      linear_extrude(height=30) {
+        import("controls.svg");
+      }
+    }
+  }
 }
 
 //translate([0, 230, 7])
@@ -284,20 +314,17 @@ module holesInPanel() {
 module stands() {
   holeRadius = 1;
 
-  translate([0, 0, 0]) {
+  translate(holePosition1)
+    stand();
 
-    translate(holePosition1)
-      stand();
+  translate(holePosition2)
+    stand();
 
-    translate(holePosition2)
-      stand();
+  translate(holePosition3)
+    stand();
 
-    translate(holePosition3)
-      stand();
-
-    translate(holePosition4)
-      stand();
-  }
+  translate(holePosition4)
+    stand();
 }
 
 module panel() {
@@ -345,13 +372,31 @@ module panel() {
 //outline();
 
 //cover();
-//panel();
+
+if (false) {
+  panel();
+}
 //holesInPanel();
-body();  
+
+//difference() {
+if (true) {
+  union() {
+    body();
+    //pcb();
+  }
+}
+
+//translate([-100,0,0])
+//inspection cube
+//cube([100, 100, 100], center=true);
+
+//}
+
+// bodyProjection();
 
 //linear_extrude(12) {
-          //minkowski() {
-            //import("outline_empty_sp.svg");
-            //circle(0.3);
-          //}
+//minkowski() {
+//import("outline_empty_sp.svg");
+//circle(0.3);
+//}
 //        }
