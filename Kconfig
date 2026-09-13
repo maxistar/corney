@@ -41,6 +41,14 @@ config ZMK_KEYBOARD_HELPER_EVENT_QUEUE_SIZE
     range 4 64
     default 16
 
+config ZMK_KEYBOARD_HELPER_TEST_DROP_SECOND_SUBSCRIBER
+    bool "TEST ONLY: drop alternate frames for the second subscriber"
+    default n
+    help
+      Acceptance-only transport fault injection. Every second non-snapshot
+      frame for the second subscriber is acknowledged locally without being
+      sent. Release firmware configurations must leave this disabled.
+
 endif # ZMK_KEYBOARD_HELPER_EXTENSION
 
 endif # ZMK_GATT_LAYER_EXPOSITION

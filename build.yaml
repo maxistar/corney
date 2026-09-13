@@ -7,6 +7,10 @@ include:
     artifact-name: corney-left-enhanced
   - board: nice_nano_v2
     shield: corney_left
+    cmake-args: -DCONFIG_ZMK_GATT_LAYER_EXPOSITION=n
+    artifact-name: corney-left-stock
+  - board: nice_nano_v2
+    shield: corney_left
     cmake-args: -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=n
     artifact-name: corney-left-legacy
   - board: nice_nano_v2
