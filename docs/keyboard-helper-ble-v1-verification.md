@@ -157,7 +157,15 @@ battery-impact checks remain pending until matching images are flashed.
 
 The first hardware movement check found the installed sensor's X direction reversed while Y was
 correct. The rebuilt central images enable the tested `invert-x` transform; same-direction
-right/left cursor movement remains pending confirmation after flashing the corrected left image.
+right/left cursor movement was confirmed after flashing the corrected left image.
+
+### Cirque hardware acceptance (2026-09-06)
+
+The corrected central image and matching peripheral image were tested on the assembled keyboard.
+The installed trackpad reports usable movement and primary tap as expected, including matching
+horizontal finger/cursor direction with unchanged vertical direction. The tester confirmed the
+remaining idle/resume and keyboard regression checklist as working, so the 8 ms polling interval
+is accepted without adjustment and this change is ready for archival.
 
 ### Rollback
 
