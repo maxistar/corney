@@ -161,8 +161,8 @@ module cover() {
   }
 }
 
-if (false){
-cover();
+if (false) {
+  cover();
 }
 
 if (true) {
