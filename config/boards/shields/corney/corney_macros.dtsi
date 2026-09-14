@@ -130,6 +130,20 @@
                      <&bt BT_SEL 1>;
         };
 
+        to_mac2: to_mac2 {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&to DEFAULT_MAC>,
+                     <&bt BT_SEL 2>;
+        };
+
+        to_mac3: to_mac3 {
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&to DEFAULT_MAC>,
+                     <&bt BT_SEL 3>;
+        };
+
         to_android: to_android {
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;

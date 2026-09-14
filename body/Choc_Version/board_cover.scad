@@ -20,6 +20,8 @@ wallThickness = 1.2;
 resetButtonPosition = [56.15, -13.7, 0];
 resetButtonRadius = 2;
 
+hoverHeight = 13;
+
 module bodyProjection() {
   import("outline.svg");
 
@@ -54,14 +56,14 @@ module cover() {
       difference() {
 
         union() {
-          linear_extrude(8) {
+          linear_extrude(hoverHeight) {
             minkowski() {
               bodyProjection();
               circle(wallThickness);
             }
           }
 
-          linear_extrude(9.4) {
+          linear_extrude(14) {
             translate(-globalMove) {
               translate(sensolPosition) {
                 circle(r=sensorRadius + wallThickness / 2, $fn=50);
@@ -72,7 +74,7 @@ module cover() {
 
         union() {
           translate([0, 0, -1]) {
-            linear_extrude(8) {
+            linear_extrude(hoverHeight) {
               minkowski() {
                 bodyProjection();
                 circle(0.3);
@@ -85,7 +87,7 @@ module cover() {
     cuttingcubes();
 
     // sensor cutout
-    translate([0, 0, 8.5]) {
+    translate([0, 0, hoverHeight]) {
       translate(sensolPosition) {
         linear_extrude(5) {
           circle(r=sensorRadius + 0.1, $fn=50);
@@ -114,12 +116,23 @@ module cover() {
     //translate([-58, 20, 5]) {
     //  cube([12, 40, 11], center=true);
     //}
+
+    // USB-C cut
+    translate([60, 28, 5]) {
+      rotate([0, 90, 90]) {
+        hull() {
+          cylinder(h=10, r=2.5, center=false);
+          translate([0, 7, 0])
+            cylinder(h=10, r=2.5, center=false);
+        }
+      }
+    }
   }
 
   // reset button walls
   translate([0, 0, 3]) {
     translate(resetButtonPosition) {
-      linear_extrude(4) {
+      linear_extrude(9) {
 
         difference() {
           circle(r=resetButtonRadius + wallThickness, $fn=50);
@@ -140,7 +153,7 @@ module cover() {
       translate([0, 0, -1]) {
         translate(globalMove) {
           difference() {
-            linear_extrude(8) {
+            linear_extrude(hoverHeight) {
               minkowski() {
                 import("outline.svg");
                 circle(wallThickness);
@@ -161,15 +174,15 @@ module cover() {
   }
 }
 
-if (false) {
+if (true) {
   cover();
 }
 
-if (true) {
+if (false) {
   // reset button
   translate([0, 0, 3]) {
     translate(resetButtonPosition) {
-      linear_extrude(5) {
+      linear_extrude(11) {
         circle(r=resetButtonRadius - 0.2, $fn=50);
       }
     }
