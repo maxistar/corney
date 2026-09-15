@@ -52,16 +52,20 @@ module bottom_panel(hide_side_magnets = false) {
 
 module magnets2(hide_side_magnets1 = false) {
   leg1 = [64.4, -21.0, 15];
-  translate(leg1)
+  translate(leg1) {
     cylinder(h=40, r=magnet_radius, center=true);
+  }
 
   if (!hide_side_magnets1) {
-    rotate([0, 0, 180])
-      translate(leg1)
+    rotate([0, 0, 180]) {
+      translate(leg1) {
         cylinder(h=40, r=magnet_radius, center=true);
+      }
+    }
   }
-  translate([0, -22, 15])
+  translate([0, -22, 15]) {
     cylinder(h=40, r=magnet_radius, center=true);
+  }
 }
 
 module battery() {
@@ -346,6 +350,23 @@ module stands() {
     stand();
 }
 
+module hooksBlock(offset = 0) {
+
+  hookHeight = 0.6;
+
+  translate([48, 30, -1 + hookHeight / 2])
+    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+
+  translate([48, -10, -1 + hookHeight / 2])
+    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+
+  translate([51, -17.5, -1 + hookHeight / 2])
+    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+
+  translate([64, -25, -1 + hookHeight / 2])
+    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+}
+
 module panel() {
 
   translate([0, 0, 14]) {
@@ -375,6 +396,11 @@ module panel() {
                 cube([80, 80, 50], center=true);
               }
             }
+          }
+        }
+        translate(-globalMove) {
+          translate([0, 0, 1]) {
+            hooksBlock(0.2);
           }
         }
       }

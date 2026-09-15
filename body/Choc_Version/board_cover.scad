@@ -1,6 +1,16 @@
 use <body_thin.scad>
 
 /**
+* [ ] screw plates
+* [x] side hooks
+*
+*
+*
+*
+*
+*/
+
+/**
  * TODO
  * - [x] sensor plate
  *.- reset button
@@ -12,21 +22,46 @@ $fn = 50;
 cube1Rotation = [-15, 0, -30];
 cube1Offset = [32, -127.5, 0];
 
+cube2Rotation = [0, 0, 0];
+cube2Offset = [-56.6, 0, 0];
+
 resetButtonPosition = [56.15, -13.7, 0];
 resetButtonRadius = 2;
 
 hoverHeight = 13;
 
 module cuttingcubes() {
-  translate([-56.6, 0, 0]) {
-    rotate([0, 10, 0]) {
-      cube([200, 200, 200], center=true);
+  // cutting cube near main cluster
+  translate(cube2Offset) {
+    rotate([0, 0, 0]) {
+      cube([206, 200, 200], center=true);
     }
   }
 
+  // cutting cubes near the thumb cluster
   translate(cube1Offset) {
     rotate(cube1Rotation) {
       cube([200, 200, 200], center=true);
+    }
+  }
+}
+
+module verticalWall() {
+  difference() {
+    // cutting cube near main cluster
+    translate([1, 0, 0]) {
+      translate(cube2Offset) {
+        rotate([0, 0, 0]) {
+          cube([206, 200, 200], center=true);
+        }
+      }
+    }
+
+    // cutting cube near main cluster
+    translate(cube2Offset) {
+      rotate([0, 0, 0]) {
+        cube([206, 210, 210], center=true);
+      }
     }
   }
 }
@@ -45,7 +80,7 @@ module cover() {
             }
           }
 
-          linear_extrude(14) {
+          linear_extrude(hoverHeight) {
             translate(-getGlobalMove()) {
               translate(getSensorPosition()) {
                 circle(r=getSensorRadius() + getWallThickness() / 2);
@@ -55,7 +90,7 @@ module cover() {
         }
 
         union() {
-          translate([0, 0, -1]) {
+          translate([0, 0, -1.5]) {
             linear_extrude(hoverHeight) {
               minkowski() {
                 bodyProjection();
@@ -70,9 +105,11 @@ module cover() {
 
     // sensor cutout
     translate([0, 0, hoverHeight]) {
-      translate(getSensorPosition()) {
-        linear_extrude(5) {
-          circle(r=getSensorRadius() + 0.1);
+      translate([0, 0, -1]) {
+        translate(getSensorPosition()) {
+          linear_extrude(5) {
+            circle(r=getSensorRadius() + 0.1);
+          }
         }
       }
     }
@@ -144,15 +181,48 @@ module cover() {
       }
       cuttingcubes();
     }
-    translate([0, 1, 0]) {
-      translate(cube1Offset) {
-        rotate(cube1Rotation) {
-          cube([200, 200, 200], center=true);
+    union() {
+      translate([0, 1, 0]) {
+        translate(cube1Offset) {
+          rotate(cube1Rotation) {
+            cube([200, 200, 200], center=true);
+          }
+        }
+      }
+
+      verticalWall();
+    }
+  }
+
+  // round border
+  translate([0, 0, -1]) {
+
+    translate(getSensorPosition()) {
+
+      difference() {
+        linear_extrude(hoverHeight) {
+          circle(r=getSensorRadius());
+        }
+
+        linear_extrude(hoverHeight * 3, center=true) {
+          circle(r=getSensorRadius() - getWallThickness() / 2);
+        }
+
+        translate([-49, 0, 0]) {
+          cube([100, 100, 100], center=true);
         }
       }
     }
   }
+
+  // hooks
+  intersection() {
+    hooksBlock();
+    cuttingcubes();
+  }
 }
+
+
 
 module resetButton() {
   // reset button
