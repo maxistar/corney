@@ -12,25 +12,10 @@ $fn = 50;
 cube1Rotation = [-15, 0, -30];
 cube1Offset = [32, -127.5, 0];
 
-globalMove = [-209.55, -99.5, 0];
-sensorRadius = 20;
-sensolPosition = [67, 13, 0];
-wallThickness = 1.2;
-
 resetButtonPosition = [56.15, -13.7, 0];
 resetButtonRadius = 2;
 
 hoverHeight = 13;
-
-module bodyProjection() {
-  import("outline.svg");
-
-  translate(-globalMove) {
-    translate(sensolPosition) {
-      circle(r=sensorRadius - wallThickness / 2, $fn=50);
-    }
-  }
-}
 
 module cuttingcubes() {
   translate([-56.6, 0, 0]) {
@@ -48,25 +33,22 @@ module cuttingcubes() {
 
 module cover() {
 
-  globalMove = [-209.55, -99.5, 0];
-  wallThickness = 1.2;
-
   difference() {
-    translate(globalMove) {
+    translate(getGlobalMove()) {
       difference() {
 
         union() {
           linear_extrude(hoverHeight) {
             minkowski() {
               bodyProjection();
-              circle(wallThickness);
+              circle(getWallThickness());
             }
           }
 
           linear_extrude(14) {
-            translate(-globalMove) {
-              translate(sensolPosition) {
-                circle(r=sensorRadius + wallThickness / 2, $fn=50);
+            translate(-getGlobalMove()) {
+              translate(getSensorPosition()) {
+                circle(r=getSensorRadius() + getWallThickness() / 2);
               }
             }
           }
@@ -88,18 +70,18 @@ module cover() {
 
     // sensor cutout
     translate([0, 0, hoverHeight]) {
-      translate(sensolPosition) {
+      translate(getSensorPosition()) {
         linear_extrude(5) {
-          circle(r=sensorRadius + 0.1, $fn=50);
+          circle(r=getSensorRadius() + 0.1);
         }
       }
     }
 
     // sensor cutout vertical
     translate([0, 0, 6]) {
-      translate(sensolPosition) {
+      translate(getSensorPosition()) {
         linear_extrude(10) {
-          circle(r=sensorRadius - 2, $fn=50);
+          circle(r=getSensorRadius() - 2);
         }
       }
     }
@@ -108,7 +90,7 @@ module cover() {
     translate([0, 0, 6]) {
       translate(resetButtonPosition) {
         linear_extrude(10) {
-          circle(r=resetButtonRadius, $fn=50);
+          circle(r=resetButtonRadius);
         }
       }
     }
@@ -118,7 +100,7 @@ module cover() {
     //}
 
     // USB-C cut
-    translate([60, 28, 5]) {
+    translate([60, 28, 3.5]) {
       rotate([0, 90, 90]) {
         hull() {
           cylinder(h=10, r=2.5, center=false);
@@ -135,8 +117,8 @@ module cover() {
       linear_extrude(9) {
 
         difference() {
-          circle(r=resetButtonRadius + wallThickness, $fn=50);
-          circle(r=resetButtonRadius, $fn=50);
+          circle(r=resetButtonRadius + getWallThickness());
+          circle(r=resetButtonRadius);
         }
       }
     }
@@ -151,13 +133,11 @@ module cover() {
   intersection() {
     difference() {
       translate([0, 0, -1]) {
-        translate(globalMove) {
-          difference() {
-            linear_extrude(hoverHeight) {
-              minkowski() {
-                import("outline.svg");
-                circle(wallThickness);
-              }
+        translate(getGlobalMove()) {
+          linear_extrude(hoverHeight) {
+            minkowski() {
+              import("outline.svg");
+              circle(getWallThickness());
             }
           }
         }
@@ -174,25 +154,29 @@ module cover() {
   }
 }
 
+module resetButton() {
+  // reset button
+  translate([0, 0, 0]) {
+    translate(resetButtonPosition) {
+      linear_extrude(13) {
+        circle(r=resetButtonRadius - 0.2);
+      }
+    }
+  }
+
+  translate([0, 0, -1]) {
+    translate(resetButtonPosition) {
+      linear_extrude(1) {
+        circle(r=resetButtonRadius + getWallThickness());
+      }
+    }
+  }
+}
+
 if (true) {
   cover();
 }
 
 if (false) {
-  // reset button
-  translate([0, 0, 3]) {
-    translate(resetButtonPosition) {
-      linear_extrude(11) {
-        circle(r=resetButtonRadius - 0.2, $fn=50);
-      }
-    }
-  }
-
-  translate([0, 0, 2]) {
-    translate(resetButtonPosition) {
-      linear_extrude(1) {
-        circle(r=resetButtonRadius + wallThickness, $fn=50);
-      }
-    }
-  }
+  resetButton();
 }

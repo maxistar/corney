@@ -21,7 +21,12 @@ holePosition4 = [250.87, 70.05, 0];
 wallThickness = 1.2;
 
 sensorRadius = 20;
-sensolPosition = [67, 13, 0];
+sensorPosition = [67, 13];
+
+function getWallThickness() = wallThickness;
+function getGlobalMove() = globalMove;
+function getSensorPosition() = sensorPosition;
+function getSensorRadius() = sensorRadius;
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 10.5]) {
@@ -182,11 +187,25 @@ module stand() {
 
 module pcb() {
   translate([0, 0, 12.5]) {
-    translate(globalMove) {
-      linear_extrude(1.5) {
-        import("outline.svg");
-      }
+    linear_extrude(1.5) {
+      psbProjectionNormalized();
     }
+  }
+}
+
+module bodyProjectionNormalized() {
+  union() {
+    psbProjectionNormalized();
+
+    translate(sensorPosition) {
+      circle(r=sensorRadius - wallThickness / 2);
+    }
+  }
+}
+
+module psbProjectionNormalized() {
+  translate(globalMove) {
+    import("outline.svg");
   }
 }
 
@@ -194,7 +213,7 @@ module bodyProjection() {
   import("outline.svg");
 
   translate(-globalMove) {
-    translate(sensolPosition) {
+    translate(sensorPosition) {
       circle(r=sensorRadius - wallThickness / 2, $fn=50);
     }
   }
@@ -382,9 +401,10 @@ if (false) {
 if (true) {
   union() {
     body();
-    //pcb();
   }
 }
+
+//pcb();
 
 //translate([-100,0,0])
 //inspection cube
