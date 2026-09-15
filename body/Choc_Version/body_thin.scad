@@ -53,15 +53,15 @@ module bottom_panel(hide_side_magnets = false) {
 module magnets2(hide_side_magnets1 = false) {
   leg1 = [64.4, -21.0, 15];
   translate(leg1)
-    cylinder(h=40, r=magnet_radius, $fn=50, center=true);
+    cylinder(h=40, r=magnet_radius, center=true);
 
   if (!hide_side_magnets1) {
     rotate([0, 0, 180])
       translate(leg1)
-        cylinder(h=40, r=magnet_radius, $fn=50, center=true);
+        cylinder(h=40, r=magnet_radius, center=true);
   }
   translate([0, -22, 15])
-    cylinder(h=40, r=magnet_radius, $fn=50, center=true);
+    cylinder(h=40, r=magnet_radius, center=true);
 }
 
 module battery() {
@@ -214,7 +214,7 @@ module bodyProjection() {
 
   translate(-globalMove) {
     translate(sensorPosition) {
-      circle(r=sensorRadius - wallThickness / 2, $fn=50);
+      circle(r=sensorRadius - wallThickness / 2);
     }
   }
 }

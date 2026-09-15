@@ -57,7 +57,7 @@ showSensor = true;
 if (showSensor) {
   translate([0, 0, 27]) {
     translate(getSensorPosition()) {
-      circle(r=getSensorRadius(), $fn=50);
+      circle(r=getSensorRadius());
     }
   }
 }
