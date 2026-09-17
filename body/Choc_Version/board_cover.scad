@@ -1,7 +1,7 @@
 use <body_thin.scad>
 
 /**
-* [ ] screw plates
+* [x] screw plates
 * [x] side hooks
 *
 *
@@ -220,9 +220,66 @@ module cover() {
     hooksBlock();
     cuttingcubes();
   }
+
+  // screw holders
+  screwHolders();
 }
 
+module screwHolders() {
 
+  holderPosition1 = getHolderPositions()[0];
+  holderPosition2 = getHolderPositions()[1];
+  
+  difference() {
+    intersection() {
+      linear_extrude(height=40, center=true) {
+        translate(getSensorPosition()) {
+          circle(r=getSensorRadius() + getWallThickness() / 2);
+        }
+      }
+      union() {
+        translate(holderPosition1) {
+          cylinder(h=5, r=3, center=true);
+        }
+
+        hull() {
+          translate([0, 0, 1]) {
+            translate(holderPosition1) {
+              cylinder(h=5, r=3, center=true);
+            }
+          }
+
+          translate([73, -10, 10]) {
+            cylinder(h=5, r=3, center=true);
+          }
+        }
+
+        translate(holderPosition2) {
+          cylinder(h=5, r=3, center=true);
+        }
+
+        hull() {
+          translate([0, 0, 1]) {
+            translate(holderPosition2) {
+              cylinder(h=5, r=3, center=true);
+            }
+          }
+
+          translate([73, 37, 10]) {
+            cylinder(h=5, r=3, center=true);
+          }
+        }
+      }
+    }
+
+    translate(holderPosition2) {
+      cylinder(h=500, r=0.5, center=true);
+    }
+    translate(holderPosition1) {
+      cylinder(h=500, r=0.5, center=true);
+    }
+  }
+}
 
 module resetButton() {
   // reset button

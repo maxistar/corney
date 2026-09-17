@@ -23,10 +23,14 @@ wallThickness = 1.2;
 sensorRadius = 20;
 sensorPosition = [67, 13];
 
+holderPosition1 = [73, -1, 0];
+holderPosition2 = [73, 27, 0];
+
 function getWallThickness() = wallThickness;
 function getGlobalMove() = globalMove;
 function getSensorPosition() = sensorPosition;
 function getSensorRadius() = sensorRadius;
+function getHolderPositions() = [holderPosition1, holderPosition2];
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 10.5]) {
@@ -276,11 +280,54 @@ module body() {
         }
       }
     }
+
+    // screw for cover
+    translate(holderPosition1) {
+      cylinder(h=200, r=3, center=true);
+    }
+    translate(holderPosition2) {
+      cylinder(h=200, r=3, center=true);
+    }
   }
 
   translate([0, 0, 8.5]) {
     translate(globalMove) {
       stands();
+    }
+  }
+
+  //crew holder stands
+  holderHeight = 8;
+  translate([0, 0, 5]) {
+    difference() {
+      union() {
+        translate(holderPosition1) {
+          cylinder(h=holderHeight, r=3 + wallThickness);
+        }
+        translate(holderPosition2) {
+          cylinder(h=holderHeight, r=3 + wallThickness);
+        }
+      }
+
+      translate([0, 0, -1]) {
+        union() {
+          translate(holderPosition1) {
+            cylinder(h=holderHeight, r=3);
+          }
+          translate(holderPosition2) {
+            cylinder(h=holderHeight, r=3);
+          }
+        }
+      }
+
+              union() {
+          translate(holderPosition1) {
+            cylinder(h=100, r=1.5, center=true);
+          }
+          translate(holderPosition2) {
+            cylinder(h=100, r=1.5, center=true);
+          }
+        }
     }
   }
 
@@ -355,16 +402,16 @@ module hooksBlock(offset = 0) {
   hookHeight = 0.6;
 
   translate([48, 30, -1 + hookHeight / 2])
-    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+    cylinder(h=0.6 + offset, r1=3 + offset, r2=2 + offset, center=true);
 
   translate([48, -10, -1 + hookHeight / 2])
-    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+    cylinder(h=0.6 + offset, r1=3 + offset, r2=2 + offset, center=true);
 
   translate([51, -17.5, -1 + hookHeight / 2])
-    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+    cylinder(h=0.6 + offset, r1=3 + offset, r2=2 + offset, center=true);
 
   translate([64, -25, -1 + hookHeight / 2])
-    cylinder(h=0.6+offset, r1=3+offset, r2=2+offset, center=true);
+    cylinder(h=0.6 + offset, r1=3 + offset, r2=2 + offset, center=true);
 }
 
 module panel() {
