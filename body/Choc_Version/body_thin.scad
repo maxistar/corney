@@ -10,7 +10,7 @@
  */
 
 //hull() {
-$fn = 50;
+$fn = 150;
 magnet_radius = 4 / 2 + 0.1;
 globalMove = [-209.55, -99.5, 0];
 
