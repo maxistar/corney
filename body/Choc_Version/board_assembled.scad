@@ -22,7 +22,7 @@ module panelbuttons(fullheight = false) {
       resetButtonSmall();
     }
   } else {
-    translate([0, 0, 16]) {
+    translate([0, 0, 15.5]) {
       cover();
       resetButtonSmall();
     }

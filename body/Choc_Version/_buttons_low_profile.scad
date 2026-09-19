@@ -54,13 +54,13 @@ module buttons() {
     }
 
     translate([30, -32, 0]) {
-      rotate([0, 0, -8]) {
+      rotate([0, 0, -13]) {
         button();
       }
     }
 
-    translate([10, -30, 0]) {
-      rotate([0, 0, -7]) {
+    translate([8.2, -29, 0]) {
+      rotate([0, 0, -0]) {
         button();
       }
     }

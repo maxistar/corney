@@ -10,7 +10,7 @@
  */
 
 //hull() {
-$fn = 40;
+$fn = 150;
 magnet_radius = 4 / 2 + 0.1;
 globalMove = [-209.55, -99.5, 0];
 
@@ -23,10 +23,13 @@ wallThickness = 1.2;
 sensorRadius = 20;
 sensorPosition = [67, 13];
 
+screwHolderPosition = [64.5, 43, 15];
+
 function getWallThickness() = wallThickness;
 function getGlobalMove() = globalMove;
 function getSensorPosition() = sensorPosition;
 function getSensorRadius() = sensorRadius;
+function getScrewHolderPosition() = screwHolderPosition;
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 10.5]) {
@@ -200,6 +203,12 @@ module pcb() {
 module bodyProjectionNormalized() {
   union() {
     psbProjectionNormalized();
+  }
+}
+
+module bodyProjectionNormalizedTouchpad() {
+  union() {
+    psbProjectionNormalized();
 
     translate(sensorPosition) {
       circle(r=sensorRadius - wallThickness / 2);
@@ -277,18 +286,20 @@ module body() {
 
     bottom_panel();
 
-    // power slider cutout
-    translate([77.2, -15, 17]) {
-      cube([30, 8, 8], center=true);
-      translate([-10, 0, 0]) {
-        rotate([0, -90, 0]) {
-          rotate([0, 0, 45]) {
-            cylinder(h=3, r1=9, r2=1, center=true, $fn=4);
-          }
+    powerSwitchCutOut();
+
+    // cover screw
+    translate(screwHolderPosition) {
+      translate([0, -4, 0])
+        rotate([90, 0, 0]) {
+          cylinder(h=10, r=1.8, center=true);
+          cylinder(h=20, r=0.3, center=true);
         }
-      }
     }
+
   }
+
+
 
   translate([0, 0, 8.5]) {
     translate(globalMove) {
@@ -301,6 +312,20 @@ module body() {
     translate(globalMove) {
       linear_extrude(height=30) {
         import("controls.svg");
+      }
+    }
+  }
+}
+
+module powerSwitchCutOut() {
+  // power slider cutout
+  translate([77.2, -15, 17]) {
+    cube([30, 8, 8], center=true);
+    translate([-10, 0, 0]) {
+      rotate([0, -90, 0]) {
+        rotate([0, 0, 45]) {
+          cylinder(h=3, r1=9, r2=1, center=true, $fn=4);
+        }
       }
     }
   }

@@ -23,7 +23,7 @@ cube1Rotation = [-15, 0, -30];
 cube1Offset = [32, -127.5, 0];
 
 cube2Rotation = [0, 0, 0];
-cube2Offset = [-56.6, 0, 0];
+cube2Offset = [-56.4, 0, 0];
 
 resetButtonPosition = [56.15, -13.7, 0];
 resetButtonRadius = 2;
@@ -110,7 +110,19 @@ module innerWalls(coverHeight) {
 
       verticalWall();
     }
+
+          translate([0, 0, -1]) {
+      linear_extrude(coverHeight) {
+        minkowski() {
+          bodyProjectionNormalized();
+          circle(0.3);
+        }
+      }
+    }
   }
+
+
+
 }
 
 module resetButtonWalls(coverHeight) {
@@ -118,7 +130,7 @@ module resetButtonWalls(coverHeight) {
   // reset button walls
   translate([0, 0, 3]) {
     translate(resetButtonPosition) {
-      linear_extrude(coverHeight-3) {
+      linear_extrude(coverHeight - 3) {
 
         difference() {
           circle(r=resetButtonRadius + getWallThickness());
@@ -131,29 +143,28 @@ module resetButtonWalls(coverHeight) {
 
 module cover() {
 
+
+
   difference() {
-    translate(getGlobalMove()) {
-      difference() {
 
-        linear_extrude(coverHeight) {
-          minkowski() {
-            bodyProjection();
-            circle(getWallThickness());
-          }
-        }
+    linear_extrude(coverHeight) {
+      minkowski() {
+        bodyProjectionNormalized();
+        circle(getWallThickness());
+      }
+    }
 
-        union() {
-          translate([0, 0, -1.5]) {
-            linear_extrude(coverHeight) {
-              minkowski() {
-                bodyProjection();
-                circle(0.3);
-              }
-            }
-          }
+    translate([0, 0, -1.5]) {
+      linear_extrude(coverHeight) {
+        minkowski() {
+          bodyProjectionNormalized();
+          circle(0.3);
         }
       }
     }
+
+    powerSwitchCutOutMoved();
+
     cuttingcubes();
 
     // reset button cutout
@@ -170,7 +181,13 @@ module cover() {
     //}
 
     usbPort();
+
+    screwCutOff();
+
+
   }
+
+
 
   resetButtonWalls(coverHeight);
 
@@ -182,11 +199,50 @@ module cover() {
 
   innerWalls(coverHeight);
 
+  // outer walls
+
+  difference() {
+    translate([0, 0, -1]) {
+      linear_extrude(coverHeight) {
+        translate(getGlobalMove()) {
+          minkowski() {
+            import("outline_empty.svg");
+            circle(0.3);
+          }
+        }
+      }
+    }
+    cuttingcubes();
+
+    powerSwitchCutOutMoved();
+    usbPort();
+    screwCutOff();
+  }
+
+
   // hooks
   intersection() {
     hooksBlock();
     cuttingcubes();
   }
+}
+
+module screwCutOff() {
+  screwHolderPosition = getScrewHolderPosition();
+    // cover screw
+    translate(screwHolderPosition) {
+      translate([0, -4, -coverHeight-6.5])
+        rotate([90, 0, 0]) {
+          cylinder(h=10, r=1.8, center=true);
+          cylinder(h=20, r=0.3, center=true);
+        }
+    }
+
+}
+
+module powerSwitchCutOutMoved() {
+  translate([0, 0, -21])
+    powerSwitchCutOut();
 }
 
 if (true) {

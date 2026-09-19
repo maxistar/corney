@@ -2,7 +2,6 @@ use <body_thin.scad>
 use <body_thin_touchpad.scad>
 use <board_cover.scad>
 
-
 coverHeight = 13;
 resetButtonPosition = getResetButtonPosition();
 resetButtonRadius = getResetButtonRadius();
@@ -10,38 +9,26 @@ resetButtonRadius = getResetButtonRadius();
 module cover_touchpad() {
 
   difference() {
-    translate(getGlobalMove()) {
-      difference() {
 
-        union() {
-          linear_extrude(coverHeight) {
-            minkowski() {
-              bodyProjectionTouchpad();
-              circle(getWallThickness());
-            }
-          }
+    difference() {
 
-          linear_extrude(coverHeight) {
-            translate(-getGlobalMove()) {
-              translate(getSensorPosition()) {
-                circle(r=getSensorRadius() + getWallThickness() / 2);
-              }
-            }
-          }
+      linear_extrude(coverHeight) {
+        minkowski() {
+          bodyProjectionNormalizedTouchpad();
+          circle(getWallThickness());
         }
+      }
 
-        union() {
-          translate([0, 0, -1.5]) {
-            linear_extrude(coverHeight) {
-              minkowski() {
-                bodyProjectionTouchpad();
-                circle(0.3);
-              }
-            }
+      translate([0, 0, -1.5]) {
+        linear_extrude(coverHeight) {
+          minkowski() {
+            bodyProjectionNormalizedTouchpad();
+            circle(0.3);
           }
         }
       }
     }
+
     cuttingcubes();
 
     // sensor cutout
@@ -78,9 +65,7 @@ module cover_touchpad() {
     //}
 
     usbPort();
-
   }
-
 
   resetButtonWalls(coverHeight);
 
@@ -91,7 +76,6 @@ module cover_touchpad() {
   //}
 
   innerWalls(coverHeight);
-
 
   // round border
   translate([0, 0, -1]) {
@@ -120,8 +104,6 @@ module cover_touchpad() {
     cuttingcubes();
   }
 
-
-
   // screw holders
   screwHolders();
 }
@@ -130,7 +112,7 @@ module screwHolders() {
 
   holderPosition1 = getHolderPositions()[0];
   holderPosition2 = getHolderPositions()[1];
-  
+
   difference() {
     intersection() {
       linear_extrude(height=40, center=true) {
@@ -181,6 +163,5 @@ module screwHolders() {
     }
   }
 }
-
 
 cover_touchpad();

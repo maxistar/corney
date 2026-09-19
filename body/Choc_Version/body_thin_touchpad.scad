@@ -1,15 +1,12 @@
 use <body_thin.scad>
 
-
 holderPosition1 = [73, -1, 0];
 holderPosition2 = [73, 27, 0];
 function getHolderPositions() = [holderPosition1, holderPosition2];
 
-
 module bodyTouchpad() {
   globalMove = getGlobalMove();
   wallThickness = getWallThickness();
-
 
   difference() {
     translate(globalMove) {
@@ -42,7 +39,15 @@ module bodyTouchpad() {
 
         linear_extrude(11.5) {
           minkowski() {
-            import("outline_empty.svg");
+            difference() {
+              import("outline_empty.svg");
+
+              translate(-getGlobalMove()) {
+                translate(getSensorPosition()) {
+                  circle(r=getSensorRadius());
+                }
+              }
+            }
             circle(0.3);
           }
         }
@@ -122,6 +127,5 @@ module bodyTouchpad() {
     }
   }
 }
-
 
 bodyTouchpad();
