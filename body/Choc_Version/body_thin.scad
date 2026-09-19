@@ -10,7 +10,7 @@
  */
 
 //hull() {
-$fn = 150;
+$fn = 40;
 magnet_radius = 4 / 2 + 0.1;
 globalMove = [-209.55, -99.5, 0];
 
@@ -23,14 +23,10 @@ wallThickness = 1.2;
 sensorRadius = 20;
 sensorPosition = [67, 13];
 
-holderPosition1 = [73, -1, 0];
-holderPosition2 = [73, 27, 0];
-
 function getWallThickness() = wallThickness;
 function getGlobalMove() = globalMove;
 function getSensorPosition() = sensorPosition;
 function getSensorRadius() = sensorRadius;
-function getHolderPositions() = [holderPosition1, holderPosition2];
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 10.5]) {
@@ -82,7 +78,7 @@ module legs() {
   translate([0, 0, -5.0]) {
 
     translate([75, 15, 0]) {
-      leg();
+      cube([12, 3.5, 1], center=true);
     }
 
     translate(legmove1) {
@@ -217,7 +213,19 @@ module psbProjectionNormalized() {
   }
 }
 
-module bodyProjection() {
+module bodyProjection(showTouchpad = false) {
+  import("outline.svg");
+
+  if (showTouchpad) {
+    translate(-globalMove) {
+      translate(sensorPosition) {
+        circle(r=sensorRadius - wallThickness / 2);
+      }
+    }
+  }
+}
+
+module bodyProjectionTouchpad() {
   import("outline.svg");
 
   translate(-globalMove) {
@@ -280,54 +288,11 @@ module body() {
         }
       }
     }
-
-    // screw for cover
-    translate(holderPosition1) {
-      cylinder(h=200, r=3, center=true);
-    }
-    translate(holderPosition2) {
-      cylinder(h=200, r=3, center=true);
-    }
   }
 
   translate([0, 0, 8.5]) {
     translate(globalMove) {
       stands();
-    }
-  }
-
-  //crew holder stands
-  holderHeight = 8;
-  translate([0, 0, 5]) {
-    difference() {
-      union() {
-        translate(holderPosition1) {
-          cylinder(h=holderHeight, r=3 + wallThickness);
-        }
-        translate(holderPosition2) {
-          cylinder(h=holderHeight, r=3 + wallThickness);
-        }
-      }
-
-      translate([0, 0, -1]) {
-        union() {
-          translate(holderPosition1) {
-            cylinder(h=holderHeight, r=3);
-          }
-          translate(holderPosition2) {
-            cylinder(h=holderHeight, r=3);
-          }
-        }
-      }
-
-              union() {
-          translate(holderPosition1) {
-            cylinder(h=100, r=1.5, center=true);
-          }
-          translate(holderPosition2) {
-            cylinder(h=100, r=1.5, center=true);
-          }
-        }
     }
   }
 

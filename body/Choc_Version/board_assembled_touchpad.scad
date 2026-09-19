@@ -1,12 +1,14 @@
 use <body_thin.scad>
-use <board_cover.scad>
+use <body_thin_touchpad.scad>
+use <board_cover_touchpad.scad>
 use <reset_button.scad>
 use <_buttons_low_profile.scad>
 use <_auxiliary.scad>
 
 
+
 module panelbuttons(fullheight = false) {
-  body();
+  bodyTouchpad();
 
   panel();
 
@@ -18,25 +20,32 @@ module panelbuttons(fullheight = false) {
 
   if (fullheight) {
     translate([0, 0, 23]) {
-      cover();
-      resetButtonSmall();
+      cover_touchpad();
+      resetButton();
     }
   } else {
     translate([0, 0, 16]) {
-      cover();
-      resetButtonSmall();
+      cover_touchpad();
+      resetButton();
     }
   }
 
   
 }
 
-module panelbuttonsmoved(fullheight = false) {
+module panelbuttonsmoved_touchpad(fullheight = false) {
   translate([0, 0, -4]) {
     panelbuttons(fullheight=fullheight);
   }
 }
 
 //panel();
-panelbuttonsmoved();
+panelbuttonsmoved_touchpad();
 
+// sensor
+showSensor = true;
+if (showSensor) {
+  translate([0, 0, 27]) {
+    flatSensor();
+  }
+}
