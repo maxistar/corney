@@ -29,6 +29,35 @@
         }
       ],
       "neutralLayers": [13, 18]
+    },
+    "linux": {
+      "x11": {
+        "settleMs": 1000,
+        "sources": [
+          {
+            "id": "de",
+            "label": "Deutsch",
+            "inputSourceId": "xkb:layout:de",
+            "baseLayer": 1,
+            "layers": [1, 2, 3, 15]
+          },
+          {
+            "id": "ru",
+            "label": "Русский",
+            "inputSourceId": "xkb:layout:ru",
+            "baseLayer": 8,
+            "layers": [8, 11]
+          },
+          {
+            "id": "en",
+            "label": "English",
+            "inputSourceId": "xkb:layout:us",
+            "baseLayer": 0,
+            "layers": [0]
+          }
+        ],
+        "neutralLayers": [13, 14, 18]
+      }
     }
   },  
   "keySize": {
