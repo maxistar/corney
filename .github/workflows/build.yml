@@ -41,7 +41,7 @@ jobs:
     name: Host tests and formatting
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install clang-format
         run: |
@@ -55,13 +55,13 @@ jobs:
         run: tests/run-host-tests.sh
 
   zmk-integration-tests:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     name: ZMK native integration tests
     container:
       image: zmkfirmware/zmk-build-arm:stable
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create isolated west workspace
         run: |
@@ -93,7 +93,7 @@ jobs:
       build_matrix: ${{ env.build_matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install yaml2json
         run: python3 -m pip install remarshal
@@ -104,7 +104,7 @@ jobs:
           yaml2json "build.yaml" | jq
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
       image: zmkfirmware/zmk-build-arm:stable
     needs:
@@ -117,7 +117,7 @@ jobs:
       matrix: ${{ fromJson(needs.matrix.outputs.build_matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Create build directory
         run: |
@@ -158,7 +158,7 @@ jobs:
           fi
 
       - name: Cache west modules
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         continue-on-error: true
         env:
           cache_name: cache-zephyr-${{ env.zephyr_version }}-modules
@@ -233,18 +233,18 @@ jobs:
           fi
 
       - name: Archive (${{ env.display_name }})
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: artifact-${{ env.artifact_name }}
           path: ${{ env.build_dir }}/artifacts
 
   merge:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: build
     name: Merge Output Artifacts
     steps:
       - name: Merge Artifacts
-        uses: actions/upload-artifact/merge@v4
+        uses: actions/upload-artifact/merge@v6
         with:
           name: firmware
           pattern: artifact-*
