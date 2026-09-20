@@ -130,7 +130,6 @@ jobs:
           shield: ${{ matrix.shield }}
           artifact_name: ${{ matrix.artifact-name }}
           snippet: ${{ matrix.snippet }}
-          keyboard_name: ${{ github.event.inputs.keyboard_name || '' }}
         run: |
           if [ -e zephyr/module.yml ]; then
             export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}'"
@@ -145,13 +144,9 @@ jobs:
             extra_west_args="-S \"${snippet}\""
           fi
 
-          if [ -n "${keyboard_name}" ] && [ "${shield}" = "corney_left" ]; then
-            extra_name_arg=" -DCONFIG_ZMK_KEYBOARD_NAME=\"${keyboard_name}\""
-          fi
-
           echo "zephyr_version=${ZEPHYR_VERSION}" >> "$GITHUB_ENV"
           echo "extra_west_args=${extra_west_args}" >> "$GITHUB_ENV"
-          echo "extra_cmake_args=${shield:+-DSHIELD=\"$shield\"}${zmk_load_arg}${extra_name_arg}" >> "$GITHUB_ENV"
+          echo "extra_cmake_args=${shield:+-DSHIELD=\"$shield\"}${zmk_load_arg}" >> "$GITHUB_ENV"
           echo "display_name=${shield:+$shield - }${board}" >> "$GITHUB_ENV"
           echo "artifact_name=${artifact_name:-${shield:+$shield-}${board}-zmk}" >> "$GITHUB_ENV"
 
@@ -195,7 +190,17 @@ jobs:
       - name: West Build (${{ env.display_name }})
         working-directory: ${{ env.base_dir }}
         shell: sh -x {0}
-        run: west build -s zmk/app -d "${{ env.build_dir }}" -b "${{ matrix.board }}" ${{ env.extra_west_args }} -- -DZMK_CONFIG=${{ env.base_dir }}/config ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }}
+        env:
+          keyboard_name: ${{ github.event.inputs.keyboard_name || '' }}
+          shield: ${{ matrix.shield }}
+        run: |
+          set --
+          if [ -n "${keyboard_name}" ] && [ "${shield}" = "corney_left" ]; then
+            # Escape Kconfig string contents and preserve literal quotes in the argument.
+            escaped_name=$(printf '%s' "$keyboard_name" | sed 's/\\/\\\\/g; s/"/\\"/g')
+            set -- "-DCONFIG_ZMK_KEYBOARD_NAME=\"${escaped_name}\""
+          fi
+          west build -s zmk/app -d "${{ env.build_dir }}" -b "${{ matrix.board }}" ${{ env.extra_west_args }} -- -DZMK_CONFIG=${{ env.base_dir }}/config ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }} "$@"
 
       - name: ${{ env.display_name }} Kconfig file
         run: |
