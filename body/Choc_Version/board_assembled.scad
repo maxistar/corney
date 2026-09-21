@@ -1,6 +1,6 @@
 use <body_thin.scad>
 use <board_cover.scad>
-use <reset_button.scad>
+use <reset_button_right.scad>
 use <_buttons_low_profile.scad>
 use <_auxiliary.scad>
 

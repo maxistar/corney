@@ -8,7 +8,7 @@ module resetButton(buttonHeight = 11) {
   translate([0, 0, 1]) {
     translate(getResetButtonPosition()) {
       linear_extrude(buttonHeight) {
-        circle(r=getResetButtonRadius() - 0.1);
+        circle(r=getResetButtonRadius() - 0.05);
       }
     }
   }

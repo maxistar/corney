@@ -25,16 +25,19 @@ sensorPosition = [67, 13];
 
 screwHolderPosition = [64.5, 43, 15];
 
+boardTiltingAngle = [-3, 1, 0];
+
 function getWallThickness() = wallThickness;
 function getGlobalMove() = globalMove;
 function getSensorPosition() = sensorPosition;
 function getSensorRadius() = sensorRadius;
 function getScrewHolderPosition() = screwHolderPosition;
+function getBoardTiltingAngle() = boardTiltingAngle;
 
 module bottom_panel(hide_side_magnets = false) {
   translate([-0, -0, 10.5]) {
     //translate([0, 0, 13]) {
-    rotate([-3, 1, 0]) {
+    rotate(boardTiltingAngle) {
       translate([-20, 0, -12.8]) {
         cube([300, 200, 15], center=true);
       }
