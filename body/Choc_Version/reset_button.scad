@@ -1,7 +1,9 @@
 use <body_thin.scad>
 use <board_cover.scad>
 
-module resetButton(buttonHeight = 12) {
+$fn = 150;
+
+module resetButton(buttonHeight = 11) {
   // reset button
   translate([0, 0, 1]) {
     translate(getResetButtonPosition()) {
@@ -20,12 +22,6 @@ module resetButton(buttonHeight = 12) {
   }
 }
 
-module resetButtonSmall() {
-  resetButton(8);
-}
 
 resetButton();
 
-translate([10,0,0]) {
-resetButtonSmall();
-}
