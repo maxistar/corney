@@ -27,16 +27,33 @@ module internalShape() {
   }
 }
 
-difference() {
-  minkowski() {
-    internalShape();
-    sphere(1);
-  }
-  minkowski() {
-    internalShape();
-    sphere(0.1);
-  }
+minkowski() {
+internalShape();
+sphere(5);
 }
 
-translate([0, 0, -10 + 2])
-  cube([300, 300, 20], center=true);
+module internalShapeRendered() {
+  import("internalshape.stl");
+  
+}
+
+//internalShapeRendered();
+
+/*
+difference() {
+  minkowski() {
+    internalShapeRendered();
+    sphere(5);
+  }
+
+  minkowski() {
+    internalShapeRendered();
+    sphere(0.1);
+  }
+
+  translate([0, 0, -10 + 2])
+    cube([300, 300, 20], center=true);
+
+}
+*/
+
