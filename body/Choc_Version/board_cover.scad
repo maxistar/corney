@@ -142,9 +142,6 @@ module resetButtonWalls(coverHeight) {
 }
 
 module cover() {
-
-
-
   difference() {
 
     linear_extrude(coverHeight) {
@@ -226,6 +223,21 @@ module cover() {
     cuttingcubes();
   }
 }
+
+
+module cover_simplified() {
+  difference() {
+    linear_extrude(coverHeight) {
+      minkowski() {
+        bodyProjectionNormalized();
+        circle(getWallThickness());
+      }
+    }
+    cuttingcubes();
+
+  }
+}
+
 
 module screwCutOff() {
   screwHolderPosition = getScrewHolderPosition();

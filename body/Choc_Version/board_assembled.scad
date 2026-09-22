@@ -5,20 +5,26 @@ use <_buttons_low_profile.scad>
 use <_auxiliary.scad>
 
 
-module panelbuttons(fullheight = false) {
-  body();
+module panelbuttons(fullheight = false, simplified = false) {
+  if (simplified) {
+    body_simplified();
+  } else {
+    body();
+    panel();
+  }
 
-  panel();
 
   buttons();
 
+  /*
   translate([58, 13, 20]) {
     nice_nano_placeholder();
   }
+  */
 
-  if (fullheight) {
-    translate([0, 0, 23]) {
-      cover();
+  if (simplifiled) {
+    translate([0, 0, 15.5]) {
+      cover_simplified();
       resetButtonSmall();
     }
   } else {
@@ -31,12 +37,12 @@ module panelbuttons(fullheight = false) {
   
 }
 
-module panelbuttonsmoved(fullheight = false) {
+module panelbuttonsmoved(fullheight = false, simplified=false) {
   translate([0, 0, -4]) {
-    panelbuttons(fullheight=fullheight);
+    panelbuttons(fullheight=fullheight, simplified = simplified);
   }
 }
 
 //panel();
-panelbuttonsmoved();
+panelbuttonsmoved(simplifiled = true);
 

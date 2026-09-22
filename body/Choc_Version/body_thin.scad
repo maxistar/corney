@@ -10,7 +10,7 @@
  */
 
 //hull() {
-$fn = 150;
+$fn = 20;
 magnet_radius = 4 / 2 + 0.1;
 globalMove = [-209.55, -99.5, 0];
 
@@ -299,10 +299,7 @@ module body() {
           cylinder(h=20, r=0.3, center=true);
         }
     }
-
   }
-
-
 
   translate([0, 0, 8.5]) {
     translate(globalMove) {
@@ -317,6 +314,22 @@ module body() {
         import("controls.svg");
       }
     }
+  }
+}
+
+module body_simplified() {
+
+  difference() {
+    translate(globalMove) {
+      linear_extrude(15.5) {
+        minkowski() {
+          bodyProjection();
+          circle(wallThickness);
+        }
+      }
+    }
+
+    bottom_panel();
   }
 }
 

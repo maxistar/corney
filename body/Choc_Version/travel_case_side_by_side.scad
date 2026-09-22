@@ -14,7 +14,7 @@ module internalShape() {
   intersection() {
     hull() {
       rotate(-getBoardTiltingAngle()) {
-        panelbuttonsmoved_touchpad();
+        panelbuttonsmoved(simplified=true);
         // sensor
       }
     }
@@ -27,17 +27,20 @@ module internalShape() {
   }
 }
 
+/*
 minkowski() {
-internalShape();
-sphere(5);
-}
+  internalShape();
+  sphere(0.1);
+} */
 
 module internalShapeRendered() {
-  import("internalshape.stl");
-  
+  import("internalshape.stl", $fn=3);
 }
 
-//internalShapeRendered();
+minkowski() {
+  internalShape();
+  sphere(5);
+}
 
 /*
 difference() {
@@ -46,14 +49,12 @@ difference() {
     sphere(5);
   }
 
-  minkowski() {
-    internalShapeRendered();
-    sphere(0.1);
-  }
+  //minkowski() {
+  //  internalShapeRendered();
+  //  sphere(0.1);
+  //}
 
-  translate([0, 0, -10 + 2])
-    cube([300, 300, 20], center=true);
+  //translate([0, 0, -10 + 2])
+  //  cube([300, 300, 20], center=true);
 
-}
-*/
-
+} */
