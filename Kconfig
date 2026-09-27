@@ -70,6 +70,27 @@ config ZMK_KEYBOARD_HELPER_EVENT_TEST_LOG
       integration tests. Release firmware configurations must leave this
       disabled.
 
+config CORNEY_INPUT_SPLIT_TEST_LOG
+    bool "Emit Corney input-split integration-test events"
+    depends on BOARD_NATIVE_POSIX
+    depends on ZMK_INPUT_SPLIT
+    depends on ZMK_SPLIT_ROLE_CENTRAL
+    default n
+    help
+      Injects deterministic pointing events at the central split transport
+      boundary and logs the proxy input events observed by native tests.
+      Release firmware configurations must leave this disabled.
+
+config CORNEY_INPUT_SPLIT_DISCONNECT_RELEASE
+    bool "Release split pointing buttons when the peripheral disconnects"
+    depends on ZMK_INPUT_SPLIT
+    depends on ZMK_SPLIT_ROLE_CENTRAL
+    default y if SHIELD_CORNEY_LEFT
+    help
+      Tracks button events received by the central input-split proxy and
+      releases active buttons if its BLE split peripheral disconnects. This
+      prevents a lost tap-release packet from leaving a host button stuck.
+
 config INPUT_CORNEY_PINNACLE_POLLING
     bool "Corney Cirque Pinnacle polling driver"
     depends on I2C
@@ -78,8 +99,8 @@ config INPUT_CORNEY_PINNACLE_POLLING
     default y
     help
       Enables the I2C-only Cirque Pinnacle input driver used by the Corney
-      central. The driver polls the sensor and does not require a data-ready
-      GPIO.
+      right peripheral. The driver polls the sensor and does not require a
+      data-ready GPIO.
 
 config INPUT_CORNEY_PINNACLE_INIT_PRIORITY
     int "Corney Cirque Pinnacle initialization priority"

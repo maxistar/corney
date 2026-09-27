@@ -22,7 +22,7 @@ module panelbuttons(fullheight = false, simplified = false) {
   }
   */
 
-  if (simplifiled) {
+  if (simplified) {
     translate([0, 0, 15.5]) {
       cover_simplified();
       resetButtonSmall();
@@ -44,5 +44,5 @@ module panelbuttonsmoved(fullheight = false, simplified=false) {
 }
 
 //panel();
-panelbuttonsmoved(simplifiled = true);
+panelbuttonsmoved(simplified = true);
 

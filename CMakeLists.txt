@@ -26,3 +26,10 @@ if(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION OR CONFIG_ZMK_KEYBOARD_HELPER_EVENT_TEST
   # the ZMK app library, so prepend this one listener source to app instead.
   target_sources(app PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/ble_event_sources.c)
 endif()
+
+target_sources_ifdef(CONFIG_CORNEY_INPUT_SPLIT_TEST_LOG app PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/input_split_test.c
+)
+target_sources_ifdef(CONFIG_CORNEY_INPUT_SPLIT_DISCONNECT_RELEASE app PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/input_split_safety.c
+)

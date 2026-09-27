@@ -167,6 +167,10 @@ horizontal finger/cursor direction with unchanged vertical direction. The tester
 remaining idle/resume and keyboard regression checklist as working, so the 8 ms polling interval
 is accepted without adjustment and this change is ready for archival.
 
+This section records the historical left-central installation. The replacement right-peripheral
+topology and its still-pending hardware acceptance are tracked separately in
+`docs/right-peripheral-trackpad-verification.md`.
+
 ### Rollback
 
 Until hardware acceptance is complete, retain `v0.2.1` as the rollback revision. To roll back,

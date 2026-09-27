@@ -98,6 +98,10 @@ firmware:
         -DZMK_EXTRA_MODULES="$CI_PROJECT_DIR" \
         -DSHIELD="$shield" \
         $cmake_args
+      python3 tests/verify_cirque_build.py \
+        --shield "$shield" \
+        --config "$build_dir/zephyr/.config" \
+        --dts "$build_dir/zephyr/zephyr.dts"
       mkdir -p "$CI_PROJECT_DIR/.artifacts"
       cp "$build_dir/zephyr/zmk.uf2" "$CI_PROJECT_DIR/.artifacts/$TARGET.uf2"
   artifacts:

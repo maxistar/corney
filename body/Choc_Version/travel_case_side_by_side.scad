@@ -4,27 +4,38 @@ use <board_assembled.scad>
 use <body_thin.scad>
 use <_auxiliary.scad>
 
-/*
-hull() {
-  twokeyboards();
-}
-*/
+
+
 
 module internalShape() {
-  intersection() {
+  //difference() {
+  hull() {
+  twokeyboards();
+}
+
+  /*
     hull() {
       rotate(-getBoardTiltingAngle()) {
         panelbuttonsmoved(simplified=true);
         // sensor
       }
-    }
+    } */
 
-    rotate(-getBoardTiltingAngle()) {
-      linear_extrude(100, center=true) {
-        bodyProjectionNormalizedTouchpad();
+    //rotate(-getBoardTiltingAngle()) {
+    //  linear_extrude(100, center=true) {
+    //    bodyProjectionNormalizedTouchpad();
+    //  }
+    //}
+    /*
+    difference() {
+      cube([300, 300, 80], center=true);
+      rotate(-getBoardTiltingAngle()) {
+        linear_extrude(100, center=true) {
+          bodyProjectionNormalizedTouchpad();
+        }
       }
-    }
-  }
+    }*/
+  //}
 }
 
 /*
@@ -37,10 +48,22 @@ module internalShapeRendered() {
   import("internalshape.stl", $fn=3);
 }
 
-minkowski() {
-  internalShape();
-  sphere(5);
+
+difference() {
+  minkowski() {
+    internalShape();
+    sphere(1);
+  }
+
+  minkowski() {
+    internalShape();
+    sphere(0.1);
+  }
+
+  translate([0, 0, -100])
+    cube([300, 300, 200], center=true);
 }
+
 
 /*
 difference() {

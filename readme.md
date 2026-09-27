@@ -73,18 +73,34 @@ central, which still exposes the custom service and legacy layer characteristic.
 
 ## Cirque trackpad
 
-The left/central half supports a Cirque Pinnacle trackpad over the Pro Micro I2C pins. The current
+The right/peripheral half supports a Cirque Pinnacle trackpad over the Pro Micro I2C pins. The
 wiring uses address `0x2a` and does not connect the trackpad's data-ready (`DR`) signal. There is no
-OLED in this configuration.
+OLED in this configuration. Flash the ordinary `corney-right` image: it is the single supported
+right-half artifact both with and without the physical sensor.
 
 Because DR is absent, the Corney module reads the sensor status every 8 ms while the keyboard is
-active. The firmware reports relative pointer movement, the sensor's primary tap, and relative
-wheel packets through ZMK's input listener. I2C and the polling driver are enabled only in
-`corney_left` builds.
+active. The right half forwards relative pointer movement, the sensor's primary tap, and relative
+wheel packets over ZMK input-split. The left central consumes the proxy events and sends the normal
+USB or BLE HID mouse reports. I2C and the polling driver are enabled only in `corney_right` builds;
+Keyboard Helper and all host-facing services remain on `corney_left`.
+
+If the same right image boots without a sensor, initialization fails once and periodic Cirque
+polling is not started. Matrix scanning and the BLE split remain independent. The pinned ZMK
+baseline does not release input-split buttons automatically on disconnect, so the left firmware
+adds a bounded safety release for any active Cirque button when its split connection disappears.
 
 Continuous polling costs additional battery power. During system suspend the polling work stops;
-trackpad touch alone cannot wake the controller without DR. Press a key or use another configured
-wake source, after which the sensor is reinitialized and polling resumes.
+trackpad touch alone cannot wake the right controller without DR. Press a key on the right half or
+use another right-side wake source, after which the sensor is reinitialized and pointing resumes
+once the split reconnects. A key pressed only on the left is not guaranteed to wake a fully sleeping
+right half.
+
+The explicitly named Choc printable entry points are
+`body/Choc_Version/right_touchpad_body.scad` and
+`body/Choc_Version/right_touchpad_cover.scad`; use
+`body/Choc_Version/right_touchpad_assembly.scad` to inspect controller, reset, sensor, and wiring
+clearances. Hardware acceptance for this topology is tracked in
+`docs/right-peripheral-trackpad-verification.md`.
 
 ## CI/CD
 

@@ -5,7 +5,7 @@ module nice_nano_placeholder() {
 }
 
 module flatSensor() {
-        translate(getSensorPosition()) {
-      circle(r=getSensorRadius());
-    }
+  translate(getSensorPosition()) {
+    circle(r=getSensorRadius());
+  }
 }

@@ -70,6 +70,7 @@ struct pinnacle_polling_config {
   uint8_t sensitivity;
   bool primary_tap_enabled;
   bool invert_x;
+  bool invert_y;
   bool sleep_mode_enabled;
 };
 
@@ -328,6 +329,7 @@ static int pinnacle_poll_once(const struct device *dev) {
   }
 
   sample.x = corney_pinnacle_apply_axis_inversion(sample.x, config->invert_x);
+  sample.y = corney_pinnacle_apply_axis_inversion(sample.y, config->invert_y);
 
   pinnacle_report_buttons(dev, &sample);
   if (sample.wheel != 0) {
@@ -428,6 +430,7 @@ static int pinnacle_pm_action(const struct device *dev,
           .sensitivity = DT_INST_ENUM_IDX(inst, sensitivity),                  \
           .primary_tap_enabled = DT_INST_PROP(inst, primary_tap_enable),       \
           .invert_x = DT_INST_PROP(inst, invert_x),                            \
+          .invert_y = DT_INST_PROP(inst, invert_y),                            \
           .sleep_mode_enabled = DT_INST_PROP(inst, sleep_mode_enable),         \
   };                                                                           \
   PM_DEVICE_DT_INST_DEFINE(inst, pinnacle_pm_action);                          \

@@ -202,6 +202,14 @@ jobs:
           fi
           west build -s zmk/app -d "${{ env.build_dir }}" -b "${{ matrix.board }}" ${{ env.extra_west_args }} -- -DZMK_CONFIG=${{ env.base_dir }}/config ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }} "$@"
 
+      - name: Verify Corney Cirque topology
+        if: ${{ !cancelled() && (matrix.shield == 'corney_left' || matrix.shield == 'corney_right' || matrix.shield == 'settings_reset') }}
+        run: |
+          python3 tests/verify_cirque_build.py \
+            --shield "${{ matrix.shield }}" \
+            --config "${{ env.build_dir }}/zephyr/.config" \
+            --dts "${{ env.build_dir }}/zephyr/zephyr.dts"
+
       - name: ${{ env.display_name }} Kconfig file
         run: |
           if [ -f "${{ env.build_dir }}/zephyr/.config" ]; then

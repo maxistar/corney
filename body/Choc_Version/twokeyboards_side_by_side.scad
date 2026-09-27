@@ -10,7 +10,8 @@ module twokeyboards(fullheight = false) {
     showSensor = true;
     if (showSensor) {
       translate([0, 0, 25]) {
-        flatSensor();
+        linear_extrude(1)
+          flatSensor();
       }
     }
   }
