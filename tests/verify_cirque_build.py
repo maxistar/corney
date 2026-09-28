@@ -130,12 +130,30 @@ def main() -> int:
     dts = read(args.dts)
     has_driver = config_enabled(config, "INPUT_CORNEY_PINNACLE_POLLING")
     has_i2c = config_enabled(config, "I2C")
+    has_display = config_enabled(config, "DISPLAY")
+    has_zmk_display = config_enabled(config, "ZMK_DISPLAY")
+    has_builtin_status = config_enabled(
+        config, "ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN"
+    )
+    has_ssd1306_driver = config_enabled(config, "SSD1306")
+    has_one_bit_color = config_enabled(config, "LV_COLOR_DEPTH_1")
+    has_one_bit_buffer = "CONFIG_LV_Z_BITS_PER_PIXEL=1" in config
     has_input_split = config_enabled(config, "ZMK_INPUT_SPLIT")
     has_disconnect_release = config_enabled(
         config, "CORNEY_INPUT_SPLIT_DISCONNECT_RELEASE"
     )
     sensor_node_count = dts.count('compatible = "corney,cirque-pinnacle-polling";')
     has_sensor_node = sensor_node_count > 0
+    display_node_count = dts.count('compatible = "solomon,ssd1306fb";')
+    has_display_node = display_node_count > 0
+    has_selected_display = "zephyr,display = &oled;" in dts
+    display_at_0x3c = bool(
+        re.search(
+            r'oled: ssd1306@3c \{.*?reg = < 0x3c >;.*?width = < 0x80 >;.*?height = < 0x40 >;',
+            dts,
+            re.DOTALL,
+        )
+    )
     has_split_node = 'compatible = "zmk,input-split";' in dts
     has_local_listener = "glidepoint_left_listener {" in dts
     has_proxy_listener = "glidepoint_split_listener {" in dts
@@ -190,6 +208,23 @@ def main() -> int:
                 f"{args.shield} must not enable CONFIG_{symbol}",
                 failures,
             )
+
+    if args.shield != "corney_dongle":
+        require(
+            not has_display_node,
+            f"{args.shield} must not contain the dongle OLED",
+            failures,
+        )
+        require(
+            not has_selected_display,
+            f"{args.shield} must not select the dongle OLED",
+            failures,
+        )
+        require(
+            not has_zmk_display,
+            f"{args.shield} must not enable ZMK display",
+            failures,
+        )
 
     if args.shield == "corney_right":
         require(has_driver, "corney_right must enable the polling driver", failures)
@@ -307,8 +342,25 @@ def main() -> int:
         require("CONFIG_BT_MAX_PAIRED=7" in config, "dongle must reserve seven pairings", failures)
         require(has_disconnect_release, "dongle must enable disconnect release", failures)
         require(not has_driver, "dongle must not enable the physical Cirque driver", failures)
-        require(not has_i2c, "dongle must not enable Cirque I2C", failures)
+        require(has_i2c, "dongle must enable I2C for its OLED", failures)
         require(sensor_node_count == 0, "dongle must not contain a Cirque node", failures)
+        require(has_display, "dongle must enable Zephyr display support", failures)
+        require(has_zmk_display, "dongle must enable ZMK display support", failures)
+        require(has_builtin_status, "dongle must enable the built-in status screen", failures)
+        require(has_ssd1306_driver, "dongle must enable the SSD1306 driver", failures)
+        require(has_one_bit_color, "dongle must use one-bit LVGL color", failures)
+        require(has_one_bit_buffer, "dongle must use a one-bit LVGL framebuffer", failures)
+        require(display_node_count == 1, "dongle must contain exactly one SSD1306", failures)
+        require(
+            has_selected_display,
+            "dongle must select the SSD1306 as zephyr,display",
+            failures,
+        )
+        require(
+            display_at_0x3c,
+            "dongle OLED must be 128x64 at I2C address 0x3c",
+            failures,
+        )
         require(split_regs == [0, 1], "dongle must proxy input-split registers 0 and 1", failures)
         require(has_right_proxy_listener, "dongle must contain the right proxy listener", failures)
         require(has_left_proxy_listener, "dongle must contain the left proxy listener", failures)

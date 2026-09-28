@@ -28,6 +28,8 @@ https://projects.maxistar.me/keyboard_helper/
   characteristic.
 - `docs/keyboard-helper-ble-v1.md`: implementation, security, queue, and build notes for the
   versioned Keyboard Helper event extension.
+- `docs/dongle-oled-verification.md`: SSD1306 dongle wiring, resource delta, candidate hashes, and
+  physical acceptance checklist.
 
 ## Clone
 
@@ -59,8 +61,9 @@ trackpad sensor.
 
 The optional dongle topology uses `corney-left-peripheral` and the same `corney-right` image as two
 BLE peripherals. `corney-usb-dongle` is their keyless central and sends keyboard and pointing HID
-to the computer over USB. It keeps the full Keyboard Helper GATT service available over a separate
-encrypted BLE connection. Both host-facing central images use the default name `Corney`.
+to the computer over USB. It drives a 128x64 SSD1306 status display over I2C and keeps the full
+Keyboard Helper GATT service available over a separate encrypted BLE connection. Both host-facing
+central images use the default name `Corney`.
 
 ZMK Studio is intentionally disabled in the release firmware. The active layout is compiled from
 `config/corney.keymap`; change that file and rebuild the left image to edit the layout. Previously
@@ -126,6 +129,30 @@ The explicitly named Choc printable entry points are
 `body/Choc_Version/right_touchpad_assembly.scad` to inspect controller, reset, sensor, and wiring
 clearances. Hardware acceptance for this topology is tracked in
 `docs/right-peripheral-trackpad-verification.md`.
+
+## USB dongle OLED
+
+The `corney-usb-dongle` firmware selects one four-wire 128x64 SSD1306 module at I2C address `0x3c`
+and displays ZMK's built-in status screen. This initial screen verifies the electrical and firmware
+display path; it does not yet show Corney-specific diagnostics or either half's battery level.
+
+Wire the display only to the dedicated dongle nice!nano v2:
+
+| SSD1306 pin | nice!nano v2 / Pro Micro pin |
+| --- | --- |
+| `VCC` | `3V3` |
+| `GND` | `GND` |
+| `SDA` | `D2` / `P0.17` |
+| `SCL` | `D3` / `P0.20` |
+
+Use a 3.3 V-compatible module; do not power an unknown panel from `RAW` or 5 V. The firmware expects
+address `0x3c`, 128x64 geometry, and the orientation used by the tested module. The screen normally
+blanks when ZMK enters idle and resumes after keyboard activity. The left and right halves do not
+contain this OLED node—their separate I2C buses remain available for optional Cirque sensors.
+
+Only the dongle needs to be reflashed for this display change. If display bring-up prevents normal
+dongle operation, reflash the preceding display-free `corney-usb-dongle` UF2; the two peripheral
+images and their split bonds do not otherwise change.
 
 ## CI/CD
 
