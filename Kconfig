@@ -92,6 +92,18 @@ config CORNEY_INPUT_SPLIT_DISCONNECT_RELEASE
       disconnects. This prevents a lost release packet from leaving a host
       button stuck.
 
+config CORNEY_DONGLE_BATTERY_STATUS_SCREEN
+    bool "Corney dongle three-source battery status screen"
+    depends on SHIELD_CORNEY_DONGLE
+    depends on ZMK_DISPLAY
+    depends on ZMK_DISPLAY_STATUS_SCREEN_CUSTOM
+    depends on ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
+    default y
+    help
+      Renders the dongle battery and two anonymous split-peripheral battery
+      slots on the dongle-only SSD1306. Peripheral slots intentionally do not
+      claim left/right identity.
+
 config INPUT_CORNEY_PINNACLE_POLLING
     bool "Corney Cirque Pinnacle polling driver"
     depends on I2C

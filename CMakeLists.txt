@@ -19,6 +19,9 @@ zephyr_library_sources_ifdef(CONFIG_INPUT_CORNEY_PINNACLE_POLLING
   src/pinnacle_packet.c
   drivers/input/pinnacle_polling.c
 )
+zephyr_library_sources_ifdef(CONFIG_CORNEY_DONGLE_BATTERY_STATUS_SCREEN
+  src/dongle_power_status.c
+)
 
 if(CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION OR CONFIG_ZMK_KEYBOARD_HELPER_EVENT_TEST_LOG)
   # Position telemetry must observe the original event before ZMK's combo
@@ -32,4 +35,7 @@ target_sources_ifdef(CONFIG_CORNEY_INPUT_SPLIT_TEST_LOG app PRIVATE
 )
 target_sources_ifdef(CONFIG_CORNEY_INPUT_SPLIT_DISCONNECT_RELEASE app PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/src/input_split_safety.c
+)
+target_sources_ifdef(CONFIG_CORNEY_DONGLE_BATTERY_STATUS_SCREEN app PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/dongle_status_screen.c
 )

@@ -135,6 +135,18 @@ def main() -> int:
     has_builtin_status = config_enabled(
         config, "ZMK_DISPLAY_STATUS_SCREEN_BUILT_IN"
     )
+    has_custom_status = config_enabled(
+        config, "ZMK_DISPLAY_STATUS_SCREEN_CUSTOM"
+    )
+    has_corney_battery_screen = config_enabled(
+        config, "CORNEY_DONGLE_BATTERY_STATUS_SCREEN"
+    )
+    has_split_battery_fetching = config_enabled(
+        config, "ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING"
+    )
+    has_split_battery_proxy = config_enabled(
+        config, "ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY"
+    )
     has_ssd1306_driver = config_enabled(config, "SSD1306")
     has_one_bit_color = config_enabled(config, "LV_COLOR_DEPTH_1")
     has_one_bit_buffer = "CONFIG_LV_Z_BITS_PER_PIXEL=1" in config
@@ -223,6 +235,26 @@ def main() -> int:
         require(
             not has_zmk_display,
             f"{args.shield} must not enable ZMK display",
+            failures,
+        )
+        require(
+            not has_custom_status,
+            f"{args.shield} must not enable the custom dongle status screen",
+            failures,
+        )
+        require(
+            not has_corney_battery_screen,
+            f"{args.shield} must not compile the Corney battery screen",
+            failures,
+        )
+        require(
+            not has_split_battery_fetching,
+            f"{args.shield} must not fetch dongle split battery levels",
+            failures,
+        )
+        require(
+            not has_split_battery_proxy,
+            f"{args.shield} must not expose the auxiliary battery proxy",
             failures,
         )
 
@@ -346,7 +378,23 @@ def main() -> int:
         require(sensor_node_count == 0, "dongle must not contain a Cirque node", failures)
         require(has_display, "dongle must enable Zephyr display support", failures)
         require(has_zmk_display, "dongle must enable ZMK display support", failures)
-        require(has_builtin_status, "dongle must enable the built-in status screen", failures)
+        require(not has_builtin_status, "dongle must disable the built-in status screen", failures)
+        require(has_custom_status, "dongle must enable the custom status screen", failures)
+        require(
+            has_corney_battery_screen,
+            "dongle must compile the Corney three-source battery screen",
+            failures,
+        )
+        require(
+            has_split_battery_fetching,
+            "dongle must fetch both split peripheral battery levels",
+            failures,
+        )
+        require(
+            not has_split_battery_proxy,
+            "dongle must not expose peripheral battery values through auxiliary BAS",
+            failures,
+        )
         require(has_ssd1306_driver, "dongle must enable the SSD1306 driver", failures)
         require(has_one_bit_color, "dongle must use one-bit LVGL color", failures)
         require(has_one_bit_buffer, "dongle must use a one-bit LVGL framebuffer", failures)

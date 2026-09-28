@@ -23,6 +23,14 @@ cc -std=c11 -Wall -Wextra -Werror -pedantic \
   -o "$test_dir/pinnacle-packet-test"
 
 "$test_dir/pinnacle-packet-test"
+
+cc -std=c11 -Wall -Wextra -Werror -pedantic \
+  -I"$repo_dir/include" \
+  "$repo_dir/src/dongle_power_status.c" \
+  "$repo_dir/tests/dongle_power_status_test.c" \
+  -o "$test_dir/dongle-power-status-test"
+
+"$test_dir/dongle-power-status-test"
 python3 "$repo_dir/tests/verify_ble_metadata.py"
 python3 "$repo_dir/tests/verify_cirque_build.py" \
   --matrix-only \
