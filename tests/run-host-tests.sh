@@ -24,3 +24,6 @@ cc -std=c11 -Wall -Wextra -Werror -pedantic \
 
 "$test_dir/pinnacle-packet-test"
 python3 "$repo_dir/tests/verify_ble_metadata.py"
+python3 "$repo_dir/tests/verify_cirque_build.py" \
+  --matrix-only \
+  --build-yaml "$repo_dir/build.yaml"

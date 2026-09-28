@@ -1,5 +1,8 @@
 # Right-peripheral Cirque verification
 
+> Historical acceptance record: its right-peripheral topology and physical results remain valid,
+> but references to Studio behavior on the central are superseded by the Studio-free release.
+
 This record covers the `move-corney-trackpad-to-right-peripheral` change on the pinned ZMK
 `v0.3.0` commit `edf5c0814fd3ea202e43aad2d68fd32e882a518c`. The left nice!nano remains the
 split central and host endpoint; the right nice!nano owns the I2C sensor and forwards its events

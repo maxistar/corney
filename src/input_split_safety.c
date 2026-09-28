@@ -25,6 +25,8 @@
 
 static atomic_t active_buttons;
 
+/* This callback is registered only for the zmk,input-split proxy. Local
+ * pointing devices use a different compatible and never enter this state. */
 static void track_split_button(struct input_event *event) {
   if (event->type != INPUT_EV_KEY || event->code < INPUT_BTN_0 ||
       event->code >= INPUT_BTN_0 + CORNEY_TRACKED_BUTTON_COUNT) {

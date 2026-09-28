@@ -43,11 +43,8 @@ firmware:
   parallel:
     matrix:
       - TARGET:
-          - central-enhanced
-          - central-stock
-          - central-legacy
-          - central-extension-minimal
-          - peripheral
+          - corney-left-enhanced
+          - corney-right
           - settings-reset
   before_script:
     - export CORNEY_CI_WEST_DIR="$(mktemp -d)"
@@ -60,27 +57,12 @@ firmware:
   script:
     - |
       case "$TARGET" in
-        central-enhanced)
-          shield=corney_left
-          west_args="-S studio-rpc-usb-uart"
-          cmake_args="-DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y"
-          ;;
-        central-stock)
+        corney-left-enhanced)
           shield=corney_left
           west_args=""
-          cmake_args="-DCONFIG_ZMK_GATT_LAYER_EXPOSITION=n"
+          cmake_args="-DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y"
           ;;
-        central-legacy)
-          shield=corney_left
-          west_args=""
-          cmake_args="-DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=n"
-          ;;
-        central-extension-minimal)
-          shield=corney_left
-          west_args=""
-          cmake_args="-DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_HELPER_KEY_EVENTS=n -DCONFIG_ZMK_KEYBOARD_HELPER_COMBO_EVENTS=n -DCONFIG_ZMK_KEYBOARD_HELPER_LAYER_EVENTS=n -DCONFIG_ZMK_KEYBOARD_HELPER_DIAGNOSTICS=n"
-          ;;
-        peripheral)
+        corney-right)
           shield=corney_right
           west_args=""
           cmake_args=""

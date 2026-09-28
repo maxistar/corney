@@ -1,5 +1,9 @@
 # Stock Corney Firmware Verification
 
+> Historical record: this report documents the six-artifact matrix accepted on 2026-09-09.
+> `corney-left-stock`, `corney-left-legacy`, and `corney-left-extension-minimal` are no longer
+> maintained release artifacts. Use `corney-left-enhanced` for supported direct BLE operation.
+
 ## Build evidence
 
 - Date: 2026-09-09

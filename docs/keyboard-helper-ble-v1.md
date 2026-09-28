@@ -9,8 +9,9 @@ the host-facing service.
 
 `CONFIG_ZMK_GATT_LAYER_EXPOSITION=y` keeps the legacy four-byte layer register available.
 `CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y` adds the capabilities and encrypted event stream. The
-extension defaults off in Kconfig so legacy behavior remains an explicit rollback path; the
-enhanced release matrix enables it explicitly.
+extension defaults off in Kconfig, while the supported `corney-left-enhanced` release artifact
+enables it explicitly. The switches remain available for focused tests and local experiments, but
+disabled and partial-extension configurations are not published release variants.
 
 Optional capability switches are:
 
@@ -21,8 +22,8 @@ Optional capability switches are:
 
 The capabilities value is derived from these compiled options. Disabling one source clears only
 its bit. Capability bit 3 and event type `0x04` are reserved and never emitted. Standard ZMK
-Battery Service is the sole battery source in stock and enhanced modes. Peripheral battery fetching
-remains disabled and right-half battery support is deferred.
+Battery Service is the sole battery source in the maintained enhanced mode. Peripheral battery
+fetching remains disabled and right-half battery support is deferred.
 
 ## Event capture
 

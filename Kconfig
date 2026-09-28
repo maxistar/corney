@@ -99,8 +99,8 @@ config INPUT_CORNEY_PINNACLE_POLLING
     default y
     help
       Enables the I2C-only Cirque Pinnacle input driver used by the Corney
-      right peripheral. The driver polls the sensor and does not require a
-      data-ready GPIO.
+      halves. The driver polls each locally attached sensor and does not
+      require a data-ready GPIO.
 
 config INPUT_CORNEY_PINNACLE_INIT_PRIORITY
     int "Corney Cirque Pinnacle initialization priority"

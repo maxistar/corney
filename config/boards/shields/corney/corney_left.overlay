@@ -11,8 +11,29 @@
         ;
 };
 
+&pro_micro_i2c {
+    status = "okay";
+
+    glidepoint_left: glidepoint@2a {
+        compatible = "corney,cirque-pinnacle-polling";
+        reg = <0x2a>;
+        status = "okay";
+
+        sensitivity = "2x";
+        poll-interval-ms = <8>;
+        primary-tap-enable;
+        invert-x;
+        sleep-mode-enable;
+    };
+};
+
 / {
-    glidepoint_listener {
+    glidepoint_left_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint_left>;
+    };
+
+    glidepoint_split_listener {
         compatible = "zmk,input-listener";
         device = <&glidepoint_split>;
     };

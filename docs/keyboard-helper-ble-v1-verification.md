@@ -1,5 +1,9 @@
 # Keyboard Helper BLE v1 verification record
 
+> Historical evidence: the Studio-enabled central measurements below predate
+> `remove-zmk-studio-from-corney-firmware`. The current release central disables ZMK Studio while
+> retaining the full Keyboard Helper service; the recorded protocol results remain applicable.
+
 This record intentionally contains no captured typing content, addresses, credentials, or bonding
 material.
 

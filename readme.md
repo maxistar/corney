@@ -44,16 +44,19 @@ cd corney
 
 1. From the repo root, pull ZMK: `west init -l config && west update`.
 3. Build each half (outputs land in `build/<side>/zephyr/zmk.uf2`):
-   - Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y`
-   - Left (stock): `west build -p -s zmk/app -d build/left-stock -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_GATT_LAYER_EXPOSITION=n`
+   - Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y`
    - Right: `west build -p -s zmk/app -d build/right -b nice_nano_v2 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 4. Copy the corresponding UF2 to each nice!nano over USB bootloader.
 
-Choose `corney-left-enhanced` when using Keyboard Helper companion telemetry. Choose
-`corney-left-stock` for ordinary Corney BLE keyboard use without the complete Keyboard Helper
-custom GATT service. “Stock” describes the service boundary: the image still uses this repository's
-Corney shield and keymap. Standard Battery Service and Device Information Service availability is
-determined by the pinned ZMK configuration rather than by the Keyboard Helper extension.
+`corney-left-enhanced` is the single supported left-central image for direct BLE operation. It
+provides the ordinary keyboard HID behavior together with Keyboard Helper telemetry. Pair it with
+the universal `corney-right` image, which supports right halves both with and without the physical
+trackpad sensor.
+
+ZMK Studio is intentionally disabled in the release firmware. The active layout is compiled from
+`config/corney.keymap`; change that file and rebuild the left image to edit the layout. Previously
+saved Studio overrides are not applied. The full Keyboard Helper event and diagnostics service
+remains enabled.
 
 ## Build firmware with a custom Bluetooth name
 
@@ -62,38 +65,43 @@ The default Bluetooth device name is `Corney`. To override it, pass
 
 Local build examples:
 
-- Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
-- Left (stock): `west build -p -s zmk/app -d build/left-stock -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_GATT_LAYER_EXPOSITION=n -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
+- Left (enhanced): `west build -p -s zmk/app -d build/left -b nice_nano_v2 -- -DSHIELD=corney_left -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y -DCONFIG_ZMK_KEYBOARD_NAME=\"CorneyMX\"`
 - Right: `west build -p -s zmk/app -d build/right -b nice_nano_v2 -- -DSHIELD=corney_right -DZMK_CONFIG=$PWD/config -DZMK_EXTRA_MODULES=$PWD`
 
 Do not apply the custom name override to the right half. The left half is the central, host-paired side, and the right half should be built with its default configuration.
-Set `CONFIG_ZMK_GATT_LAYER_EXPOSITION=n` for a stock central with no Keyboard Helper service.
-Disabling only `CONFIG_ZMK_KEYBOARD_HELPER_EXTENSION` produces the compatibility-focused legacy
-central, which still exposes the custom service and legacy layer characteristic.
 
 ## Cirque trackpad
 
-The right/peripheral half supports a Cirque Pinnacle trackpad over the Pro Micro I2C pins. The
-wiring uses address `0x2a` and does not connect the trackpad's data-ready (`DR`) signal. There is no
-OLED in this configuration. Flash the ordinary `corney-right` image: it is the single supported
-right-half artifact both with and without the physical sensor.
+Both halves support an optional Cirque Pinnacle trackpad over their own Pro Micro I2C pins. Each
+sensor uses address `0x2a`, does not connect its data-ready (`DR`) signal, and replaces rather than
+shares the former OLED position. The same `corney-left-enhanced` and `corney-right` images support
+four physical arrangements: no sensor, left only, right only, or one sensor on each half.
 
-Because DR is absent, the Corney module reads the sensor status every 8 ms while the keyboard is
-active. The right half forwards relative pointer movement, the sensor's primary tap, and relative
-wheel packets over ZMK input-split. The left central consumes the proxy events and sends the normal
-USB or BLE HID mouse reports. I2C and the polling driver are enabled only in `corney_right` builds;
-Keyboard Helper and all host-facing services remain on `corney_left`.
+Because DR is absent, each controller with an installed sensor reads its status every 8 ms while
+active. The left central consumes its local sensor directly. The right half forwards relative
+movement, primary tap, and wheel packets over ZMK input-split to a separate central proxy listener.
+Both paths produce ordinary USB or BLE HID mouse reports; Keyboard Helper remains central-owned and
+does not carry pointer packets.
 
-If the same right image boots without a sensor, initialization fails once and periodic Cirque
-polling is not started. Matrix scanning and the BLE split remain independent. The pinned ZMK
-baseline does not release input-split buttons automatically on disconnect, so the left firmware
-adds a bounded safety release for any active Cirque button when its split connection disappears.
+The original left installation uses `invert-x`. The accepted right installation is rotated 180
+degrees relative to its first prototype and uses `invert-y` without `invert-x`. These settings make
+physical finger direction match cursor direction on each assembled half.
 
-Continuous polling costs additional battery power. During system suspend the polling work stops;
-trackpad touch alone cannot wake the right controller without DR. Press a key on the right half or
-use another right-side wake source, after which the sensor is reinitialized and pointing resumes
-once the split reconnects. A key pressed only on the left is not guaranteed to wake a fully sleeping
-right half.
+If either image boots without its optional sensor, initialization fails once and periodic polling
+is not started on that controller. Matrix scanning, split operation, and an installed sensor on the
+other half remain independent. The pinned ZMK baseline does not release input-split buttons
+automatically on disconnect, so the left firmware tracks only right-proxy button state and performs
+a bounded safety release when that split connection disappears. Local left buttons are not part of
+that disconnect state.
+
+Continuous polling costs additional battery power on every sensor-equipped half. During system
+suspend the corresponding polling work stops; trackpad touch alone cannot wake that controller
+without DR. Wake the left sensor with a left-local key and the right sensor with a right-local key or
+another wake source on the same controller. The right pointing path also waits for split reconnect.
+
+Movement, scrolling, and ordinary non-overlapping taps may be used from either sensor. The pinned
+ZMK input listener does not source-count a simultaneous hold of the same mouse button from two
+sensors, so that specific dual-button gesture is unsupported.
 
 The explicitly named Choc printable entry points are
 `body/Choc_Version/right_touchpad_body.scad` and
@@ -105,10 +113,8 @@ clearances. Hardware acceptance for this topology is tracked in
 ## CI/CD
 
 GitHub Actions is the primary CI/CD pipeline. It runs portable protocol/metadata tests, native ZMK
-integration tests, and builds enhanced, stock, legacy-only, minimal extension, peripheral, and
-settings-reset firmware artifacts. The merged `firmware` download contains
-`corney-left-stock.uf2` alongside the existing images. A manual workflow run can override the
-Bluetooth name for the left/central images only.
+integration tests, and builds `corney-left-enhanced`, `corney-right`, and `settings-reset` firmware
+artifacts. A manual workflow run can override the Bluetooth name for the left/central image only.
 
 The GitLab CI configuration is retained as an equivalent alternative for a future GitLab mirror.
 Local Bluetooth name overrides remain a CMake option so the right/peripheral image cannot

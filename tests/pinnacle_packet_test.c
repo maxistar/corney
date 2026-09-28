@@ -65,6 +65,19 @@ static void test_axis_inversion(void) {
   assert(corney_pinnacle_apply_axis_inversion(0, true) == 0);
 }
 
+static void test_per_side_orientations(void) {
+  const int16_t raw_x = 127;
+  const int16_t raw_y = -64;
+
+  /* The restored left installation uses invert-x only. */
+  assert(corney_pinnacle_apply_axis_inversion(raw_x, true) == -127);
+  assert(corney_pinnacle_apply_axis_inversion(raw_y, false) == -64);
+
+  /* The accepted 180-degree right installation uses invert-y only. */
+  assert(corney_pinnacle_apply_axis_inversion(raw_x, false) == 127);
+  assert(corney_pinnacle_apply_axis_inversion(raw_y, true) == 64);
+}
+
 static void test_invalid_packets(void) {
   const uint8_t packet[CORNEY_PINNACLE_RELATIVE_PACKET_SIZE] = {0};
   struct corney_pinnacle_relative_sample sample;
@@ -85,6 +98,7 @@ int main(void) {
   test_negative_and_boundary_axes();
   test_button_transitions();
   test_axis_inversion();
+  test_per_side_orientations();
   test_invalid_packets();
   return 0;
 }
