@@ -195,7 +195,7 @@ jobs:
           shield: ${{ matrix.shield }}
         run: |
           set --
-          if [ -n "${keyboard_name}" ] && [ "${shield}" = "corney_left" ]; then
+          if [ -n "${keyboard_name}" ] && { [ "${shield}" = "corney_left" ] || [ "${shield}" = "corney_dongle" ]; }; then
             # Escape Kconfig string contents and preserve literal quotes in the argument.
             escaped_name=$(printf '%s' "$keyboard_name" | sed 's/\\/\\\\/g; s/"/\\"/g')
             set -- "-DCONFIG_ZMK_KEYBOARD_NAME=\"${escaped_name}\""
@@ -203,7 +203,7 @@ jobs:
           west build -s zmk/app -d "${{ env.build_dir }}" -b "${{ matrix.board }}" ${{ env.extra_west_args }} -- -DZMK_CONFIG=${{ env.base_dir }}/config ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }} "$@"
 
       - name: Verify Corney Cirque topology
-        if: ${{ !cancelled() && (matrix.shield == 'corney_left' || matrix.shield == 'corney_right' || matrix.shield == 'settings_reset') }}
+        if: ${{ !cancelled() && (matrix.shield == 'corney_left' || matrix.shield == 'corney_left_peripheral' || matrix.shield == 'corney_right' || matrix.shield == 'corney_dongle' || matrix.shield == 'settings_reset') }}
         run: |
           python3 tests/verify_cirque_build.py \
             --shield "${{ matrix.shield }}" \

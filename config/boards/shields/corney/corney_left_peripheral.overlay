@@ -1,28 +1,20 @@
 #include "corney.dtsi"
 
-&default_transform {
-    col-offset = <6>;
-};
-
-&five_column_transform {
-    col-offset = <6>;
-};
-
 &kscan0 {
     col-gpios
-        = <&pro_micro 14 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+        = <&pro_micro 21 GPIO_ACTIVE_HIGH>
         , <&pro_micro 20 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 21 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
         ;
 };
 
 &pro_micro_i2c {
     status = "okay";
 
-    glidepoint: glidepoint@2a {
+    glidepoint_left: glidepoint@2a {
         compatible = "corney,cirque-pinnacle-polling";
         reg = <0x2a>;
         status = "okay";
@@ -30,7 +22,7 @@
         sensitivity = "2x";
         poll-interval-ms = <8>;
         primary-tap-enable;
-        invert-y;
+        invert-x;
         sleep-mode-enable;
     };
 };
@@ -40,10 +32,10 @@
         #address-cells = <1>;
         #size-cells = <0>;
 
-        glidepoint_split: glidepoint_split@0 {
+        glidepoint_left_split: glidepoint_split@1 {
             compatible = "zmk,input-split";
-            reg = <0>;
-            device = <&glidepoint>;
+            reg = <1>;
+            device = <&glidepoint_left>;
         };
     };
 };

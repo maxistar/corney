@@ -20,14 +20,23 @@
 
 #define DT_DRV_COMPAT zmk_input_split
 
-#define CORNEY_POINTING_INPUT_SPLIT_REG DT_INST_REG_ADDR(0)
 #define CORNEY_TRACKED_BUTTON_COUNT 3U
 
-static atomic_t active_buttons;
+struct corney_split_proxy_state {
+  uint8_t reg;
+  atomic_t active_buttons;
+};
 
-/* This callback is registered only for the zmk,input-split proxy. Local
- * pointing devices use a different compatible and never enter this state. */
-static void track_split_button(struct input_event *event) {
+#define CORNEY_SPLIT_PROXY_STATE(inst)                                         \
+  {.reg = DT_INST_REG_ADDR(inst), .active_buttons = ATOMIC_INIT(0)},
+
+static struct corney_split_proxy_state proxy_states[] = {
+    DT_INST_FOREACH_STATUS_OKAY(CORNEY_SPLIT_PROXY_STATE)};
+
+BUILD_ASSERT(ARRAY_SIZE(proxy_states) > 0,
+             "Disconnect safety requires an input-split proxy");
+
+static void track_split_button(size_t proxy_index, struct input_event *event) {
   if (event->type != INPUT_EV_KEY || event->code < INPUT_BTN_0 ||
       event->code >= INPUT_BTN_0 + CORNEY_TRACKED_BUTTON_COUNT) {
     return;
@@ -35,29 +44,53 @@ static void track_split_button(struct input_event *event) {
 
   const uint8_t index = event->code - INPUT_BTN_0;
   if (event->value != 0) {
-    atomic_set_bit(&active_buttons, index);
+    atomic_set_bit(&proxy_states[proxy_index].active_buttons, index);
   } else {
-    atomic_clear_bit(&active_buttons, index);
+    atomic_clear_bit(&proxy_states[proxy_index].active_buttons, index);
   }
 }
 
-INPUT_CALLBACK_DEFINE(DEVICE_DT_GET(DT_DRV_INST(0)), track_split_button);
+#define CORNEY_DEFINE_SPLIT_PROXY_TRACKER(inst)                                \
+  static void track_split_button_##inst(struct input_event *event) {           \
+    track_split_button(inst, event);                                           \
+  }                                                                            \
+  INPUT_CALLBACK_DEFINE(DEVICE_DT_GET(DT_DRV_INST(inst)),                      \
+                        track_split_button_##inst);
+
+DT_INST_FOREACH_STATUS_OKAY(CORNEY_DEFINE_SPLIT_PROXY_TRACKER)
 
 int corney_input_split_release_buttons(void) {
-  atomic_val_t pending = atomic_set(&active_buttons, 0);
+  atomic_val_t pending[ARRAY_SIZE(proxy_states)];
+  size_t release_count = 0U;
   int first_error = 0;
 
-  for (uint8_t index = 0U; index < CORNEY_TRACKED_BUTTON_COUNT; index++) {
-    if ((pending & BIT(index)) == 0) {
-      continue;
+  for (size_t proxy_index = 0U; proxy_index < ARRAY_SIZE(proxy_states);
+       proxy_index++) {
+    pending[proxy_index] =
+        atomic_set(&proxy_states[proxy_index].active_buttons, 0);
+    for (uint8_t button_index = 0U; button_index < CORNEY_TRACKED_BUTTON_COUNT;
+         button_index++) {
+      if ((pending[proxy_index] & BIT(button_index)) != 0) {
+        release_count++;
+      }
     }
+  }
 
-    pending &= ~BIT(index);
-    int err = zmk_input_split_report_peripheral_event(
-        CORNEY_POINTING_INPUT_SPLIT_REG, INPUT_EV_KEY, INPUT_BTN_0 + index, 0,
-        pending == 0);
-    if (err != 0 && first_error == 0) {
-      first_error = err;
+  for (size_t proxy_index = 0U; proxy_index < ARRAY_SIZE(proxy_states);
+       proxy_index++) {
+    for (uint8_t button_index = 0U; button_index < CORNEY_TRACKED_BUTTON_COUNT;
+         button_index++) {
+      if ((pending[proxy_index] & BIT(button_index)) == 0) {
+        continue;
+      }
+
+      release_count--;
+      int err = zmk_input_split_report_peripheral_event(
+          proxy_states[proxy_index].reg, INPUT_EV_KEY,
+          INPUT_BTN_0 + button_index, 0, release_count == 0U);
+      if (err != 0 && first_error == 0) {
+        first_error = err;
+      }
     }
   }
 

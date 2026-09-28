@@ -1,0 +1,40 @@
+#include "corney_layouts.dtsi"
+
+/ {
+    chosen {
+        zmk,kscan = &mock_kscan;
+        zmk,physical-layout = &foostan_corne_6col_layout;
+    };
+
+    mock_kscan: kscan {
+        compatible = "zmk,kscan-mock";
+        columns = <0>;
+        rows = <0>;
+        events = <0>;
+    };
+
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        glidepoint_right_split: glidepoint_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+
+        glidepoint_left_split: glidepoint_split@1 {
+            compatible = "zmk,input-split";
+            reg = <1>;
+        };
+    };
+
+    glidepoint_right_split_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint_right_split>;
+    };
+
+    glidepoint_left_split_listener {
+        compatible = "zmk,input-listener";
+        device = <&glidepoint_left_split>;
+    };
+};

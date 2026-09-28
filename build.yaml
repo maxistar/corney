@@ -5,8 +5,15 @@ include:
     cmake-args: -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y
     artifact-name: corney-left-enhanced
   - board: nice_nano_v2
+    shield: corney_left_peripheral
+    artifact-name: corney-left-peripheral
+  - board: nice_nano_v2
     shield: corney_right
     artifact-name: corney-right
+  - board: nice_nano_v2
+    shield: corney_dongle
+    cmake-args: -DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y
+    artifact-name: corney-usb-dongle
   - board: nice_nano_v2
     shield: settings_reset
     artifact-name: settings-reset

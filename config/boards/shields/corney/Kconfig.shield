@@ -3,3 +3,9 @@ config SHIELD_CORNEY_LEFT
 
 config SHIELD_CORNEY_RIGHT
     def_bool $(shields_list_contains,corney_right)
+
+config SHIELD_CORNEY_LEFT_PERIPHERAL
+    def_bool $(shields_list_contains,corney_left_peripheral)
+
+config SHIELD_CORNEY_DONGLE
+    def_bool $(shields_list_contains,corney_dongle)

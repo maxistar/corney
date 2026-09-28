@@ -1,6 +1,9 @@
-input_split event type=2 code=0 value=120 sync=0
-input_split event type=2 code=1 value=-45 sync=1
-input_split event type=2 code=8 value=2 sync=1
-input_split event type=1 code=256 value=1 sync=1
-input_split event type=1 code=256 value=0 sync=1
-input_split event type=2 code=0 value=-20 sync=1
+input_split reg=0 event type=2 code=0 value=120 sync=0
+input_split reg=0 event type=2 code=1 value=-45 sync=1
+input_split reg=0 event type=2 code=8 value=2 sync=1
+input_split reg=0 event type=1 code=256 value=1 sync=1
+input_split reg=1 event type=2 code=0 value=75 sync=1
+input_split reg=1 event type=1 code=257 value=1 sync=1
+input_split reg=0 event type=1 code=256 value=0 sync=0
+input_split reg=1 event type=1 code=257 value=0 sync=1
+input_split reg=1 event type=2 code=0 value=-20 sync=1

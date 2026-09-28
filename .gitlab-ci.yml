@@ -44,7 +44,9 @@ firmware:
     matrix:
       - TARGET:
           - corney-left-enhanced
+          - corney-left-peripheral
           - corney-right
+          - corney-usb-dongle
           - settings-reset
   before_script:
     - export CORNEY_CI_WEST_DIR="$(mktemp -d)"
@@ -66,6 +68,16 @@ firmware:
           shield=corney_right
           west_args=""
           cmake_args=""
+          ;;
+        corney-left-peripheral)
+          shield=corney_left_peripheral
+          west_args=""
+          cmake_args=""
+          ;;
+        corney-usb-dongle)
+          shield=corney_dongle
+          west_args=""
+          cmake_args="-DCONFIG_ZMK_STUDIO=n -DCONFIG_ZMK_KEYBOARD_HELPER_EXTENSION=y"
           ;;
         settings-reset)
           shield=settings_reset
