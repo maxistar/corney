@@ -133,8 +133,16 @@ clearances. Hardware acceptance for this topology is tracked in
 ## USB dongle OLED
 
 The `corney-usb-dongle` firmware selects one four-wire 128x64 SSD1306 module at I2C address `0x3c`
-and displays ZMK's built-in status screen. This initial screen verifies the electrical and firmware
-display path; it does not yet show Corney-specific diagnostics or either half's battery level.
+and displays a hybrid status screen. It preserves ZMK's standard output indicator at the upper
+left, local dongle battery indicator at the upper right, and active layer at the lower left. One
+compact row below the local battery shows both split-peripheral levels, for example `78% 56%`.
+
+The two remote values follow persistent ZMK split-slot order but deliberately have no slot numbers
+or left/right labels. Resetting bonds can reverse their order without changing the meaning of the
+pair. An unavailable, not-yet-seen, or disconnected value is shown as `--`; pinned ZMK v0.3.0 also
+uses zero as its disconnect sentinel, so a genuine remote `0%` is indistinguishable and is likewise
+shown as unavailable. The standard dongle battery widget's power symbol reports USB presence; it
+does not establish that an optional dongle cell is charging.
 
 Wire the display only to the dedicated dongle nice!nano v2:
 
@@ -150,9 +158,11 @@ address `0x3c`, 128x64 geometry, and the orientation used by the tested module. 
 blanks when ZMK enters idle and resumes after keyboard activity. The left and right halves do not
 contain this OLED node—their separate I2C buses remain available for optional Cirque sensors.
 
-Only the dongle needs to be reflashed for this display change. If display bring-up prevents normal
-dongle operation, reflash the preceding display-free `corney-usb-dongle` UF2; the two peripheral
-images and their split bonds do not otherwise change.
+Only the dongle needs to be reflashed for this display change. If the hybrid screen prevents normal
+dongle operation, reflash
+`.artifacts/show-corney-battery-levels-on-dongle/corney-usb-dongle.uf2`; the two peripheral images
+and their split bonds do not otherwise change. Build and physical acceptance evidence is recorded
+in `docs/dongle-hybrid-status-screen-verification.md`.
 
 ## CI/CD
 

@@ -147,6 +147,20 @@ def main() -> int:
     has_split_battery_proxy = config_enabled(
         config, "ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_PROXY"
     )
+    has_output_widget = config_enabled(config, "ZMK_WIDGET_OUTPUT_STATUS")
+    has_battery_widget = config_enabled(config, "ZMK_WIDGET_BATTERY_STATUS")
+    has_layer_widget = config_enabled(config, "ZMK_WIDGET_LAYER_STATUS")
+    has_battery_percentage = config_enabled(
+        config, "ZMK_WIDGET_BATTERY_STATUS_SHOW_PERCENTAGE"
+    )
+    has_montserrat_12 = config_enabled(config, "LV_FONT_MONTSERRAT_12")
+    has_montserrat_16 = config_enabled(config, "LV_FONT_MONTSERRAT_16")
+    has_default_montserrat_16 = config_enabled(
+        config, "LV_FONT_DEFAULT_MONTSERRAT_16"
+    )
+    has_small_montserrat_12 = config_enabled(
+        config, "ZMK_LV_FONT_DEFAULT_SMALL_MONTSERRAT_12"
+    )
     has_ssd1306_driver = config_enabled(config, "SSD1306")
     has_one_bit_color = config_enabled(config, "LV_COLOR_DEPTH_1")
     has_one_bit_buffer = "CONFIG_LV_Z_BITS_PER_PIXEL=1" in config
@@ -257,6 +271,18 @@ def main() -> int:
             f"{args.shield} must not expose the auxiliary battery proxy",
             failures,
         )
+        for symbol, enabled in (
+            ("ZMK_WIDGET_OUTPUT_STATUS", has_output_widget),
+            ("ZMK_WIDGET_BATTERY_STATUS", has_battery_widget),
+            ("ZMK_WIDGET_LAYER_STATUS", has_layer_widget),
+            ("LV_FONT_MONTSERRAT_12", has_montserrat_12),
+            ("LV_FONT_MONTSERRAT_16", has_montserrat_16),
+        ):
+            require(
+                not enabled,
+                f"{args.shield} must not include dongle-only CONFIG_{symbol}",
+                failures,
+            )
 
     if args.shield == "corney_right":
         require(has_driver, "corney_right must enable the polling driver", failures)
@@ -382,7 +408,7 @@ def main() -> int:
         require(has_custom_status, "dongle must enable the custom status screen", failures)
         require(
             has_corney_battery_screen,
-            "dongle must compile the Corney three-source battery screen",
+            "dongle must compile the Corney hybrid battery screen",
             failures,
         )
         require(
@@ -393,6 +419,26 @@ def main() -> int:
         require(
             not has_split_battery_proxy,
             "dongle must not expose peripheral battery values through auxiliary BAS",
+            failures,
+        )
+        require(has_output_widget, "dongle must restore the stock output widget", failures)
+        require(has_battery_widget, "dongle must restore the stock battery widget", failures)
+        require(has_layer_widget, "dongle must restore the stock layer widget", failures)
+        require(
+            not has_battery_percentage,
+            "dongle local battery widget must retain stock icon geometry",
+            failures,
+        )
+        require(has_montserrat_12, "dongle must include Montserrat 12", failures)
+        require(has_montserrat_16, "dongle must include Montserrat 16", failures)
+        require(
+            has_default_montserrat_16,
+            "dongle stock widgets must use Montserrat 16 by default",
+            failures,
+        )
+        require(
+            has_small_montserrat_12,
+            "dongle layer and remote row must use Montserrat 12",
             failures,
         )
         require(has_ssd1306_driver, "dongle must enable the SSD1306 driver", failures)
