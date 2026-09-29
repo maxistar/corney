@@ -1,0 +1,50 @@
+---
+import { project } from '../data/project.js';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+  current: 'home' | 'firmware' | 'build' | 'guide';
+}
+const { title, description, current } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const links = [
+  { id: 'home', label: 'Overview', href: `${base}/` },
+  { id: 'firmware', label: 'Firmware', href: `${base}/firmware/` },
+  { id: 'build', label: 'Build', href: `${base}/build/` },
+  { id: 'guide', label: 'Guide', href: `${base}/guide/` },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0e151b" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
+    <link rel="canonical" href={Astro.url} />
+    <title>{title} · Corney</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href={`${base}/`} aria-label="Corney home"><span class="brand-mark" aria-hidden="true">⌘</span><span>CORNEY<span class="brand-dot">.</span></span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+          {links.map((link) => <a href={link.href} aria-current={current === link.id ? 'page' : undefined}>{link.label}</a>)}
+        </nav>
+        <a class="header-source" href={project.repository} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer">
+      <div class="shell footer-grid">
+        <div><a class="footer-brand" href={`${base}/`}>CORNEY<span class="brand-dot">.</span></a><p>A split keyboard project built around ZMK, printable cases and practical pointing options.</p></div>
+        <div><span class="footer-label">Explore</span><a href={`${base}/firmware/`}>Firmware</a><a href={`${base}/build/`}>Hardware & cases</a><a href={`${base}/guide/`}>Setup guide</a></div>
+        <div><span class="footer-label">Elsewhere</span><a href={project.repository} target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><a href={project.helper}>Keyboard Helper ↗</a></div>
+      </div>
+    </footer>
+  </body>
+</html>

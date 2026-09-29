@@ -22,6 +22,9 @@ https://projects.maxistar.me/keyboard_helper/
 - `config/`: ZMK config for a split Corne on nice!nano (keymap, macros, Bluetooth bindings, west manifest).
 - `body/`: printable/parametric case and plate models for the Chocoflan remix (scad, stl, step, 3mf).
 - `build.yaml`: build matrix for CI (direct central, BLE halves, USB dongle, and reset firmware on `nice_nano_v2`).
+- `website/`: static Astro project site and firmware selection guide. It can be built locally with
+  `cd website && npm ci && npm run check && npm run build`; direct download links remain disabled
+  until a versioned firmware release is physically accepted.
 - `zephyr/module.yml`: declares the repo as a ZMK module, including the Corney shield root and
   the custom GATT features.
 - `docs/gatt-layer-exposition.md`: UUIDs, data format, and build notes for the BLE layer

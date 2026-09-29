@@ -1,0 +1,51 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { hardware, photos, project } from '../data/project.js';
+import { releaseView } from '../data/firmware.js';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const release = releaseView();
+---
+<SiteLayout title="A split keyboard with room to grow" description="Corney is a split ZMK keyboard with printable Choc and MX cases, optional Cirque pointing, and a USB dongle with OLED status." current="home">
+  <section class="hero shell">
+    <div class="hero-copy">
+      <span class="eyebrow">Split keyboard · ZMK firmware · printable cases</span>
+      <h1>Small footprint.<br /><span>Many ways to work.</span></h1>
+      <p class="lead">Corney is a split keyboard you can make your own: choose low-profile Choc or MX, add pointing on either half, and connect directly over Bluetooth or through a USB dongle.</p>
+      <div class="btn-row"><a class="btn" href={`${base}/firmware/`}>Choose your firmware <span aria-hidden="true">&nbsp;↗</span></a><a class="btn btn-outline" href={`${base}/build/`}>Explore the hardware</a></div>
+      <p class="hero-note"><span class="status-dot" aria-hidden="true"></span>{release.published ? release.label : 'Firmware guides available · public release pending acceptance'}</p>
+    </div>
+    <div class="hero-visual"><img src={photos.choc.src} alt={photos.choc.alt} width="750" height="320" /><span class="photo-caption">01 / Choc build</span><span class="hero-corner" aria-hidden="true">C/01</span></div>
+  </section>
+
+  <section class="signal-strip" aria-label="Project highlights"><div class="shell signals"><span>01 <strong>Two connection paths</strong></span><span>02 <strong>Optional pointing</strong></span><span>03 <strong>Printable cases</strong></span><span>04 <strong>Source available</strong></span></div></section>
+
+  <section class="section shell">
+    <SectionIntro eyebrow="Start with how you connect" title="One keyboard. Two topologies." description="The firmware changes according to which controller is in charge. Pick your path first; the guide then shows exactly which image belongs on each device." />
+    <div class="grid-2 path-grid">
+      <a class="path-card" href={`${base}/firmware/#direct`}><span class="card-number">PATH / 01</span><span class="path-symbol" aria-hidden="true">◁ ))) ▷</span><h3>Direct Bluetooth</h3><p>The left half is the central. Pair the keyboard directly with your computer; the right half joins over the split link.</p><span class="path-link">See the two firmware images <span aria-hidden="true">↗</span></span></a>
+      <a class="path-card" href={`${base}/firmware/#dongle`}><span class="card-number">PATH / 02</span><span class="path-symbol" aria-hidden="true">◁ → ▣ ← ▷</span><h3>USB Dongle</h3><p>Both halves connect to a dedicated central. The dongle sends keyboard and pointer reports over USB and drives an OLED status screen.</p><span class="path-link">See the three firmware images <span aria-hidden="true">↗</span></span></a>
+    </div>
+  </section>
+
+  <section class="section shell" id="hardware"><SectionIntro eyebrow="Built for the desk" title="Make space for your setup." description="The keyboard stays compact while the hardware options cover different switches, enclosures and pointing preferences." />
+    <div class="feature-layout">
+      <figure class="feature-photo"><img src={photos.mx.src} alt={photos.mx.alt} width="750" height="568" /><figcaption>MX build / printable enclosure</figcaption></figure>
+      <div class="feature-list">
+        <div><span>01 / FORM</span><h3>Choc or MX</h3><p>Repository-owned printable case sources cover both low-profile Choc and MX builds.</p></div>
+        <div><span>02 / POINT</span><h3>Trackpad on either half</h3><p>{hardware.trackpad}. Install one, both, or neither; the supported firmware stays the same.</p></div>
+        <div><span>03 / STATUS</span><h3>OLED on the dongle</h3><p>Output, local battery and active layer keep their familiar positions. A compact row adds the two remote battery values.</p></div>
+        <a class="text-link" href={`${base}/build/`}>Explore hardware details ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell"><div class="helper-panel"><div><span class="eyebrow">A useful companion</span><h2>See the layout<br />as you type.</h2><p>Keyboard Helper is a separate app for visualizing keyboard layouts. Corney's central firmware also exposes compatible read-only layer and key telemetry.</p><a class="btn btn-outline" href={project.helper}>Visit Keyboard Helper ↗</a></div><div class="helper-diagram" aria-hidden="true"><span>Corney</span><span class="helper-line">⇄</span><span>Keyboard<br />Helper</span></div></div></section>
+</SiteLayout>
+
+<style>
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;padding-top:95px;padding-bottom:95px}.hero .eyebrow{display:block;margin-bottom:23px}.hero h1{font-size:clamp(3.2rem,5.6vw,6rem);margin-bottom:25px;white-space:nowrap}.hero h1 span{color:var(--accent)}.hero .lead{max-width:570px}.hero-note{display:flex;align-items:center;gap:9px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.73rem;margin:23px 0 0}.status-dot{width:7px;height:7px;border-radius:50%;background:var(--accent)}.hero-visual{position:relative;background:#223138;padding:26px 22px 37px;border:1px solid #49615d;border-radius:14px;box-shadow:18px 18px 0 #18262b;transform:rotate(2deg)}.hero-visual img{width:100%;aspect-ratio:750/420;object-fit:cover;border-radius:5px;filter:saturate(.88) contrast(1.04)}.photo-caption,.hero-corner{position:absolute;bottom:11px;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.12em;color:#b7cbc7;text-transform:uppercase}.photo-caption{left:22px}.hero-corner{right:22px}.signal-strip{background:#1a282e;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.signals{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-block:21px}.signals span{font-family:'DM Mono',monospace;color:var(--accent);font-size:.75rem}.signals strong{display:block;font-family:'DM Sans Variable',sans-serif;color:var(--ink);font-size:.86rem;margin-top:3px}.path-card{display:block;position:relative;min-height:305px;padding:29px 31px 28px;background:#17262b;border:1px solid var(--border);border-radius:12px;text-decoration:none;transition:transform .15s,border-color .15s}.path-card:hover{transform:translateY(-4px);border-color:var(--accent);color:var(--ink)}.path-card h3{font-size:1.85rem;margin-top:32px}.path-card p{max-width:390px;color:var(--muted)}.path-symbol{position:absolute;right:28px;top:25px;color:#9db1aa;font-family:'DM Mono',monospace;font-size:.95rem}.path-link{display:inline-block;color:var(--accent);font-size:.86rem;font-weight:700;margin-top:12px}.feature-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}.feature-photo{position:relative;margin:0;background:#263137;border:1px solid var(--border);padding:14px;border-radius:12px}.feature-photo img{border-radius:5px;width:100%;object-fit:cover;aspect-ratio:1.2}.feature-photo figcaption{font-family:'DM Mono',monospace;color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;padding:13px 5px 1px}.feature-list>div{border-bottom:1px solid var(--border);padding:18px 0}.feature-list>div:first-child{padding-top:0}.feature-list span{font-family:'DM Mono',monospace;color:var(--accent);font-size:.68rem;letter-spacing:.1em}.feature-list h3{margin:9px 0 7px}.feature-list p{color:var(--muted);margin:0}.feature-list>a{display:inline-block;margin-top:23px}.helper-panel{background:#25362f;border:1px solid #6c8b73;border-radius:13px;padding:55px 65px;display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:35px}.helper-panel h2{margin:15px 0}.helper-panel p{color:#c7d6cf;max-width:550px}.helper-panel .btn{margin-top:12px}.helper-diagram{display:flex;align-items:center;justify-content:center;gap:14px;transform:rotate(-5deg)}.helper-diagram span:not(.helper-line){display:grid;place-items:center;text-align:center;width:120px;height:110px;border:1px solid #8fad85;border-radius:12px;background:#1b2b28;font-family:'Space Grotesk Variable',sans-serif;font-size:1.1rem;font-weight:700;line-height:1.1}.helper-line{color:var(--accent);font-size:2rem}
+  @media(max-width:1000px){.hero{grid-template-columns:1fr;padding-top:75px}.hero h1{white-space:normal}.hero-visual{max-width:720px}.signals{grid-template-columns:repeat(2,1fr)}.feature-layout{gap:30px}}
+  @media(max-width:700px){.hero{gap:35px;padding-top:60px;padding-bottom:65px}.hero-visual{transform:none;box-shadow:none}.signals{gap:20px}.feature-layout,.helper-panel{grid-template-columns:1fr}.feature-list{order:2}.helper-panel{padding:30px}.helper-diagram{display:none}.path-card{min-height:0}}
+  @media(max-width:400px){.signals{grid-template-columns:1fr 1fr}.signals strong{font-size:.78rem}.path-symbol{font-size:.7rem;right:20px}}
+</style>

@@ -33,6 +33,7 @@ cc -std=c11 -Wall -Wextra -Werror -pedantic \
 "$test_dir/dongle-power-status-test"
 python3 "$repo_dir/tests/verify_dongle_display_layout.py"
 python3 "$repo_dir/tests/verify_ble_metadata.py"
+python3 "$repo_dir/tests/test_firmware_release.py"
 python3 "$repo_dir/tests/verify_cirque_build.py" \
   --matrix-only \
   --build-yaml "$repo_dir/build.yaml"
