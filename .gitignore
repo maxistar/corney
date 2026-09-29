@@ -9,3 +9,7 @@ build
 modules
 zephyr
 /zmk
+/website/node_modules/
+/website/dist/
+/website/.astro/
+__pycache__/

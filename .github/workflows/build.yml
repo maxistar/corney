@@ -2,6 +2,10 @@ name: Build ZMK firmware
 
 on:
   push:
+    branches:
+      - '**'
+    tags:
+      - 'v*'
     paths:
       - '.github/workflows/build.yml'
       - 'CMakeLists.txt'
@@ -14,6 +18,7 @@ on:
       - 'src/**'
       - 'tests/**'
       - 'zephyr/**'
+      - 'scripts/**'
   pull_request:
     paths:
       - '.github/workflows/build.yml'
@@ -27,6 +32,7 @@ on:
       - 'src/**'
       - 'tests/**'
       - 'zephyr/**'
+      - 'scripts/**'
   workflow_dispatch:
     inputs:
       keyboard_name:
@@ -240,6 +246,22 @@ jobs:
             cp "${{ env.build_dir }}/zephyr/zmk.bin" "${{ env.build_dir }}/artifacts/${{ env.artifact_name }}.bin"
           fi
 
+      - name: Record release image provenance
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_SHA: ${{ github.sha }}
+          RELEASE_RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 scripts/package_firmware_release.py provenance \
+            --artifact "${{ env.artifact_name }}.uf2" \
+            --image "${{ env.build_dir }}/artifacts/${{ env.artifact_name }}.uf2" \
+            --config "${{ env.build_dir }}/zephyr/.config" \
+            --output "${{ env.build_dir }}/artifacts/${{ env.artifact_name }}.uf2.provenance.json" \
+            --tag "$RELEASE_TAG" \
+            --source-sha "$RELEASE_SHA" \
+            --run-id "$RELEASE_RUN_ID"
+
       - name: Archive (${{ env.display_name }})
         uses: actions/upload-artifact@v6
         with:
@@ -257,3 +279,51 @@ jobs:
           name: firmware
           pattern: artifact-*
           delete-merged: true
+
+  release:
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-24.04
+    needs: merge
+    permissions:
+      contents: write
+      actions: read
+    concurrency:
+      group: corney-firmware-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+      - name: Checkout tagged source
+        uses: actions/checkout@v5
+      - name: Download verified matrix outputs
+        uses: actions/download-artifact@v4
+        with:
+          name: firmware
+          path: release-input
+      - name: Package and verify release set
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_SHA: ${{ github.sha }}
+          RELEASE_RUN_ID: ${{ github.run_id }}
+        run: |
+          python3 scripts/package_firmware_release.py package \
+            --input release-input \
+            --output release-output \
+            --tag "$RELEASE_TAG" \
+            --source-sha "$RELEASE_SHA" \
+            --run-id "$RELEASE_RUN_ID"
+      - name: Publish immutable candidate release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists; refusing to replace assets" >&2
+            exit 1
+          fi
+          gh release create "$RELEASE_TAG" \
+            release-output/*.uf2 \
+            release-output/SHA256SUMS \
+            release-output/corney-firmware-"$RELEASE_TAG".zip \
+            --verify-tag \
+            --title "Corney firmware $RELEASE_TAG" \
+            --notes-file release-output/RELEASE_NOTES.md \
+            --prerelease
