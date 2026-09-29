@@ -7,6 +7,8 @@ import sys
 
 REPO = Path(__file__).resolve().parents[1]
 HEADER = REPO / "include/corney/dongle_power_status.h"
+SCREEN_SOURCE = REPO / "src/dongle_status_screen.c"
+CMAKE = REPO / "CMakeLists.txt"
 FONT_DIR = REPO / "modules/lib/gui/lvgl/src/font"
 # Pinned ZMK v0.3.0 LVGL Montserrat metrics. The host-test job checks out
 # Corney without running west update, so the external font sources are optional.
@@ -76,6 +78,8 @@ def unkerned_ascii_width(text: str, advances: dict[str, int]) -> int:
 
 def main() -> int:
     header = HEADER.read_text(encoding="utf-8")
+    screen_source = SCREEN_SOURCE.read_text(encoding="utf-8")
+    cmake_source = CMAKE.read_text(encoding="utf-8")
     display_width = define("CORNEY_DONGLE_DISPLAY_WIDTH_PX", header)
     display_height = define("CORNEY_DONGLE_DISPLAY_HEIGHT_PX", header)
     top_height = define("CORNEY_DONGLE_STOCK_TOP_HEIGHT_PX", header)
@@ -83,6 +87,12 @@ def main() -> int:
     remote_y = define("CORNEY_DONGLE_REMOTE_ROW_Y_PX", header)
     remote_height = define("CORNEY_DONGLE_REMOTE_ROW_HEIGHT_PX", header)
     remote_width = define("CORNEY_DONGLE_REMOTE_ROW_WIDTH_PX", header)
+    layer_icon_width = define("CORNEY_DONGLE_LAYER_ICON_WIDTH_PX", header)
+    layer_name_x = define("CORNEY_DONGLE_LAYER_NAME_X_PX", header)
+    layer_name_width = define("CORNEY_DONGLE_LAYER_NAME_WIDTH_PX", header)
+    layer_scroll_speed = define(
+        "CORNEY_DONGLE_LAYER_SCROLL_SPEED_PX_PER_SEC", header
+    )
 
     font_12_advances, font_12_height = font_metrics(12)
     _, font_16_height = font_metrics(16)
@@ -103,6 +113,55 @@ def main() -> int:
             f"100% 100% needs {widest_pair_width}px but row is {remote_width}px",
         ),
         (remote_width <= display_width, "remote row exceeds the framebuffer width"),
+        (
+            layer_icon_width < layer_name_x,
+            "layer name must leave a gap after the fixed keyboard symbol",
+        ),
+        (
+            layer_name_x + layer_name_width == display_width,
+            "layer name must use the remaining width through the right display edge",
+        ),
+        (
+            "zmk/display/widgets/layer_status.h" not in screen_source
+            and "zmk_widget_layer_status" not in screen_source,
+            "dongle screen must not use the stock truncating layer widget",
+        ),
+        (
+            "zmk_keymap_highest_layer_active()" in screen_source
+            and "zmk_keymap_layer_name(layer)" in screen_source,
+            "layer state must use ZMK's active layer and full display-name API",
+        ),
+        (
+            "ZMK_SUBSCRIPTION(corney_dongle_layer_listener, zmk_layer_state_changed)"
+            in screen_source,
+            "layer-name widget must update on ZMK layer-state events",
+        ),
+        (
+            "lv_label_set_long_mode(layer_name_label, LV_LABEL_LONG_SCROLL_CIRCULAR)"
+            in screen_source,
+            "layer name must use circular scrolling for overflow",
+        ),
+        (
+            screen_source.index("layer_name_label = lv_label_create(screen);")
+            < screen_source.index("corney_dongle_layer_listener_init();"),
+            "layer label must exist before its display listener initializes",
+        ),
+        (
+            "LV_SYMBOL_KEYBOARD" in screen_source,
+            "layer row must retain its stationary keyboard symbol",
+        ),
+        (
+            layer_scroll_speed == 20
+            and "lv_obj_set_style_anim_speed(" in screen_source
+            and "CORNEY_DONGLE_LAYER_SCROLL_SPEED_PX_PER_SEC" in screen_source,
+            "long layer names must scroll at the reduced 20 px/s speed",
+        ),
+        (
+            "target_sources_ifdef(CONFIG_CORNEY_DONGLE_BATTERY_STATUS_SCREEN app PRIVATE"
+            in cmake_source
+            and "src/dongle_status_screen.c" in cmake_source,
+            "full-name layer widget must compile only with the dongle screen option",
+        ),
     )
 
     failures = [message for condition, message in checks if not condition]
@@ -113,7 +172,9 @@ def main() -> int:
 
     print(
         "Dongle display layout verified: "
-        f"100% 100% <= {remote_width}px, y={remote_y}..{remote_y + remote_height - 1}"
+        f"100% 100% <= {remote_width}px, layer name={layer_name_width}px at "
+        f"{layer_scroll_speed}px/s, "
+        f"remote y={remote_y}..{remote_y + remote_height - 1}"
     )
     return 0
 

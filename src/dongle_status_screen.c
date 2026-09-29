@@ -3,20 +3,46 @@
 #include <zmk/display.h>
 #include <zmk/display/status_screen.h>
 #include <zmk/display/widgets/battery_status.h>
-#include <zmk/display/widgets/layer_status.h>
 #include <zmk/display/widgets/output_status.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/battery_state_changed.h>
+#include <zmk/events/layer_state_changed.h>
+#include <zmk/keymap.h>
 #include <zmk/split/central.h>
 
 #include <corney/dongle_power_status.h>
 
 static struct zmk_widget_battery_status battery_status_widget;
-static struct zmk_widget_layer_status layer_status_widget;
 static struct zmk_widget_output_status output_status_widget;
+static lv_obj_t *layer_name_label;
 static lv_obj_t *remote_power_label;
 static struct corney_dongle_power_status power_status;
 static bool power_status_initialized;
+
+struct corney_dongle_layer_status {
+  const char *name;
+};
+
+static void layer_status_update_cb(struct corney_dongle_layer_status status) {
+  lv_label_set_text(layer_name_label, status.name == NULL ? "" : status.name);
+}
+
+static struct corney_dongle_layer_status
+layer_status_get_state(const zmk_event_t *event) {
+  (void)event;
+  zmk_keymap_layer_index_t index = zmk_keymap_highest_layer_active();
+  zmk_keymap_layer_id_t layer = zmk_keymap_layer_index_to_id(index);
+
+  return (struct corney_dongle_layer_status){
+      .name = zmk_keymap_layer_name(layer),
+  };
+}
+
+ZMK_DISPLAY_WIDGET_LISTENER(corney_dongle_layer_listener,
+                            struct corney_dongle_layer_status,
+                            layer_status_update_cb, layer_status_get_state)
+
+ZMK_SUBSCRIPTION(corney_dongle_layer_listener, zmk_layer_state_changed);
 
 static void initialize_power_status(void) {
   if (power_status_initialized) {
@@ -75,11 +101,23 @@ lv_obj_t *zmk_display_status_screen(void) {
   lv_obj_align(zmk_widget_battery_status_obj(&battery_status_widget),
                LV_ALIGN_TOP_RIGHT, 0, 0);
 
-  zmk_widget_layer_status_init(&layer_status_widget, screen);
-  lv_obj_set_style_text_font(zmk_widget_layer_status_obj(&layer_status_widget),
-                             lv_theme_get_font_small(screen), LV_PART_MAIN);
-  lv_obj_align(zmk_widget_layer_status_obj(&layer_status_widget),
-               LV_ALIGN_BOTTOM_LEFT, 0, 0);
+  lv_obj_t *layer_icon_label = lv_label_create(screen);
+  lv_label_set_text(layer_icon_label, LV_SYMBOL_KEYBOARD);
+  lv_obj_set_width(layer_icon_label, CORNEY_DONGLE_LAYER_ICON_WIDTH_PX);
+  lv_obj_set_style_text_font(layer_icon_label, lv_theme_get_font_small(screen),
+                             LV_PART_MAIN);
+  lv_obj_align(layer_icon_label, LV_ALIGN_BOTTOM_LEFT, 0, 0);
+
+  layer_name_label = lv_label_create(screen);
+  lv_obj_set_width(layer_name_label, CORNEY_DONGLE_LAYER_NAME_WIDTH_PX);
+  lv_label_set_long_mode(layer_name_label, LV_LABEL_LONG_SCROLL_CIRCULAR);
+  lv_obj_set_style_anim_speed(layer_name_label,
+                              CORNEY_DONGLE_LAYER_SCROLL_SPEED_PX_PER_SEC,
+                              LV_PART_MAIN);
+  lv_obj_set_style_text_font(layer_name_label, lv_theme_get_font_small(screen),
+                             LV_PART_MAIN);
+  lv_obj_align(layer_name_label, LV_ALIGN_BOTTOM_LEFT,
+               CORNEY_DONGLE_LAYER_NAME_X_PX, 0);
 
   remote_power_label = lv_label_create(screen);
   lv_obj_set_width(remote_power_label, CORNEY_DONGLE_REMOTE_ROW_WIDTH_PX);
@@ -91,6 +129,7 @@ lv_obj_t *zmk_display_status_screen(void) {
   lv_obj_align(remote_power_label, LV_ALIGN_TOP_RIGHT, 0,
                CORNEY_DONGLE_REMOTE_ROW_Y_PX);
 
+  corney_dongle_layer_listener_init();
   corney_dongle_power_listener_init();
 
   return screen;

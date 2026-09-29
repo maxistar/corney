@@ -100,10 +100,10 @@ config CORNEY_DONGLE_BATTERY_STATUS_SCREEN
     depends on ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING
     default y
     help
-      Composes ZMK's standard output, local battery, and layer widgets with
-      one compact row for two anonymous split-peripheral battery levels on the
-      dongle-only SSD1306. The remote values intentionally do not claim
-      left/right identity.
+      Composes ZMK's standard output and local battery widgets with a full-name
+      active-layer row and one compact row for two anonymous split-peripheral
+      battery levels on the dongle-only SSD1306. The remote values intentionally
+      do not claim left/right identity.
 
 config INPUT_CORNEY_PINNACLE_POLLING
     bool "Corney Cirque Pinnacle polling driver"

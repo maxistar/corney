@@ -423,7 +423,11 @@ def main() -> int:
         )
         require(has_output_widget, "dongle must restore the stock output widget", failures)
         require(has_battery_widget, "dongle must restore the stock battery widget", failures)
-        require(has_layer_widget, "dongle must restore the stock layer widget", failures)
+        require(
+            not has_layer_widget,
+            "dongle must replace the truncating stock layer widget with its full-name widget",
+            failures,
+        )
         require(
             not has_battery_percentage,
             "dongle local battery widget must retain stock icon geometry",

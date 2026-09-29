@@ -1,5 +1,7 @@
 # Corney - Corney Chocoflan and Classical Corne keyboard
 
+Project site and firmware guide: https://projects.maxistar.me/corney/
+
 ![](docs/corne.jpg)
 
 ![](docs/cornemx.jpg)
