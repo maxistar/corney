@@ -8,6 +8,13 @@ import sys
 REPO = Path(__file__).resolve().parents[1]
 HEADER = REPO / "include/corney/dongle_power_status.h"
 FONT_DIR = REPO / "modules/lib/gui/lvgl/src/font"
+# Pinned ZMK v0.3.0 LVGL Montserrat metrics. The host-test job checks out
+# Corney without running west update, so the external font sources are optional.
+# When available, verify them against this committed fixture.
+PINNED_FONT_METRICS = {
+    12: ({" ": 52, "%": 162, "0": 128, "1": 71}, 15),
+    16: ({}, 18),
+}
 
 
 def fail(message: str) -> None:
@@ -22,10 +29,13 @@ def define(name: str, source: str) -> int:
     return int(match.group(1))
 
 
-def font_metrics(size: int) -> tuple[list[int], int]:
-    source = (FONT_DIR / f"lv_font_montserrat_{size}.c").read_text(
-        encoding="utf-8"
-    )
+def font_metrics(size: int) -> tuple[dict[str, int], int]:
+    expected_advances, expected_line_height = PINNED_FONT_METRICS[size]
+    font_path = FONT_DIR / f"lv_font_montserrat_{size}.c"
+    if not font_path.is_file():
+        return expected_advances, expected_line_height
+
+    source = font_path.read_text(encoding="utf-8")
     descriptor_block = re.search(
         r"glyph_dsc\[\] = \{(?P<body>.*?)\n\};", source, re.DOTALL
     )
@@ -39,17 +49,25 @@ def font_metrics(size: int) -> tuple[list[int], int]:
     line_height_match = re.search(r"\.line_height = (\d+)", source)
     if line_height_match is None:
         fail(f"cannot locate Montserrat {size} line height")
-    return advances, int(line_height_match.group(1))
+    line_height = int(line_height_match.group(1))
+    if line_height != expected_line_height:
+        fail(f"Montserrat {size} line height differs from the pinned fixture")
+    for character, expected_advance in expected_advances.items():
+        glyph_id = ord(character) - 0x20 + 1
+        if glyph_id >= len(advances) or advances[glyph_id] != expected_advance:
+            fail(f"Montserrat {size} advance for {character!r} differs from the pinned fixture")
+    return expected_advances, expected_line_height
 
 
-def unkerned_ascii_width(text: str, advances: list[int]) -> int:
+def unkerned_ascii_width(text: str, advances: dict[str, int]) -> int:
     advance_units = 0
     for character in text:
         codepoint = ord(character)
         if not 0x20 <= codepoint <= 0x7F:
             fail(f"layout fixture contains unsupported character {character!r}")
-        glyph_id = codepoint - 0x20 + 1
-        advance_units += advances[glyph_id]
+        if character not in advances:
+            fail(f"missing pinned advance for {character!r}")
+        advance_units += advances[character]
 
     # LVGL stores advances in 1/16 pixel units. Ignoring kerning is a safe
     # upper bound for this numeric fixture in the pinned Montserrat font.
