@@ -5,7 +5,7 @@ import '../styles/site.css';
 interface Props {
   title: string;
   description: string;
-  current: 'home' | 'firmware' | 'build' | 'guide';
+  current: 'home' | 'firmware' | 'build' | 'models' | 'guide';
 }
 const { title, description, current } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -13,6 +13,7 @@ const links = [
   { id: 'home', label: 'Overview', href: `${base}/` },
   { id: 'firmware', label: 'Firmware', href: `${base}/firmware/` },
   { id: 'build', label: 'Build', href: `${base}/build/` },
+  { id: 'models', label: '3D Models', href: `${base}/models/` },
   { id: 'guide', label: 'Guide', href: `${base}/guide/` },
 ];
 ---
@@ -42,7 +43,7 @@ const links = [
     <footer class="site-footer">
       <div class="shell footer-grid">
         <div><a class="footer-brand" href={`${base}/`}>CORNEY<span class="brand-dot">.</span></a><p>A split keyboard project built around ZMK, printable cases and practical pointing options.</p></div>
-        <div><span class="footer-label">Explore</span><a href={`${base}/firmware/`}>Firmware</a><a href={`${base}/build/`}>Hardware & cases</a><a href={`${base}/guide/`}>Setup guide</a></div>
+        <div><span class="footer-label">Explore</span><a href={`${base}/firmware/`}>Firmware</a><a href={`${base}/build/`}>Hardware & cases</a><a href={`${base}/models/`}>3D models</a><a href={`${base}/guide/`}>Setup guide</a></div>
         <div><span class="footer-label">Elsewhere</span><a href={project.repository} target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a><a href={project.helper}>Keyboard Helper ↗</a></div>
       </div>
     </footer>

@@ -1,0 +1,82 @@
+---
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import STLModelBrowser from '../components/STLModelBrowser.jsx';
+import { project } from '../data/project.js';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const repoBody = `${project.repository}/tree/main/body`;
+type ModelOptions = {
+  color?: string;
+  distance?: number;
+  sourceFile?: string;
+  sourcePath?: string;
+};
+
+const model = (group: string, filename: string, name: string, description: string, options: ModelOptions = {}) => {
+  const sourcePath = options.sourcePath === undefined ? group : options.sourcePath;
+  const sourceSegment = sourcePath ? `${sourcePath}/` : '';
+  return {
+    filename,
+    name,
+    description,
+    url: `${base}/models/${group}/${filename}`,
+    source: `${repoBody}/${sourceSegment}${options.sourceFile ?? filename}`,
+    color: options.color,
+    distance: options.distance,
+  };
+};
+
+const modelGroups = [
+  {
+    id: 'choc',
+    name: 'Choc enclosure',
+    models: [
+      model('choc', 'body_thin.stl', 'Low-profile body', 'Main Choc body shell for the current low-profile enclosure.', { sourcePath: 'Choc_Version', color: '#d9f488', distance: 3.1 }),
+      model('choc', 'board_cover.stl', 'Board cover', 'Cover plate for the Choc controller area.', { sourcePath: 'Choc_Version', color: '#e5b788', distance: 2.4 }),
+      model('choc', 'body_thin_panel.stl', 'Thin panel', 'Separate face/panel print used with the low-profile body.', { sourcePath: 'Choc_Version', color: '#96d6ff', distance: 2.5 }),
+      model('choc', 'face_panel.stl', 'Face panel', 'Top-facing panel piece for the current Choc model set.', { sourcePath: 'Choc_Version', color: '#f0c46d', distance: 2.3 }),
+      model('choc', 'board_cover_reset_button.stl', 'Reset cover', 'Small reset-button cover for the controller opening.', { sourcePath: 'Choc_Version', color: '#e8a0a0', distance: 1.7 }),
+      model('choc', 'reset_button.stl', 'Reset button', 'Left-side reset button insert.', { sourcePath: 'Choc_Version', color: '#cdb7ff', distance: 1.5 }),
+    ],
+  },
+  {
+    id: 'touchpad',
+    name: 'Right trackpad',
+    models: [
+      model('touchpad', 'right_touchpad_body.stl', 'Trackpad body', 'Right-hand Choc body variant shaped for the accepted Cirque trackpad installation.', { sourcePath: 'Choc_Version', color: '#d9f488', distance: 3.0 }),
+      model('touchpad', 'right_touchpad_cover.stl', 'Trackpad cover', 'Cover piece for the right trackpad body.', { sourcePath: 'Choc_Version', color: '#e5b788', distance: 2.1 }),
+    ],
+  },
+  {
+    id: 'mx',
+    name: 'MX enclosure',
+    models: [
+      model('mx', 'body_thin.stl', 'MX thin body', 'Lower-profile MX body option for taller switch builds.', { sourcePath: 'MX_Version', color: '#d9f488', distance: 3.1 }),
+      model('mx', 'body_thick.stl', 'MX thick body', 'Thicker MX body option for the classic-height enclosure.', { sourcePath: 'MX_Version', color: '#b7e4ff', distance: 3.1 }),
+      model('mx', 'board_case.stl', 'MX board case', 'Controller and board case part for the MX version.', { sourcePath: 'MX_Version', color: '#e5b788', distance: 2.4 }),
+      model('mx', 'board_cover.stl', 'MX board cover', 'Cover piece for the MX controller area.', { sourcePath: 'MX_Version', color: '#f0c46d', distance: 2.1 }),
+    ],
+  },
+  {
+    id: 'legacy',
+    name: 'Reference parts',
+    models: [
+      model('legacy', 'corne-chocoflan-case.stl', 'Chocoflan case', 'Original/remixed case reference kept in the repository root body folder.', { sourcePath: '', color: '#d9f488', distance: 2.8 }),
+      model('legacy', 'corne_chocoflan_basic.stl', 'Basic body', 'Basic Corne Chocoflan body reference.', { sourcePath: '', color: '#96d6ff', distance: 2.7 }),
+      model('legacy', 'body_with_stands.stl', 'Body with stands', 'Earlier body variant with integrated stand geometry.', { sourcePath: '', color: '#e5b788', distance: 3.0 }),
+      model('legacy', 'tbenen-plate.stl', 'Plate reference', 'Plate reference file retained with the legacy body parts.', { sourcePath: '', color: '#f0c46d', distance: 2.0 }),
+    ],
+  },
+];
+---
+<SiteLayout title="3D printable models" description="Preview and download Corney STL files for Choc, MX, touchpad and reference enclosure parts." current="models">
+  <div class="shell page-hero"><span class="eyebrow">Models / STL preview</span><h1>Inspect the printed parts before slicing.</h1><p class="lead">Browse the checked-in Corney STL files directly in the page. Use the viewer to rotate, zoom and compare the Choc, MX, touchpad and reference model sets.</p></div>
+
+  <section class="shell section models-section" aria-labelledby="models-title">
+    <SectionIntro id="models-title" eyebrow="Interactive viewer" title="Choose a model set." description="The files below are copied from the repository's printable sources into the static site so the viewer and download links keep working on GitHub Pages." />
+    <STLModelBrowser client:only="react" groups={modelGroups} />
+  </section>
+
+  <section class="shell section"><div class="source-panel"><div><span class="eyebrow">Source files</span><h2>Need the SCAD entry points?</h2><p>The viewer publishes selected STL files. Parametric source files, assemblies and SVG outlines remain in the repository.</p></div><div class="source-links"><a href={project.printable.choc}>Browse Choc sources ↗</a><a href={project.printable.mx}>Browse MX sources ↗</a><a href={`${base}/build/`}>Back to hardware ↗</a></div></div></section>
+</SiteLayout>

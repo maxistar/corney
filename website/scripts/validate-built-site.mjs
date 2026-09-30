@@ -4,7 +4,7 @@ import { artifactNames, currentRelease, recovery, releaseView, topologies, valid
 
 const root = resolve(import.meta.dirname, '..');
 const dist = join(root, 'dist');
-const routes = ['', 'firmware/', 'build/', 'guide/'];
+const routes = ['', 'firmware/', 'build/', 'models/', 'guide/'];
 const pages = new Map();
 const errors = [];
 const fail = (message) => errors.push(message);
@@ -19,7 +19,7 @@ for (const route of routes) {
   if (!html.includes('<main id="main"')) fail(`Missing main landmark: ${route}`);
   if (!html.includes('href="#main"')) fail(`Missing skip link: ${route}`);
   if (!/<meta name="description" content="[^"]+"/.test(html)) fail(`Missing description: ${route}`);
-  if (/<script\b/i.test(html)) fail(`Unexpected client script on static page: ${route}`);
+  if (route !== 'models/' && /<script\b/i.test(html)) fail(`Unexpected client script on static page: ${route}`);
   for (const [, , rawUrl] of html.matchAll(/<(a|link|img)\b[^>]*?\b(?:href|src)="([^"]+)"[^>]*>/g)) {
     const url = decode(rawUrl);
     if (url.startsWith('#')) {

@@ -8,7 +8,7 @@ export const project = Object.freeze({
     mx: 'https://github.com/maxistar/corney/tree/main/body/MX_Version',
   }),
   docs: Object.freeze({
-    oled: 'https://github.com/maxistar/corney/blob/main/docs/dongle-hybrid-status-screen-verification.md',
+    oled: 'https://github.com/maxistar/corney/blob/main/docs/dongle-full-layer-name-verification.md',
     pointing: 'https://github.com/maxistar/corney/blob/main/docs/dual-side-trackpad-verification.md',
     protocol: 'https://github.com/maxistar/corney/blob/main/docs/keyboard-helper-ble-v1.md',
     readme: 'https://github.com/maxistar/corney/blob/main/readme.md',
