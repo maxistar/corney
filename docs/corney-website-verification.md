@@ -30,6 +30,33 @@ until a versioned, physically accepted compatibility set is selected.
   1440 CSS pixels: no page-level horizontal overflow, broken images, missing image alternatives,
   or internal links escaping `/corney/` were found.
 
+## Prototype dongle case
+
+The Models page has a "USB dongle case (prototype)" set with three STL files copied from
+`body/dongle/` (source last changed in `e1ed106`, byte-identical at copy time): bottom shell, upper
+shell and reset button. The Build page has a prototype block (30 x 70 mm breadboard design basis,
+adjustable OpenSCAD parameters, screen cut-out still being refined) and the Guide dongle section links
+to it as optional. The Home page is unchanged.
+
+- `website/npm run check` and `npm run build`: 0 errors, 4 data tests pass, the post-build validator
+  passes with five routes.
+- Local preview: the dongle set loads its STL (HTTP 200), the viewer renders the shell with no console
+  errors, and the Build page has no horizontal overflow at 320 CSS pixels.
+
+## Models built from sources
+
+The 3D models are no longer committed under `website/public/models/`. `website/scripts/models-manifest.mjs`
+maps each published model to its file in `body/`, and `scripts/sync-models.mjs` copies them before
+`dev`, `check` and `build`; the output directory is git-ignored. The website workflow also runs when an
+STL under `body/` changes.
+
+- Before untracking, the generated directory was byte-identical to the 16 committed copies and the 3
+  untracked dongle copies.
+- From an empty `public/models/`, `npm run check` (8 tests pass) and `npm run build` pass, and the
+  resulting `dist/` is identical to the previous build output, including all 19 STL files.
+- Fault injection: an unlisted STL, a missing source (the build aborts before Astro runs) and a
+  duplicate target each fail with a message naming the entry; the mapping was restored afterwards.
+
 ## Firmware release still pending
 
 - Choose the first release version and accepted source revision.

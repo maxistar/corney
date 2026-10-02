@@ -75,19 +75,19 @@
     "gap": 10
   },
   "keyPositions": [
-    {"row": 0, "col": 1}, {"row": 0, "col": 2}, {"row": 0, "col": 3}, {"row": 0, "col": 4}, {"row": 0, "col": 5}, {"row": 0, "col": 6}, {"row": 0, "col": 10}, {"row": 0, "col": 11}, {"row": 0, "col": 12}, {"row": 0, "col": 13}, {"row": 0, "col": 14}, {"row": 0, "col": 15}, 
-    {"row": 1, "col": 1}, {"row": 1, "col": 2}, {"row": 1, "col": 3}, {"row": 1, "col": 4}, {"row": 1, "col": 5}, {"row": 1, "col": 6}, {"row": 1, "col": 10}, {"row": 1, "col": 11}, {"row": 1, "col": 12}, {"row": 1, "col": 13}, {"row": 1, "col": 14}, {"row": 1, "col": 15}, 
-    {"row": 2, "col": 1}, {"row": 2, "col": 2}, {"row": 2, "col": 3}, {"row": 2, "col": 4}, {"row": 2, "col": 5}, {"row": 2, "col": 6}, {"row": 2, "col": 10}, {"row": 2, "col": 11}, {"row": 2, "col": 12}, {"row": 2, "col": 13}, {"row": 2, "col": 14}, {"row": 2, "col": 15}, 
-    {"row": 3.2, "col": 5, "cls": "action"}, {"row": 3.2, "col": 6, "cls": "action", "angle": 5}, {"row": 3.4, "col": 7, "cls": "action", "angle": 10}, {"row": 3.4, "col": 9, "cls": "action", "angle": -10}, {"row": 3.2, "col": 10, "cls": "action", "angle": -5}, {"row": 3.2, "col": 11, "cls": "action"}
+    {"row": 0, "col": 0}, {"row": 0, "col": 1}, {"row": 0, "col": 2}, {"row": 0, "col": 3}, {"row": 0, "col": 4}, {"row": 0, "col": 5}, {"row": 0, "col": 9}, {"row": 0, "col": 10}, {"row": 0, "col": 11}, {"row": 0, "col": 12}, {"row": 0, "col": 13}, {"row": 0, "col": 14}, 
+    {"row": 1, "col": 0}, {"row": 1, "col": 1}, {"row": 1, "col": 2}, {"row": 1, "col": 3}, {"row": 1, "col": 4}, {"row": 1, "col": 5}, {"row": 1, "col": 9}, {"row": 1, "col": 10}, {"row": 1, "col": 11}, {"row": 1, "col": 12}, {"row": 1, "col": 13}, {"row": 1, "col": 14}, 
+    {"row": 2, "col": 0}, {"row": 2, "col": 1}, {"row": 2, "col": 2}, {"row": 2, "col": 3}, {"row": 2, "col": 4}, {"row": 2, "col": 5}, {"row": 2, "col": 9}, {"row": 2, "col": 10}, {"row": 2, "col": 11}, {"row": 2, "col": 12}, {"row": 2, "col": 13}, {"row": 2, "col": 14}, 
+    {"row": 3.2, "col": 4, "cls": "action"}, {"row": 3.2, "col": 5, "cls": "action", "angle": 5}, {"row": 3.4, "col": 6, "cls": "action", "angle": 10}, {"row": 3.4, "col": 8, "cls": "action", "angle": -10}, {"row": 3.2, "col": 9, "cls": "action", "angle": -5}, {"row": 3.2, "col": 10, "cls": "action"}
   ],
   "combos": [
-    {"id": 1, "positions": [1, 2], "key1": {"row": 0,"col": 2},"key2": {"row": 0,"col": 3},"code": "Escape"},
-    {"id": 2, "positions": [15, 16], "key1": {"row": 1,"col": 4},"key2": {"row": 1,"col": 5},"code": "Return"},
-    {"id": 3, "positions": [19, 20], "key1": {"row": 1,"col": 11},"key2": {"row": 1,"col": 12},"code": "Return"},
-    {"id": 4, "positions": [27, 28], "key1": {"row": 2,"col": 4},"key2": {"row": 2,"col": 5},"code": "Backspace"},
-    {"id": 5, "positions": [31, 32], "key1": {"row": 2,"col": 11},"key2": {"row": 2,"col": 12},"code": "Backspace"},
-    {"id": 6, "positions": [40, 41], "key1": {"row": 3.2,"col": 10},"key2": {"row": 3.2,"col": 11},"code": ""},
-    {"id": 7, "positions": [36, 37], "key1": {"row": 3.2,"col": 5},"key2": {"row": 3.2,"col": 6},"code": ""}
+    {"id": 1, "positions": [1, 2], "key1": {"row": 0,"col": 1},"key2": {"row": 0,"col": 2},"code": "Escape"},
+    {"id": 2, "positions": [15, 16], "key1": {"row": 1,"col": 3},"key2": {"row": 1,"col": 4},"code": "Return"},
+    {"id": 3, "positions": [19, 20], "key1": {"row": 1,"col": 10},"key2": {"row": 1,"col": 11},"code": "Return"},
+    {"id": 4, "positions": [27, 28], "key1": {"row": 2,"col": 3},"key2": {"row": 2,"col": 4},"code": "Backspace"},
+    {"id": 5, "positions": [31, 32], "key1": {"row": 2,"col": 10},"key2": {"row": 2,"col": 11},"code": "Backspace"},
+    {"id": 6, "positions": [40, 41], "key1": {"row": 3.2,"col": 9},"key2": {"row": 3.2,"col": 10},"code": ""},
+    {"id": 7, "positions": [36, 37], "key1": {"row": 3.2,"col": 4},"key2": {"row": 3.2,"col": 5},"code": ""}
   ],
   "keyLayers": {
     "Default": [
@@ -142,7 +142,7 @@
       null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["е", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "KeyP"], 
       null, ["ф", "KeyA"], ["ы", "KeyS"], ["в", "KeyD"], ["а", "KeyF"], ["п", "KeyG"], ["р", "KeyH"], ["о", "KeyJ"], ["л", "KeyK"], ["д", "KeyL"], ["ж", "KeyL"], ["э", "KeyL"], 
       null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyM"], ["ь", "KeyM"], ["б", "KeyM"], ["ю", "KeyM"], [".", "KeyM"], null, null, 
-      null, null, null, null, null, null
+      null, null, null, null, null
     ],
     "Mac: Russian": [
       null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["е", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "LeftBracket"], 

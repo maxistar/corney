@@ -13,3 +13,4 @@ zephyr
 /website/dist/
 /website/.astro/
 __pycache__/
+/website/public/models/
