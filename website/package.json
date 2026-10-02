@@ -3,8 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "sync-models": "node scripts/sync-models.mjs",
+    "predev": "npm run sync-models",
     "dev": "astro dev",
+    "precheck": "npm run sync-models",
     "check": "astro check && node --test tests/*.test.mjs",
+    "prebuild": "npm run sync-models",
     "build": "astro build && node scripts/validate-built-site.mjs",
     "preview": "astro preview"
   },

@@ -4,12 +4,14 @@ on:
   pull_request:
     paths:
       - 'website/**'
+      - 'body/**/*.stl'
       - '.github/workflows/deploy-website.yml'
   push:
     branches:
       - main
     paths:
       - 'website/**'
+      - 'body/**/*.stl'
       - '.github/workflows/deploy-website.yml'
   workflow_dispatch:
 
