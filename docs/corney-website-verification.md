@@ -30,6 +30,19 @@ until a versioned, physically accepted compatibility set is selected.
   1440 CSS pixels: no page-level horizontal overflow, broken images, missing image alternatives,
   or internal links escaping `/corney/` were found.
 
+## Prototype dongle case
+
+The Models page has a "USB dongle case (prototype)" set with three STL files copied from
+`body/dongle/` (source last changed in `e1ed106`, byte-identical at copy time): bottom shell, upper
+shell and reset button. The Build page has a prototype block (30 x 70 mm breadboard design basis,
+adjustable OpenSCAD parameters, screen cut-out still being refined) and the Guide dongle section links
+to it as optional. The Home page is unchanged.
+
+- `website/npm run check` and `npm run build`: 0 errors, 4 data tests pass, the post-build validator
+  passes with five routes.
+- Local preview: the dongle set loads its STL (HTTP 200), the viewer renders the shell with no console
+  errors, and the Build page has no horizontal overflow at 320 CSS pixels.
+
 ## Firmware release still pending
 
 - Choose the first release version and accepted source revision.

@@ -59,6 +59,15 @@ const modelGroups = [
     ],
   },
   {
+    id: 'dongle',
+    name: 'USB dongle case (prototype)',
+    models: [
+      model('dongle', 'dongle_breadboard_bottom.stl', 'Dongle bottom shell', 'Prototype bottom shell with screw holes for the dongle breadboard. The link opens the parametric OpenSCAD source.', { sourceFile: 'dongle_breadboard_bottom.scad', color: '#d9f488', distance: 2.6 }),
+      model('dongle', 'dongle_breadboard_upper.stl', 'Dongle upper shell', 'Prototype upper shell with USB, screen and reset-button openings. The screen cut-out is still being refined.', { sourceFile: 'dongle_breadboard_upper.scad', color: '#96d6ff', distance: 2.6 }),
+      model('dongle', 'dongle_breadboard_button.stl', 'Dongle reset button', 'Small button insert for the reset opening in the upper shell.', { sourceFile: 'dongle_breadboard_button.scad', color: '#e8a0a0', distance: 1.4 }),
+    ],
+  },
+  {
     id: 'legacy',
     name: 'Reference parts',
     models: [
@@ -70,8 +79,8 @@ const modelGroups = [
   },
 ];
 ---
-<SiteLayout title="3D printable models" description="Preview and download Corney STL files for Choc, MX, touchpad and reference enclosure parts." current="models">
-  <div class="shell page-hero"><span class="eyebrow">Models / STL preview</span><h1>Inspect the printed parts before slicing.</h1><p class="lead">Browse the checked-in Corney STL files directly in the page. Use the viewer to rotate, zoom and compare the Choc, MX, touchpad and reference model sets.</p></div>
+<SiteLayout title="3D printable models" description="Preview and download Corney STL files for Choc, MX, touchpad, dongle case prototype and reference enclosure parts." current="models">
+  <div class="shell page-hero"><span class="eyebrow">Models / STL preview</span><h1>Inspect the printed parts before slicing.</h1><p class="lead">Browse the checked-in Corney STL files directly in the page. Use the viewer to rotate, zoom and compare the Choc, MX, touchpad, dongle case and reference model sets.</p></div>
 
   <section class="shell section models-section" aria-labelledby="models-title">
     <SectionIntro id="models-title" eyebrow="Interactive viewer" title="Choose a model set." description="The files below are copied from the repository's printable sources into the static site so the viewer and download links keep working on GitHub Pages." />
