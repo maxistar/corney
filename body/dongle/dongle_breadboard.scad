@@ -211,7 +211,7 @@ module upperShell() {
     }
 
     // window cut
-    windowsYOffset = -15;
+    windowsYOffset = -(breadboard_length / 2 - 15 / 2) + 15;
     translate([0, windowsYOffset, 0])
       cube([25, 15, 200], center=true);
 
