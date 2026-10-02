@@ -142,7 +142,7 @@
       null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["е", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "KeyP"], 
       null, ["ф", "KeyA"], ["ы", "KeyS"], ["в", "KeyD"], ["а", "KeyF"], ["п", "KeyG"], ["р", "KeyH"], ["о", "KeyJ"], ["л", "KeyK"], ["д", "KeyL"], ["ж", "KeyL"], ["э", "KeyL"], 
       null, ["я", "KeyZ"], ["ч", "KeyX"], ["с", "KeyC"], ["м", "KeyV"], ["и", "KeyB"], ["т", "KeyM"], ["ь", "KeyM"], ["б", "KeyM"], ["ю", "KeyM"], [".", "KeyM"], null, null, 
-      null, null, null, null, null, null
+      null, null, null, null, null
     ],
     "Mac: Russian": [
       null, ["й", "KeyQ"], ["ц", "KeyW"], ["у", "KeyE"], ["к", "KeyR"], ["е", "KeyT"], ["н", "KeyY"], ["г", "KeyU"], ["ш", "KeyI"], ["щ", "KeyO"], ["з", "KeyP"], ["х", "LeftBracket"], 
